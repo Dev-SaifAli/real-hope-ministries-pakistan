@@ -35,7 +35,7 @@ export default function Hero ({
         alt='Hero background'
         fill
         className='object-cover object-center -z-20'
-        priority
+        loading='lazy'
       />
 
       {/* Dark Overlay */}
@@ -46,7 +46,7 @@ export default function Hero ({
         {/* Title — Responsive Font and Leading */}
         <h1
           className='
-            font-display font-[520] text-white 
+            font-display font-[515] text-white 
             text-2xl leading-[44px]             /* Mobile */
             md:text-4xl md:leading-[60px]       /* Tablet */
             lg:text-6xl lg:leading-[84px]       /* Desktop */
