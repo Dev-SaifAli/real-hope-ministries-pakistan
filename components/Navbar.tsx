@@ -25,16 +25,16 @@ export default function Navbar () {
   return (
     // FIX: Use `relative` + ref-based positioning instead of hardcoded top offset
     <nav className='w-full bg-white shadow-sm relative'>
-      <div className='max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between'>
+      <div className='max-w-480 w-full mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between'>
         {/* —— Logo —— */}
-        <Link href='/' className='flex-shrink-0'>
+        <Link href='/' className='shrink-0'>
           <Image
             src='/nav-logo.png'
             alt='Real Hope Pakistan'
             // FIX: Slightly smaller on mobile, normal on sm+
             width={65}
             height={65}
-            className='w-12 h-12 sm:w-[65px] sm:h-[65px] rounded-full object-contain'
+            className='w-12 h-12 sm:w-16.25 sm:h-16.25 rounded-full object-contain'
           />
         </Link>
 
@@ -70,14 +70,14 @@ export default function Navbar () {
           {/* Hamburger Button */}
           {/* FIX: min-w/min-h ensures ≥44px touch target */}
           <button
-            className='lg:hidden flex flex-col justify-center items-center gap-[5px] bg-transparent border-none cursor-pointer min-w-[44px] min-h-[44px]'
+            className='lg:hidden flex flex-col justify-center items-center gap-1.25 bg-transparent border-none cursor-pointer min-w-11 min-h-11'
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label='Toggle menu'
             aria-expanded={menuOpen}
           >
             <span
               className={`block w-6 h-0.5 bg-navy rounded transition-all duration-300 ${
-                menuOpen ? 'rotate-45 translate-y-[7px]' : ''
+                menuOpen ? 'rotate-45 translate-y-1.75' : ''
               }`}
             />
             <span
@@ -87,7 +87,7 @@ export default function Navbar () {
             />
             <span
               className={`block w-6 h-0.5 bg-navy rounded transition-all duration-300 ${
-                menuOpen ? '-rotate-45 -translate-y-[7px]' : ''
+                menuOpen ? '-rotate-45 -translate-y-1.75' : ''
               }`}
             />
           </button>
@@ -95,44 +95,37 @@ export default function Navbar () {
       </div>
 
       {/* —— Mobile Menu —— */}
-      {/* FIX: Position relative to nav via `top-full` instead of hardcoded top-[97px] */}
-      {/* FIX: Added transition for smooth open/close feel */}
-      <div
-        className={`
-          absolute top-full left-0 right-0 bg-white shadow-lg z-50 lg:hidden
-          overflow-hidden transition-all duration-300 ease-in-out
-          ${menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
-        `}
-      >
-        <div className='flex flex-col gap-1 px-4 sm:px-8 py-4'>
-          {navLinks.map((link: NavLink) => (
+      {menuOpen && (
+        <div className='absolute top-full left-0 right-0 bg-white shadow-lg z-50 lg:hidden'>
+          <div className='flex flex-col gap-1 px-4 sm:px-8 py-4'>
+            {navLinks.map((link: NavLink) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`
+            text-base font-medium py-3 min-h-11 flex items-center
+            border-b border-gray-100 transition-colors
+            ${
+              activePath === link.href
+                ? 'text-green'
+                : 'text-black hover:text-green'
+            }
+          `}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
-              key={link.href}
-              href={link.href}
-              // FIX: min-h-[44px] for touch target compliance
-              className={`
-                text-base font-medium py-3 min-h-[44px] flex items-center
-                border-b border-gray-100 transition-colors
-                ${
-                  activePath === link.href
-                    ? 'text-green'
-                    : 'text-black hover:text-green'
-                }
-              `}
+              href='/support'
+              className='w-full text-center px-6 py-3 min-h-11 bg-navy text-white font-semibold rounded-lg mt-3 flex items-center justify-center'
               onClick={() => setMenuOpen(false)}
             >
-              {link.label}
+              Support Us
             </Link>
-          ))}
-          <Link
-            href='/support'
-            className='w-full text-center px-6 py-3 min-h-[44px] bg-navy text-white font-semibold rounded-lg mt-3 flex items-center justify-center'
-            onClick={() => setMenuOpen(false)}
-          >
-            Support Us
-          </Link>
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   )
 }
