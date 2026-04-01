@@ -12,30 +12,29 @@ interface Video {
 const videos: Video[] = [
   {
     id: 1,
-    thumbnail: '/videos/video-1.webp',
+    thumbnail: '/videos/video-1.png',
     alt: 'Real Hope Ministry community gathering'
   },
   {
     id: 2,
-    thumbnail: '/videos/video-2.webp',
+    thumbnail: '/videos/video-2.png',
     alt: 'Widows ministry - Christmas clothes'
   },
   {
     id: 3,
-    thumbnail: '/videos/video-3.webp',
+    thumbnail: '/videos/video-3.png',
     alt: 'Freedom from slavery project'
   },
-  { id: 4, thumbnail: '/videos/video-4.webp', alt: 'Clean water project' },
-  { id: 5, thumbnail: '/videos/video-5.webp', alt: 'Food distribution' },
-  { id: 6, thumbnail: '/videos/video-6.webp', alt: 'Youth mission' },
-  { id: 7, thumbnail: '/videos/video-7.webp', alt: 'Orphanage project' }
+  { id: 4, thumbnail: '/videos/video-4.png', alt: 'Clean water project' },
+  { id: 5, thumbnail: '/videos/video-5.png', alt: 'Food distribution' },
+  { id: 6, thumbnail: '/videos/video-6.png', alt: 'Youth mission' },
+  { id: 7, thumbnail: '/videos/video-7.png', alt: 'Orphanage project' }
 ]
 
 function PlayButton () {
   return (
-    <div className='w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200'>
-      {/* Triangle play icon */}
-      <div className='w-0 h-0 ml-1 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[18px] border-l-[#0B2545]' />
+    <div className='w-12 h-12 sm:w-14 sm:h-14  bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200 rounded-full'>
+      <div className='w-0 h-0 ml-1 border-t-[9px] border-t-transparent border-b-[9px] border-b-transparent border-l-16 border-l-navy' />
     </div>
   )
 }
@@ -45,26 +44,22 @@ function VideoCard ({ video }: { video: Video }) {
 
   return (
     <div
-      className='flex-shrink-0 relative w-[420px] h-[280px]  overflow-hidden cursor-pointer group'
+      // FIX: Responsive card width using CSS clamp via w-[80vw] on mobile,
+      // fixed width on larger screens
+      className='flex-shrink-0 relative w-[80vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group '
       onClick={() => setPlaying(true)}
     >
-      {/* Thumbnail image */}
       <img
         src={video.thumbnail}
         alt={video.alt}
         className='w-full h-full object-cover'
       />
-
-      {/* Dark overlay on hover */}
       <div className='absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-200' />
-
-      {/* Play button — centered */}
       {!playing && (
         <div className='absolute inset-0 flex items-center justify-center'>
           <PlayButton />
         </div>
       )}
-
       {playing && video.youtubeId && (
         <iframe
           className='absolute inset-0 w-full h-full'
@@ -81,35 +76,35 @@ export default function AboutSection () {
   const [activeSlide, setActiveSlide] = useState(0)
 
   const visibleCount = 3
-  const totalDots = videos.length - visibleCount + 1 // = 5 dots
+  const totalDots = videos.length - visibleCount + 1
 
   const handleDotClick = (index: number) => {
     setActiveSlide(index)
     const slider = document.getElementById('video-slider')
     if (slider) {
-      // Each card width (420) + gap (24)
-      slider.scrollTo({ left: index * (420 + 24), behavior: 'smooth' })
+      // FIX: Read actual card width from DOM instead of hardcoding 420+24
+      const firstCard = slider.firstElementChild as HTMLElement
+      const cardWidth = firstCard ? firstCard.offsetWidth + 24 : 444
+      slider.scrollTo({ left: index * cardWidth, behavior: 'smooth' })
     }
   }
 
   return (
-    <section className='w-full  bg-white py-20 overflow-hidden'>
-      {/* ── Section Header — centered text ── */}
-      <div className='text-center px-6 mb-12 max-w-[900px] mx-auto'>
-        {/* Green label above heading */}
-        <p className='font-display font-[515] text-green   text-[18px] mb-4'>
+    <section className='w-full bg-white py-12 md:py-20 overflow-hidden'>
+      {/* ── Section Header ── */}
+      <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
+        <p className='font-display font-semibold text-green text-[16px] sm:text-[18px] mb-3 md:mb-4'>
           About Real Hope Pakistan
         </p>
 
-        {/* Main heading — navy, "Compassion" in green */}
-        <h2 className='font-display font-[515] text-navy text-4xl md:text-5xl leading-tight mb-6'>
+        {/* FIX: smoother type scale — 3xl → 4xl → 5xl */}
+        <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 md:mb-6'>
           A Mission of <span className='text-green'>Compassion</span>,{' '}
           <br className='hidden md:block' />
           Faith and Action
         </h2>
 
-        {/* Description paragraph */}
-        <p className='font-sans text-black text-[16px] leading-relaxed max-w-[780px] mx-auto'>
+        <p className='font-sans text-black md:text-[16px] sm:text-[16px] leading-relaxed  mx-auto'>
           Real Hope Pakistan is committed to serving the most vulnerable
           communities across the nation. Guided by a spirit of humanitarianism,
           we work tirelessly to address immediate needs while fostering
@@ -121,26 +116,30 @@ export default function AboutSection () {
         </p>
       </div>
 
-      <div className='max-w-[1400px] mx-auto px-10'>
+      {/* FIX: px-4 on mobile, px-6 on sm, px-10 on lg */}
+      <div className='max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10'>
         <div
           id='video-slider'
-          className='flex gap-6 overflow-x-auto scroll-smooth pb-4'
+          className='flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4'
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           onScroll={e => {
-            const scrollLeft = e.currentTarget.scrollLeft
-            const newSlide = Math.round(scrollLeft / (420 + 24))
+            const slider = e.currentTarget
+            const firstCard = slider.firstElementChild as HTMLElement
+            const cardWidth = firstCard ? firstCard.offsetWidth + 24 : 444
+            const newSlide = Math.round(slider.scrollLeft / cardWidth)
             setActiveSlide(newSlide)
           }}
         >
           {videos.map((video: Video) => (
             <VideoCard key={video.id} video={video} />
           ))}
-          <div className='flex-shrink-0 w-6' />
+          {/* FIX: Larger trailing spacer so last card doesn't get clipped on mobile */}
+          <div className='flex-shrink-0 w-4 sm:w-6' />
         </div>
       </div>
 
       {/* ── Dot Indicators ── */}
-      <div className='flex items-center justify-center gap-2 mt-8'>
+      <div className='flex items-center justify-center gap-2 mt-6 md:mt-8'>
         {Array.from({ length: totalDots }).map((_, index) => (
           <button
             key={index}
@@ -150,8 +149,8 @@ export default function AboutSection () {
               rounded-full transition-all duration-200
               ${
                 activeSlide === index
-                  ? 'w-3 h-3 bg-[#0B2545]' // active dot — navy, bigger
-                  : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400' // inactive dot
+                  ? 'w-3 h-3 bg-navy'
+                  : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
               }
             `}
           />
