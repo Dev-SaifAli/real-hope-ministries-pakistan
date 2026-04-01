@@ -6,9 +6,9 @@ export default function CTASection() {
     <section className="w-full bg-white py-20 px-6">
       <div className="max-w-[925px] mx-auto text-center">
 
-        <h2 className="font-display font-[515] text-[#0B2545] text-4xl md:text-5xl leading-tight mb-6">
+        <h2 className="font-display font-semibold text-navy text-4xl md:text-5xl leading-tight mb-6">
           Be a Part of the{' '}
-          <span className="text-[#2E9E6F]">Change</span>
+          <span className="text-green">Change</span>
         </h2>
 
         <p className="font-sans text-black text-[18px] leading-relaxed max-w-[600px] mx-auto mb-10">

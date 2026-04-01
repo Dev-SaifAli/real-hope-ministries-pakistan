@@ -7,24 +7,22 @@ export default function CommunitySection () {
     <section className='w-full bg-white py-20 overflow-hidden'>
       {/* ── Header — centered ── */}
       <div className='text-center px-6 mb-16 max-w-[860px] mx-auto'>
-        <h2 className='font-display font-black text-[#0B2545] text-4xl md:text-5xl leading-tight mb-6'>
-          Community In <span className='text-[#2E9E6F]'>Action</span>
+        <h2 className='font-display font-[515] text-navy text-4xl md:text-5xl leading-tight mb-6'>
+          Community In <span className='text-green'>Action</span>
         </h2>
 
-        <p className='font-sans text-black text-[16px] leading-relaxed max-w-[680px] mx-auto'>
+        <p className='font-sans text-black text-[20px] leading-relaxed  mx-auto'>
           Real stories and meaningful moments captured during our fieldwork
           across Pakistan, highlighting the communities we serve and the impact
           of compassion, support, and hope in everyday lives.
         </p>
       </div>
 
-
       <div className='w-full h-[500px] md:h-[650px] bg-white overflow-hidden [perspective:1500px] flex items-center justify-center'>
         <div className='relative flex items-center justify-center w-full [transform-style:preserve-3d]'>
           {images.map((src, index) => {
             const position = index - midIndex
 
-           
             // 1. rotationY: Keeps the U-shape facing center
             const rotationY = position * -30
 
