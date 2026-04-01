@@ -26,20 +26,20 @@ export default function StorySection ({
     if (titleRest === 'The Story of the Masih Family') {
       return (
         <>
-          The Story of the Masih <br /> Family
+          The Story of the Masih <br className='hidden sm:block' /> Family
         </>
       )
     }
     return titleRest
   }
+
   return (
-    <section className='w-full bg-white py-20 px-6'>
-      <div className='mx-auto px-10'>
-        {/* ── Two column layout — image left, text right ── */}
-        <div className='flex flex-col md:flex-row items-center justify-center gap-16 md:gap-20'>
-          <div className='relative shrink-0 w-95 h-100 md:w-115 md:h-120'>
-            {/* Large circle — main family photo */}
-            <div className='absolute top-0 left-0 w-[320px] h-80 md:w-95 md:h-95 rounded-full overflow-hidden border-4 border-white shadow-xl z-10'>
+    <section className='w-full bg-white py-12 md:py-20 px-4 sm:px-6 md:px-10'>
+      <div className='max-w-[1440px] mx-auto flex justify-center'>
+        <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 w-full max-w-[1100px]'>
+          {/* Image Block */}
+          <div className='relative shrink-0 mx-auto w-[320px] h-[420px] sm:w-[340px] sm:h-[440px] md:w-[420px] md:h-[500px]'>
+            <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-xl z-10'>
               <Image
                 src={primaryImage}
                 alt='Masih family at brick kiln'
@@ -47,9 +47,7 @@ export default function StorySection ({
                 className='object-cover object-center'
               />
             </div>
-
-            {/* Small circle — overlapping bottom right */}
-            <div className='absolute bottom-0 right-0 w-45 h-45 md:w-52.5 md:h-52.5 rounded-full overflow-hidden border-4 border-white shadow-xl z-20'>
+            <div className='absolute top-[160px] left-[120px] sm:top-[170px] sm:left-[130px] md:top-[200px] md:left-[160px] w-[160px] h-[160px] sm:w-[170px] sm:h-[170px] md:w-[190px] md:h-[190px] rounded-full overflow-hidden border-4 border-white shadow-xl z-20'>
               <Image
                 src={secondaryImage}
                 alt='Working at brick kiln'
@@ -59,20 +57,17 @@ export default function StorySection ({
             </div>
           </div>
 
-          <div className='flex flex-col gap-6'>
-            <h2 className='font-display font-semibold text-navy text-[32px] md:text-[40px] leading-tight'>
+          {/* Text Block */}
+          <div className='flex flex-col gap-4 md:gap-6 max-w-[560px] text-center md:text-left'>
+            <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight'>
               From <span className='text-green'>{titleHighlight}</span>
               <br />
               {renderTitle()}
             </h2>
-
-            {/* Description */}
-            <p className='font-sans text-black text-[21px] leading-relaxed '>
+            <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[21px] leading-relaxed'>
               {description}
             </p>
-
-            {/* Orange Watch Full Story button */}
-            <div className='mt-2'>
+            <div className='mt-1 md:mt-2 flex justify-center md:justify-start'>
               <Button
                 variant='watchStory'
                 text='Watch Full Story'
