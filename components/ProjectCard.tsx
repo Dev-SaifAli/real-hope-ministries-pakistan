@@ -25,7 +25,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
       {/* The 28px Gap requested */}
       <div className="mt-7 flex flex-col">
-        <h3 className="text-navy font-display font-[515]  text-[22px] md:text-[26px] leading-tight mb-3">
+        <h3 className="text-navy font-display font-[515]  text-[22px] md:text-[26px] leading-tight mb-1">
           {project.title}
         </h3>
         <p className="text-black font-sans text-[18px] leading-[1.6]">

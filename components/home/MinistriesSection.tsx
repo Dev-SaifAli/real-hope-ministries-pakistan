@@ -70,14 +70,13 @@ const projects: Project[] = [
 
 export default function MinistriesSection () {
   return (
-    <section className='w-full bg-white py-16 px-6 md:px-10'>
-      <div className='text-center mb-10 max-w-3xl mx-auto'>
-        <h2 className='text-navy font-display font-[515] text-[32px] md:text-[56px]'>
+    <section className='w-full bg-white py-12 md:py-16 px-4 sm:px-6 md:px-10'>
+      <div className='text-center mb-8 md:mb-10 max-w-3xl mx-auto'>
+        <h2 className='text-navy font-display font-[515] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[56px] leading-tight'>
           Our Ministries and <span className='text-green'>Projects</span>
         </h2>
       </div>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16 max-w-[1440px] mx-auto px-6 md:px-10'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-8 gap-y-10 md:gap-y-16 max-w-480 mx-auto'>
         {projects.map(project => (
           <ProjectCard key={project.id} project={project} />
         ))}
