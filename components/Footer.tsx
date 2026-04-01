@@ -38,16 +38,16 @@ const ministries: FooterLink[] = [
 const socialLinks = [
   {
     label: 'Facebook',
-    href: 'https://facebook.com',
+    href: 'https://www.facebook.com/profile.php?id=100019001642487',
     icon: '/icons/facebook.svg'
   },
   { label: 'Twitter', href: 'https://twitter.com', icon: '/icons/twitter.svg' },
   {
     label: 'Instagram',
-    href: 'https://instagram.com',
+    href: 'https://www.instagram.com/pastor_zeeshan_mm/',
     icon: '/icons/instagram.svg'
   },
-  { label: 'YouTube', href: 'https://youtube.com', icon: '/icons/youtube.svg' }
+  { label: 'YouTube', href: 'https://www.youtube.com/@RHMpakistan', icon: '/icons/youtube.svg' }
 ]
 
 const footerColumns: FooterColumn[] = [
@@ -65,14 +65,14 @@ export default function Footer () {
           <div className='flex flex-col gap-5'>
             <Image
               src='/nav-logo.png'
-              alt='Real Hope Pakistan'
+              alt='Real Hope Ministries Pakistan'
               width={65}
               height={65}
               className='rounded-full object-contain'
             />
 
             <h3 className='font-sans font-bold text-white text-[18px]'>
-              Real Hope Pakistan
+              Real Hope Ministries Pakistan
             </h3>
 
             <p className='font-sans text-white text-[14px] leading-relaxed'>
@@ -137,7 +137,7 @@ export default function Footer () {
       <div className='border-t border-white/15'>
         <div className='max-w-[1400px] mx-auto px-10 py-5 flex items-center justify-between'>
           <p className='font-sans text-white/60 text-[14px]'>
-          {new Date().getFullYear()} Real Hope Pakistan. All rights reserved.
+          {new Date().getFullYear()} Real Hope Ministries Pakistan. All rights reserved.
           </p>
           <Link
             href='/terms'

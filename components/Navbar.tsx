@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from './Button'
+import { usePathname } from 'next/navigation'
 
 interface NavLink {
   label: string
@@ -22,7 +23,7 @@ export default function Navbar () {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
   // Replace with: const activePath = usePathname(); in production
-  const activePath = '/projects'
+  const activePath = usePathname()
 
   return (
     <nav className='w-full h-20 bg-white shadow-sm flex items-center justify-center relative'>
@@ -48,7 +49,7 @@ export default function Navbar () {
                 <Link
                   href={link.href}
                   className={`
-                    text-[15px] font-medium transition-colors duration-200 whitespace-nowrap
+                    text-[16px] font-medium transition-colors duration-200 whitespace-nowrap
                     ${
                       activePath === link.href
                         ? 'text-[#2E9E6F] font-semibold  pb-1'
