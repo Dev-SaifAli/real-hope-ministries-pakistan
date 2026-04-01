@@ -35,7 +35,7 @@ export default function StorySection ({
 
   return (
     <section className='w-full bg-white py-12 md:py-20 px-4 sm:px-6 md:px-10'>
-      <div className='max-w-[1440px] mx-auto flex justify-center'>
+      <div className='mx-auto flex justify-center'>
         <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 w-full max-w-[1100px]'>
           {/* Image Block */}
           <div className='relative shrink-0 mx-auto w-[320px] h-[420px] sm:w-[340px] sm:h-[440px] md:w-[420px] md:h-[500px]'>
