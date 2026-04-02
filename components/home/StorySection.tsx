@@ -64,7 +64,7 @@ export default function StorySection ({
               <br />
               {renderTitle()}
             </h2>
-            <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[21px] leading-relaxed'>
+            <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'>
               {description}
             </p>
             <div className='mt-1 md:mt-2 flex justify-center md:justify-start'>

@@ -71,8 +71,8 @@ const projects: Project[] = [
 export default function MinistriesSection () {
   return (
     <section className='w-full bg-white py-12 md:py-16 px-4 sm:px-6 md:px-10'>
-      <div className='text-center mb-8 md:mb-10 max-w-3xl mx-auto'>
-        <h2 className='text-navy font-display font-[515] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[56px] leading-tight'>
+      <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
+        <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 md:mb-6'>
           Our Ministries and <span className='text-green'>Projects</span>
         </h2>
       </div>

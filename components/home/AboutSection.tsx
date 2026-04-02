@@ -104,7 +104,7 @@ export default function AboutSection () {
           Faith and Action
         </h2>
 
-        <p className='font-sans text-black md:text-[16px] sm:text-[16px] leading-relaxed  mx-auto'>
+        <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'>
           Real Hope Pakistan is committed to serving the most vulnerable
           communities across the nation. Guided by a spirit of humanitarianism,
           we work tirelessly to address immediate needs while fostering
