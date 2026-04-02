@@ -3,7 +3,7 @@ import Button from '@/components/Button'
 export default function CTASection() {
   return (
     // py-12 mobile, py-20 md+ — px-4 mobile se start
-    <section className='w-full bg-white py-12 md:py-20 px-4 sm:px-6'>
+    <section className='w-full bg-white my-12 md:my-24 px-4 sm:px-6'>
       <div className='max-w-[925px] mx-auto text-center'>
         <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight mb-4 md:mb-6'>
           Be a Part of the <span className='text-green'>Change</span>

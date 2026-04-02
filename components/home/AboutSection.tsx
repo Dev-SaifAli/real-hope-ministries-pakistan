@@ -90,7 +90,7 @@ export default function AboutSection () {
   }
 
   return (
-    <section className='w-full bg-white py-12 md:py-20 overflow-hidden'>
+    <section className='w-full bg-white mt-12 md:mt-20 overflow-hidden'>
       {/* ── Section Header ── */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
         <p className='font-display font-semibold text-green text-[16px] sm:text-[18px] mb-3 md:mb-4'>
