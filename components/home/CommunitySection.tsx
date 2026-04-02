@@ -9,7 +9,7 @@ const communityImages = [
 ]
 export default function CommunitySection () {
   return (
-    <section className='w-full bg-white py-20 overflow-hidden '>
+    <section id='community' className='w-full bg-white py-20 overflow-hidden '>
       {/* ── Header — centered ── */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
         <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 md:mb-6'>

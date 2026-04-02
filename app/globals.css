@@ -19,7 +19,9 @@
     margin: 0;
     padding: 0;
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     /* Uses the Open Sans variable mapped above */
     font-family: var(--font-open-sans), sans-serif;
@@ -31,7 +33,12 @@
   }
 
   /* Headings automatically use Poppins */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-poppins), sans-serif;
   }
 
