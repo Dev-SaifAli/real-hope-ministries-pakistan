@@ -14,7 +14,7 @@ const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Donate', href: '/donate' },
+  { label: 'Donate', href: '/donation' },
   { label: 'Contact Us', href: '/contact' }
 ]
 
@@ -27,9 +27,9 @@ export default function Navbar () {
   return (
     <nav className='w-full h-20 bg-white shadow-sm flex items-center justify-center relative'>
       {/* Container to handle side padding and spacing */}
-      <div className='max-w-[1440px] w-full mx-auto px-6 md:px-10 flex items-center justify-between'>
+      <div className='w-full mx-auto px-8 md:px-16 lg:px-24 flex items-center justify-between'>
         {/* —— Logo (Left Side) —— */}
-        <Link href='/' className='flex-shrink-0'>
+        <Link href='/' className='shrink-0'>
           <Image
             src='/nav-logo.png'
             alt='Real Hope Pakistan'
@@ -68,7 +68,7 @@ export default function Navbar () {
 
           {/* Mobile Menu Toggle */}
           <button
-            className='lg:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1'
+            className='lg:hidden flex flex-col gap-1.25 bg-transparent border-none cursor-pointer p-1'
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label='Toggle menu'
           >
@@ -92,7 +92,7 @@ export default function Navbar () {
 
         {/* —— Mobile Menu Overlay —— */}
         {menuOpen && (
-          <div className='absolute top-[97px] left-0 right-0 bg-white shadow-lg flex flex-col gap-4 px-8 py-6 z-50 lg:hidden'>
+          <div className='absolute top-24.25 left-0 right-0 bg-white shadow-lg flex flex-col gap-4 px-8 py-6 z-50 lg:hidden'>
             {navLinks.map((link: NavLink) => (
               <Link
                 key={link.href}
