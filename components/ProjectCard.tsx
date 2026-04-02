@@ -10,20 +10,25 @@ export interface Project {
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="flex flex-col group">
-      <div className="relative w-full h-[220px] overflow-hidden rounded-xl">
+    /* Card Container: Strict Figma width */
+    <div className="flex flex-col w-full max-w-[408px] mx-auto">
+      
+      {/* Image: Strict aspect ratio based on 408px width */}
+      <div className="relative w-full h-[320px] overflow-hidden rounded-none">
         <Image
           src={project.image}
           alt={project.alt}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover"
         />
       </div>
-      <div className="pt-4">
-        <h3 className="text-navy font-display font-bold text-[18px] mb-2">
+
+      {/* The 28px Gap requested */}
+      <div className="mt-7 flex flex-col">
+        <h3 className="text-navy font-display font-[515]  text-[22px] md:text-[26px] leading-tight mb-1">
           {project.title}
         </h3>
-        <p className="text-black/80 font-sans text-[14px] leading-relaxed">
+        <p className="text-black font-sans text-[18px] leading-[1.6]">
           {project.description}
         </p>
       </div>
