@@ -93,7 +93,7 @@ export default function ContactUs () {
               <div key={field.id}>
                 <label
                   htmlFor={field.id}
-                  className='block text-[16px] font-bold font-sans text-navy mb-2'
+                  className='block text-[16px] font-semibold font-sans text-black mb-2'
                 >
                   {field.label}
                 </label>
@@ -103,7 +103,7 @@ export default function ContactUs () {
                   placeholder={field.placeholder}
                   value={formData[field.id as keyof typeof formData]}
                   onChange={handleChange}
-                  className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 focus:outline-none focus:ring-1 focus:ring-navy'
+                  className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy'
                 />
               </div>
             ))}
@@ -111,7 +111,7 @@ export default function ContactUs () {
             <div>
               <label
                 htmlFor='message'
-                className='block text-[16px] font-bold font-sans text-navy mb-2'
+                className='block text-[16px] font-bold font-sans text-black mb-2'
               >
                 Message
               </label>
@@ -121,11 +121,11 @@ export default function ContactUs () {
                 placeholder='Enter Your Message'
                 value={formData.message}
                 onChange={handleChange}
-                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-navy'
+                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans placeholder-black text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-navy'
               />
             </div>
 
-            <button className='w-full bg-navy text-white text-[15px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'>
+            <button className='w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'>
               Send Message
             </button>
           </form>

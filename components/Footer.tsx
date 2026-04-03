@@ -137,7 +137,7 @@ export default function Footer () {
         {/* border-t opacity for a subtler line like the screenshot */}
         <div className='border-t py-5 border-white/py-6 flex flex-col md:flex-row items-center justify-between gap-4'>
           {/* Copyright Section */}
-          <p className='font-sans text-white text-[14px] sm:text-[16px] opacity-90'>
+          <p className='font-sans text-white text-[14px] sm:text-[15px] opacity-90'>
             © {new Date().getFullYear()} Real Hope Pakistan. All rights
             reserved.
           </p>
@@ -146,13 +146,13 @@ export default function Footer () {
           <div className='flex items-center gap-8 md:gap-12'>
             <Link
               href='/privacyandpolicy'
-              className='font-sans text-white text-[14px] sm:text-[16px] hover:opacity-70 transition-opacity'
+              className='font-sans text-white text-[14px] sm:text-[15px] hover:opacity-70 transition-opacity'
             >
               Privacy Policy
             </Link>
             <Link
               href='/termsandconditions'
-              className='font-sans text-white text-[14px] sm:text-[16px] hover:opacity-70 transition-opacity'
+              className='font-sans text-white text-[14px] sm:text-[15px] hover:opacity-70 transition-opacity'
             >
               Term and Services
             </Link>
