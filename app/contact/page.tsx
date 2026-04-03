@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin } from 'lucide-react'
+import FormInput from '@/components/ui/FormInput'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -55,7 +56,6 @@ export default function ContactUs () {
             Get in <span className='text-green'>Touch</span>
           </h1>
 
-          {/* ALIGNMENT ANCHOR: The form box will align with the top of this text */}
           <p className='font-sans text-black text-[16px] md:text-[18px] leading-relaxed mb-10 max-w-md'>
             If you have any questions about our work or would like to support
             our mission, feel free to contact us.
@@ -65,7 +65,7 @@ export default function ContactUs () {
             <h2 className='text-[20px] md:text-[24px] font-semibold font-display text-navy mb-4'>
               Contact details
             </h2>
-            <div className='bg-[#F3F4F6] px-6 py-8  space-y-6 w-full max-w-sm'>
+            <div className='bg-[#0B2545]/10 px-6 py-8 space-y-6 w-full max-w-sm'>
               {contactDetails.map((item, i) => (
                 <div key={i} className='flex items-center gap-4'>
                   <div className='shrink-0 text-navy'>{item.icon}</div>
@@ -79,35 +79,25 @@ export default function ContactUs () {
         </div>
 
         {/* ── Right Column ── */}
-        {/* mt-2 mimics the "very little difference" in heading height */}
-        {/* lg:mt-[14px] ensures the "Send Us a Message" is slightly lower than "Get in Touch" */}
         <div className='lg:mt-[14px]'>
           <h2 className='text-[24px] md:text-[32px] font-semibold font-display text-navy mb-6'>
             Send Us a Message
           </h2>
 
-          {/* THE FORM ELEMENT */}
-          {/* This box now aligns vertically with the start of the left-side paragraph */}
-          <form className='bg-[#F3F4F6] p-6 sm:p-10 md:p-12  space-y-5'>
+          <form className='bg-[#0B2545]/10 p-6 sm:p-10 md:py-10 space-y-5'>
             {formFields.map(field => (
-              <div key={field.id}>
-                <label
-                  htmlFor={field.id}
-                  className='block text-[16px] font-semibold font-sans text-black mb-2'
-                >
-                  {field.label}
-                </label>
-                <input
-                  id={field.id}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  value={formData[field.id as keyof typeof formData]}
-                  onChange={handleChange}
-                  className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy'
-                />
-              </div>
+              <FormInput
+                key={field.id}
+                id={field.id}
+                label={field.label}
+                type={field.type}
+                placeholder={field.placeholder}
+                value={formData[field.id as keyof typeof formData]}
+                onChange={handleChange}
+              />
             ))}
 
+            {/* ── Textarea — FormInput mein nahi hai, yahan raha ── */}
             <div>
               <label
                 htmlFor='message'
@@ -125,7 +115,10 @@ export default function ContactUs () {
               />
             </div>
 
-            <button className='w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'>
+            <button
+              type='submit'
+              className='w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'
+            >
               Send Message
             </button>
           </form>

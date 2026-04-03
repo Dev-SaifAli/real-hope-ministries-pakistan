@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Button from '@/components/Button'
+import Button from '@/components/ui/Button'
 
 interface StoryProps {
   title?: string
@@ -34,7 +34,7 @@ export default function StorySection ({
   }
 
   return (
-    <section className='w-full bg-white py-12 md:py-20 px-4 sm:px-6 md:px-10'>
+    <section className='w-full bg-white mt-5 mb-18 px-4 sm:px-6 md:px-10'>
       <div className='mx-auto flex justify-center'>
         <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 w-full max-w-[1100px]'>
           {/* Image Block */}

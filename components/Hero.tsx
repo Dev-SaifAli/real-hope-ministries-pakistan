@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Button from './Button'
+import Button from './ui/Button'
 
 interface HeroProps {
   title?: string
@@ -14,7 +14,6 @@ export default function Hero ({
   primaryCta = { label: 'Support Us', href: '/support' },
   secondaryCta = { label: 'Learn More', href: '/about' }
 }: HeroProps) {
-  
   // Force "Pakistan" to a new line for the default title
   const renderTitle = () => {
     if (title === 'Hope for Communities Across Pakistan') {

@@ -20,13 +20,13 @@ const quickLinks: FooterLink[] = [
 ]
 
 const ministries: FooterLink[] = [
-  { label: 'Orphanage', href: '/projects/orphanage' },
-  { label: 'Clean Water', href: '/projects/clean-water' },
-  { label: 'Widow Support', href: '/projects/widows' },
-  { label: 'Freedom Slavery', href: '/projects/slavery' },
-  { label: 'Persecution Support', href: '/projects/persecution' },
-  { label: 'Food Support', href: '/projects/food' },
-  { label: 'Youth Mission', href: '/projects/youth' }
+  { label: 'Orphanage', href: '#orphanage-project' },
+  { label: 'Clean Water', href: '#clean-water-project' },
+  { label: 'Widow Support', href: '#widows-ministry' },
+  { label: 'Freedom Slavery', href: '#freedom-from-slavery' },
+  { label: 'Persecution Support', href: '#persecution-support' },
+  { label: 'Food Support', href: '#food-project' },
+  { label: 'Youth Mission', href: '#youth-of-mission' }
 ]
 
 const socialLinks = [
@@ -74,7 +74,7 @@ export default function Footer () {
             <h3 className='font-sans font-bold text-white text-[16px] sm:text-[18px]'>
               Real Hope Ministries Pakistan
             </h3>
-            <p className='font-sans text-white text-[14px] sm:text-[16px] leading-relaxed'>
+            <p className='font-sans text-white text-[16px] sm:text-[16px] leading-relaxed'>
               Bringing sustainable change, emergency relief, and compassionate
               support to communities across Pakistan.
             </p>

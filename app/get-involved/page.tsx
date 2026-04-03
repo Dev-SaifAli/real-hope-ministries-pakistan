@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 import { Users, Shield, Flame, Megaphone } from 'lucide-react'
+import FormInput from '@/components/ui/FormInput'
+import FormSelect from '@/components/ui/FormSelect'
 
 const involvementCards = [
   {
@@ -110,137 +112,87 @@ export default function GetInvolved () {
           </p>
         </div>
 
-        {/* Right — Form */}
-        {/* FIX: px-4 sm:px-8 — px-8 was too tight on 320px */}
-        <form className='border border-gray-200 rounded-md px-4 sm:px-8 py-8 space-y-5 mt-4'>
-          {/* Full Name */}
-          <div>
-            <label
-              htmlFor='fullName'
-              className='block text-[16px] font-semibold font-sans text-black mb-2'
-            >
-              Full Name
-            </label>
-            <input
+         <div className='bg-[#F3F4F6] p-6 sm:p-10 md:py-10 max-w-[860px] mx-auto'>
+
+          <form className='space-y-5'>
+
+            {/* ── Full Name — full width ── */}
+            <FormInput
               id='fullName'
+              label='Full Name'
               type='text'
               placeholder='e.g. Jane Doe'
               value={formData.fullName}
               onChange={handleChange}
-              className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy'
             />
-          </div>
 
-          {/* FIX: Email + Phone — grid-cols-1 on mobile, grid-cols-2 on sm+ */}
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-            <div>
-              <label
-                htmlFor='email'
-                className='block text-[16px] font-semibold font-sans text-black mb-2'
-              >
-                Email Address
-              </label>
-              <input
+            {/* ── Email + Phone — 2 columns ── */}
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+              <FormInput
                 id='email'
+                label='Email Address'
                 type='email'
                 placeholder='jane@example.com'
                 value={formData.email}
                 onChange={handleChange}
-                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy'
               />
-            </div>
-            <div>
-              <label
-                htmlFor='phone'
-                className='block text-[16px] font-semibold font-sans text-black mb-2'
-              >
-                Phone Number
-              </label>
-              <input
+              <FormInput
                 id='phone'
+                label='Phone Number'
                 type='tel'
                 placeholder='+1 (555) 000-0000'
                 value={formData.phone}
                 onChange={handleChange}
-                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy'
               />
             </div>
-          </div>
 
-          {/* FIX: Country + Area — grid-cols-1 on mobile, grid-cols-2 on sm+ */}
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-            <div>
-              <label
-                htmlFor='country'
-                className='block text-[16px] font-semibold font-sans text-black mb-2'
-              >
-                Country
-              </label>
-              <input
+            {/* ── Country + Area of Interest — 2 columns ── */}
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+              <FormInput
                 id='country'
+                label='Country'
                 type='text'
                 placeholder='Where are you located?'
                 value={formData.country}
                 onChange={handleChange}
-                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy'
               />
-            </div>
-            <div>
-              <label
-                htmlFor='areaOfInterest'
-                className='block text-[16px] font-semibold font-sans text-black mb-2'
-              >
-                Area of Interest
-              </label>
-              <select
+              <FormSelect
                 id='areaOfInterest'
-                name='areaOfInterest'
+                label='Area of Interest'
+                options={areaOptions}
                 value={formData.areaOfInterest}
                 onChange={handleChange}
-                className={`w-full border border-gray-200 rounded-md px-4 py-3 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-navy bg-white ${
-                  formData.areaOfInterest === ''
-                    ? 'text-black'
-                    : 'text-gray-700'
-                }`}
-              >
-                <option value='' disabled>
-                  Select an option
-                </option>
-                {areaOptions.map(opt => (
-                  <option key={opt} value={opt} className='text-gray-700'>
-                    {opt}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
-          </div>
 
-          {/* Message */}
-          <div>
-            <label
-              htmlFor='message'
-              className='block text-[16px] font-semibold font-sans text-black mb-2'
+            {/* ── Message — textarea ── */}
+            <div>
+              <label
+                htmlFor='message'
+                className='block text-[16px] font-bold font-sans text-black mb-2'
+              >
+                Message
+              </label>
+              <textarea
+                id='message'
+                rows={5}
+                placeholder='Tell us a bit about why you want to get involved...'
+                value={formData.message}
+                onChange={handleChange}
+                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans placeholder-black text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-navy'
+              />
+            </div>
+
+            {/* ── Submit ── */}
+            <button
+              type='submit'
+              className='max-h-14 w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'
             >
-              Message
-            </label>
-            <textarea
-              id='message'
-              rows={5}
-              placeholder='Tell us a bit about why you want to get involved...'
-              value={formData.message}
-              onChange={handleChange}
-              className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans text-gray-700 placeholder-black focus:outline-none focus:ring-1 focus:ring-navy resize-none'
-            />
-          </div>
+              Submit Application
+            </button>
 
-          {/* Submit */}
-          <button
-            onClick={handleSubmit}
-            className='w-full bg-navy text-white text-[16px] font-semibold font-sans py-3 rounded-md hover:bg-[#0d2e56] transition-colors duration-200'
-          >
-            Submit Application
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )
