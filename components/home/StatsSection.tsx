@@ -44,7 +44,7 @@ function StatCard ({ stat }: { stat: Stat }) {
 export default function StatsSection () {
   return (
     // py-12 on mobile, py-16 on md+ — less vertical space needed on small screens
-    <section className='w-full bg-navy py-12 md:py-16 px-4 sm:px-6'>
+    <section className='w-full bg-navy mt-16 py-12 md:py-16 px-4 sm:px-6'>
       {/* Removed inner px-10 — outer px-4/px-6 already handles safe gutters on all viewports */}
       <div className='max-w-[1920px] mx-auto'>
         {/* 2-col on mobile, 4-col on md+ — gap tightens on mobile to fit 320px */}

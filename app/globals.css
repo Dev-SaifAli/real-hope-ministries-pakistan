@@ -8,6 +8,8 @@
   /* Custom Brand Colors */
   --color-navy: #0b2545;
   --color-green: #2e9e6f;
+  --color-orange: #ffa500;
+  --color-pearl: #fff5e6;
 }
 
 /* --- Base Resets & Global Styles --- */
@@ -19,7 +21,9 @@
     margin: 0;
     padding: 0;
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     /* Uses the Open Sans variable mapped above */
     font-family: var(--font-open-sans), sans-serif;
@@ -31,7 +35,12 @@
   }
 
   /* Headings automatically use Poppins */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-poppins), sans-serif;
   }
 

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Button from './ui/Button'
 
 export interface Project {
   id: number
@@ -8,29 +9,40 @@ export interface Project {
   alt: string
 }
 
-export default function ProjectCard({ project }: { project: Project }) {
+interface ProjectCardProps {
+  project: Project
+  showDonateButton?: boolean // ← optional prop, default false
+}
+
+export default function ProjectCard ({
+  project,
+  showDonateButton = false
+}: ProjectCardProps) {
+  const projectSlug = project.title.toLowerCase().replace(/\s+/g, '-');
   return (
     /* Card Container: Strict Figma width */
-    <div className="flex flex-col w-full max-w-[408px] mx-auto">
-      
+    <div id={projectSlug} className='flex flex-col w-full max-w-102 mx-auto h-full scroll-mt-20'>
       {/* Image: Strict aspect ratio based on 408px width */}
-      <div className="relative w-full h-[320px] overflow-hidden rounded-none">
+      <div className='relative w-full h-80 overflow-hidden rounded-none'>
         <Image
           src={project.image}
           alt={project.alt}
           fill
-          className="object-cover"
+          className='object-cover'
         />
       </div>
 
       {/* The 28px Gap requested */}
-      <div className="mt-7 flex flex-col">
-        <h3 className="text-navy font-display font-[515]  text-[22px] md:text-[26px] leading-tight mb-1">
+      <div className='mt-7 flex flex-col items-start flex-1'>
+        <h3 className='text-navy font-display font-semibold  text-[22px] md:text-[26px] leading-tight mb-1'>
           {project.title}
         </h3>
-        <p className="text-black font-sans text-[18px] leading-[1.6]">
+        <p className=' font-sans text-black text-base sm:text-lg md:text-xl leading-relaxed mb-4 md:mb-6 grow'>
           {project.description}
         </p>
+        {showDonateButton && (
+          <Button variant='donate' text='Donate to this Cause' href='/donate' />
+        )}
       </div>
     </div>
   )

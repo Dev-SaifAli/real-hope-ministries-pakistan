@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import Button from './Button'
+import Button from './ui/Button'
 import { usePathname } from 'next/navigation'
 
 interface NavLink {
