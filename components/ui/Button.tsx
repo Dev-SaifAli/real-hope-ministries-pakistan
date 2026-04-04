@@ -34,7 +34,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'bg-transparent text-[#0B2545] px-8 h-[50px] rounded-lg border-2 border-[#0B2545] hover:bg-[#0B2545] hover:text-white',
 
   // Orange buttons — Donate & Watch Story
- donate: "bg-[#FFA500] text-white rounded-[12px] border-0 hover:bg-[#e69400] transition-colors duration-200 flex items-center justify-center w-full h-[48px] px-4 text-sm sm:w-[180px] sm:h-[50px] sm:px-6 sm:text-base lg:w-[201px] lg:px-8",
+ donate: "bg-[#FFA500] text-white rounded-[12px] border-0 hover:bg-[#e69400] transition-colors duration-200 flex items-center justify-center w-full h-[48px] px-4 text-sm sm:w-[180px] sm:h-[50px] sm:px-6 sm:text-base lg:w-[201px] lg:px-8 my-6",
   watchStory:
     'bg-[#FFA500] text-white px-8 h-[50px] rounded-[12px] border-0 hover:bg-[#e69400]',
   // Full width navy — form submit buttons
