@@ -61,8 +61,8 @@ const sections: Section[] = [
 
 function SectionBlock ({ section, index }: { section: Section; index: number }) {
   return (
-    <div className={`pb-7.5 border-b border-navy ${index !== 0 ? 'mt-13.5' : ''}`}>
-      <h2 className='text-navy text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 tracking-tight'>
+   <div className={`pb-7.5 border-b border-navy ${index !== 0 ? 'mt-8 md:mt-10 lg:mt-14' : ''}`}>
+      <h2 className='text-navy text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-6 tracking-tight'>
         {section.title}
       </h2>
 
@@ -103,7 +103,7 @@ export default function TermsAndConditions () {
         <h1 className='text-4xl sm:text-5xl md:text-6xl font-semibold mb-5 tracking-tight font-display text-black'>
           Terms &amp; Conditions
         </h1>
-        <p className='text-lg sm:text-xl md:text-2xl font-semibold leading-snug max-w-3xl mx-auto'>
+        <p className='text-lg sm:text-xl lg:text-2xl font-semibold leading-snug max-w-3xl mx-auto'>
           Please read these terms &amp; conditions before using our website.
         </p>
         <p className='text-lg sm:text-xl md:text-2xl font-semibold mt-2'>Last Updated: January 2026</p>
