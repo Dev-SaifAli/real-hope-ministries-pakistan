@@ -30,11 +30,11 @@ function StatCard ({ stat }: { stat: Stat }) {
         />
       </div>
       {/* Stat value: 32px mobile → 40px sm → 48px md — prevents overflow at 320px */}
-      <p className='font-display font-[515] text-white text-[32px] sm:text-[40px] md:text-[48px] leading-none'>
+      <p className='font-display font-[680] text-white text-[32px] sm:text-[40px] md:text-[38px] lg:text-[48px] sm:tracking-wide leading-none'>
         {stat.value}
       </p>
       {/* Label: 14px on mobile, 16px on sm+ */}
-      <p className='font-sans text-white/80 text-[14px] sm:text-[16px] text-center'>
+      <p className='font-sans text-white text-[14px] sm:text-[16px] md:text-[14px] lg:text-[20px] text-center'>
         {stat.label}
       </p>
     </div>
@@ -43,11 +43,8 @@ function StatCard ({ stat }: { stat: Stat }) {
 
 export default function StatsSection () {
   return (
-    // py-12 on mobile, py-16 on md+ — less vertical space needed on small screens
-    <section className='w-full bg-navy mt-16 py-12 md:py-16 px-4 sm:px-6'>
-      {/* Removed inner px-10 — outer px-4/px-6 already handles safe gutters on all viewports */}
+    <section className='w-full bg-navy mt-11 sm:mt-14 md:mt-16 py-12 md:py-16 px-4 sm:px-6'>
       <div className='max-w-[1920px] mx-auto'>
-        {/* 2-col on mobile, 4-col on md+ — gap tightens on mobile to fit 320px */}
         <div className='grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-6'>
           {stats.map((stat: Stat) => (
             <StatCard key={stat.id} stat={stat} />
