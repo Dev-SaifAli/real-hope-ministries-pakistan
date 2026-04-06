@@ -57,13 +57,9 @@ export default function Footer () {
   return (
     <footer className='w-full bg-navy text-white'>
       {/* ── Main Footer Content ── */}
-      {/* FIX: px-4 mobile → px-6 sm → px-10 md — removed double padding */}
       <div className='max-w-480 mx-auto px-4 sm:px-6 md:px-10 py-12 md:py-16'>
-        {/* FIX: 2-col on mobile (logo+contact | links), 4-col on md+ */}
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-start'>
-          {/* ── Column 1: Logo + Description ── */}
-          {/* FIX: col-span-2 on mobile so logo+desc takes full width */}
-          <div className='flex flex-col gap-4 md:gap-5 col-span-2 md:col-span-1'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 items-start'>
+          <div className='flex flex-col gap-4 md:gap-5 col-span-2 md:col-span-2 lg:col-span-1'>
             <Image
               src='/nav-logo.png'
               alt='Real Hope Ministries Pakistan'

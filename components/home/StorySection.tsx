@@ -34,11 +34,11 @@ export default function StorySection ({
   }
 
   return (
-    <section className='w-full bg-white mt-5 mb-18 px-4 sm:px-6 md:px-10'>
+    <section className='w-full bg-white sm:mt-3 mb-12 sm:mb-18 px-4 sm:px-6 md:px-10'>
       <div className='mx-auto flex justify-center'>
-        <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 lg:gap-14 w-full max-w-[1100px]'>
+        <div className='flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-6 md:gap-4 lg:gap-14 w-full max-w-[1100px]'>
           {/* Image Block */}
-          <div className='relative shrink-0 mx-auto w-[320px] h-[420px] sm:w-[340px] sm:h-[440px] md:w-[420px] md:h-[500px]'>
+          <div className='relative shrink-0 mx-auto w-[320px] h-[380px] sm:w-[340px] sm:h-[380px] md:w-[420px] md:h-[450px]'>
             <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-xl z-10'>
               <Image
                 src={primaryImage}
@@ -58,16 +58,16 @@ export default function StorySection ({
           </div>
 
           {/* Text Block */}
-          <div className='flex flex-col gap-4 md:gap-6 max-w-[560px] text-center md:text-left'>
+          <div className='flex flex-col gap-2 sm:gap-4 md:gap-6 max-w-[560px] text-center md:text-left'>
             <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight'>
               From <span className='text-green'>{titleHighlight}</span>
               <br />
               {renderTitle()}
             </h2>
-            <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'>
+            <p className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed mb-8 md:mb-10'>
               {description}
             </p>
-            <div className='mt-1 md:mt-2 flex justify-center md:justify-start'>
+            <div className=' flex justify-center md:justify-start'>
               <Button
                 variant='watchStory'
                 text='Watch Full Story'

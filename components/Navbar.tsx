@@ -34,7 +34,7 @@ export default function Navbar () {
             // FIX: Slightly smaller on mobile, normal on sm+
             width={65}
             height={65}
-            className='w-12 h-12 sm:w-16.25 sm:h-16.25 rounded-full object-contain'
+            className='w-14 h-14 sm:w-16.25 sm:h-16.25 rounded-full object-contain'
           />
         </Link>
 

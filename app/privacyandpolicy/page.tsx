@@ -90,9 +90,11 @@ const sections: Section[] = [
 function SectionBlock ({ section, index }: { section: Section; index: number }) {
   return (
     <div
-      className={`pb-7.5 border-b border-navy ${index !== 0 ? 'mt-13.5' : ''}`}
+      className={`pb-7.5 border-b border-navy ${
+        index !== 0 ? 'mt-8 md:mt-10 lg:mt-14' : ''
+      }`}
     >
-      <h2 className='text-navy text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 tracking-tight'>
+      <h2 className='text-navy text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-6 tracking-tight'>
         {section.title}
       </h2>
 
@@ -100,7 +102,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
         {section.paragraphs?.map((para, i) => (
           <p
             key={i}
-            className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'
+            className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
           >
             {para}
           </p>
@@ -112,7 +114,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.bullets.map((bullet, i) => (
             <li
               key={i}
-              className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'
+              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
             >
               {bullet}
             </li>
@@ -125,7 +127,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.contactDetails.map((item, i) => (
             <p
               key={i}
-              className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'
+              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-normal'
             >
               <span className='font-semibold text-green'>{item.label}: </span>
               {item.isLink ? (
@@ -156,11 +158,11 @@ export default function PrivacyAndPolicy () {
         <h1 className='text-4xl sm:text-5xl md:text-6xl font-semibold mb-5 tracking-tight font-display text-black'>
           Privacy &amp; Policy
         </h1>
-        <p className='text-lg sm:text-xl md:text-2xl font-semibold leading-snug max-w-5xl mx-auto'>
+        <p className='text-lg sm:text-xl lg:text-2xl font-semibold leading-snug max-w-5xl mx-auto'>
           We are committed to protecting your personal information and personal
           rights.
         </p>
-        <p className='text-lg sm:text-xl md:text-2xl font-semibold mt-2'>
+        <p className='text-lg sm:text-xl lg:text-2xl font-semibold mt-2'>
           Last Updated: January 2026
         </p>
       </div>

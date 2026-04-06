@@ -17,15 +17,15 @@ const contactCards: ContactCard[] = [
 function ContactCard ({ card }: { card: ContactCard }) {
   return (
     // px-6 mobile, px-10 sm+ — prevents card content from touching edges on small screens
-    <div className='flex flex-col items-center text-center bg-white rounded-2xl shadow-sm px-6 sm:px-10 py-8 sm:py-10 gap-4 sm:gap-5 flex-1'>
-      <div className='w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] rounded-full bg-[#EBEBEB] flex items-center justify-center flex-shrink-0'>
+    <div className='flex flex-col items-center  text-center bg-white rounded-2xl shadow-sm px-6 py-8 md:px-2 lg:px-10 md:py-4 lg:py-10 gap-3 md:gap-4 lg:gap-5 flex-1'>
+      <div className='sm:w-[42px] sm:h-[42px] md:w-[52px] md:h-[52px] lg:w-[60px] lg:h-[60px] rounded-full bg-[#EBEBEB] flex items-center justify-center shrink-0'>
         <Image src={card.icon} alt={card.alt} width={26} height={26} />
       </div>
-      <h3 className='font-display font-semibold text-navy text-[16px] sm:text-[18px]'>
+      <h3 className='font-display font-semibold text-navy text-base sm:text-base md:text-lg lg:text-2xl'>
         {card.title}
       </h3>
       {/* break-all prevents long email/phone values from overflowing on mobile */}
-      <p className='font-sans text-black text-[14px] sm:text-[15px] leading-relaxed break-all sm:break-normal'>
+      <p className='font-sans text-black text-base sm:text-sm md:text-base lg:text-xl break-all sm:break-normal'>
         {card.value}
       </p>
     </div>
