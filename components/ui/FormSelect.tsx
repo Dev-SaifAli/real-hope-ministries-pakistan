@@ -3,7 +3,7 @@ interface FormSelectProps {
   id: string
   label: string
   value: string
-  options: []
+  options: string []
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
