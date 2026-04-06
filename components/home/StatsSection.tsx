@@ -34,7 +34,7 @@ function StatCard ({ stat }: { stat: Stat }) {
         {stat.value}
       </p>
       {/* Label: 14px on mobile, 16px on sm+ */}
-      <p className='font-sans text-white text-[14px] sm:text-[16px] md:text-[14px] lg:text-[20px] text-center'>
+      <p className='font-sans text-white text-[15px] sm:text-[16px] md:text-[14px] lg:text-[20px] text-center'>
         {stat.label}
       </p>
     </div>

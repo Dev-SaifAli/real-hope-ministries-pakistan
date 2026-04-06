@@ -102,7 +102,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
         {section.paragraphs?.map((para, i) => (
           <p
             key={i}
-            className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'
+            className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
           >
             {para}
           </p>
@@ -114,7 +114,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.bullets.map((bullet, i) => (
             <li
               key={i}
-              className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'
+              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
             >
               {bullet}
             </li>
@@ -127,7 +127,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.contactDetails.map((item, i) => (
             <p
               key={i}
-              className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'
+              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-normal'
             >
               <span className='font-semibold text-green'>{item.label}: </span>
               {item.isLink ? (

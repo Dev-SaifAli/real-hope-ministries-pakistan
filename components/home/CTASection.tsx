@@ -3,13 +3,13 @@ import Button from '@/components/ui/Button'
 export default function CTASection () {
   return (
     // py-12 mobile, py-20 md+ — px-4 mobile se start
-    <section className='w-full bg-white mb-18 md:mb-23 px-4 sm:px-6'>
+    <section className='w-full bg-white mb-12 sm:mb-18 md:mb-23 px-4 sm:px-6'>
       <div className='max-w-[925px] mx-auto text-center'>
-        <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight mb-4 md:mb-6'>
+        <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight mb-2 md:mb-6'>
           Be a Part of the <span className='text-green'>Change</span>
         </h2>
         {/* mb-8 mobile, mb-10 md+ */}
-        <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[21px] leading-relaxed mx-auto mb-8 md:mb-10'>
+        <p className='font-sans text-black text-[15px] sm:text-[18px] md:text-[21px] leading-relaxed mx-auto mb-8 md:mb-10'>
           Your support makes our mission possible. Whether through prayer,
           volunteering, or financial giving, you can bring real hope to
           communities in need.
@@ -19,7 +19,7 @@ export default function CTASection () {
           <Button
             variant='supportMission'
             text='Support our mission'
-            href='/support'
+            href='/donation'
           />
           <Button
             variant='getInvolved'

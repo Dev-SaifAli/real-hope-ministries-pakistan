@@ -7,13 +7,13 @@ export default function AmountSelector () {
   const [selected, setSelected] = useState('$50')
 
   return (
-    <div className='flex flex-col md:flex-row md:justify-between gap-3'>
+    <div className='flex flex-row justify-between gap-3'>
       {amounts.map(amount => (
         <button
           key={amount}
           onClick={() => setSelected(amount)}
           className={`
-            h-12 w-32.75 px-6 rounded-md text-[17px] font-semibold
+           h-9 w-29 px-2 sm:h-12 sm:w-32.75 sm:px-6 rounded-md text-[15px] sm:text-[17px] font-semibold
             transition-all duration-200 border
             ${
               selected === amount

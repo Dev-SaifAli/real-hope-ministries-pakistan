@@ -42,10 +42,10 @@ export default function Donation () {
 
         {/* ── Section 1: Heading ── */}
         <div className='text-center px-4 sm:px-6 mb-10 md:mb-14 max-w-[900px] mx-auto'>
-          <h1 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 md:mb-6'>
+          <h1 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-3  sm:mb-6'>
             Ways You Can <span className='text-green'>Help</span>
           </h1>
-          <p className='font-sans text-black text-[15px] sm:text-lg md:text-xl leading-relaxed'>
+          <p className='font-sans text-black text-[15px] sm:text-lg md:text-xl'>
             Choose a specific cause to support and make a direct impact on the
             lives of those in need.
           </p>
@@ -53,7 +53,7 @@ export default function Donation () {
 
         {/* ── Grid: Projects ── */}
         {/* FIX: 1-col mobile, 2-col sm, 3-col lg, 4-col xl */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-14 md:mb-20'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-8 sm:mb-14 md:mb-20'>
           {projects.map(project => (
             <ProjectCard key={project.id} project={project} showDonateButton={true} />
           ))}

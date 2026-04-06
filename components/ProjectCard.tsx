@@ -33,11 +33,11 @@ export default function ProjectCard ({
       </div>
 
       {/* The 28px Gap requested */}
-      <div className='mt-7 flex flex-col items-start flex-1'>
+      <div className='mt-5 sm:mt-7 flex flex-col items-start sm:flex-1'>
         <h3 className='text-navy font-display font-semibold  text-[22px] md:text-[26px] leading-tight mb-1'>
           {project.title}
         </h3>
-        <p className=' font-sans text-black text-base sm:text-lg md:text-xl leading-relaxed grow'>
+        <p className=' font-sans text-black text-[15px] sm:text-lg md:text-xl leading-normal sm:leading-relaxed grow'>
           {project.description}
         </p>
         {showDonateButton && (
