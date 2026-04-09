@@ -1,4 +1,4 @@
-import Hero from '@/components/Hero'
+import HomeHero from '@/components/hero/HomeHero'
 import MinistriesSection from '@/components/home/MinistriesSection'
 import CTASection from '@/components/home/CTASection'
 import AboutSection from '@/components/home/AboutSection'
@@ -11,7 +11,7 @@ export default function HomePage () {
   return (
     <>
       <main>
-        <Hero />
+        <HomeHero />
         <AboutSection />
         <MinistriesSection />
         <StatsSection />

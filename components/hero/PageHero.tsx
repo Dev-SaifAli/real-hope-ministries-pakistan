@@ -1,20 +1,13 @@
-import Image from 'next/image'
-import Button from './ui/Button'
+import Button from '../ui/Button';
+import Image from 'next/image';
 
-interface HeroProps {
-  title?: string
+type PageHeroProps = {
+  title: string
+  imageSrc: string
   subtitle?: string
-  primaryCta?: { label: string; href: string }
-  secondaryCta?: { label: string; href: string }
 }
 
-export default function Hero ({
-  title = 'Hope for Communities Across Pakistan',
-  subtitle = 'Serving people through care, support, and outreach.',
-  primaryCta = { label: 'Support Us', href: '/support' },
-  secondaryCta = { label: 'Learn More', href: '/about' }
-}: HeroProps) {
-  // Force "Pakistan" to a new line for the default title
+export default function PageHero ({ title, imageSrc, subtitle }: PageHeroProps) {
   const renderTitle = () => {
     if (title === 'Hope for Communities Across Pakistan') {
       return (
@@ -25,10 +18,8 @@ export default function Hero ({
     }
     return title
   }
-
   return (
     <section className='relative min-h-[600px] md:min-h-[800px] flex items-center justify-center overflow-hidden'>
-      {/* Background Image */}
       <Image
         src='/home-hero.png'
         alt='Hero background'
@@ -37,10 +28,9 @@ export default function Hero ({
         loading='lazy'
       />
 
-      {/* Dark Overlay */}
-      <div className='absolute inset-0 bg-black/50 -z-10' />
+      {/* Overlay */}
+      <div className='absolute inset-0 bg-black/50' />
 
-      {/* Content */}
       <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
         {/* Title — Responsive Font and Leading */}
         <h1
@@ -58,18 +48,18 @@ export default function Hero ({
         <p className='font-sans font-normal text-white/90 text-lg md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed'>
           {subtitle}
         </p>
-
-        {/* Buttons — Support hidden on mobile via parent Navbar logic or local hidden class */}
         <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
           <Button
+            href='/donation'
+            text='Support Us'
             variant='support'
-            text={primaryCta.label}
-            href={primaryCta.href}
+            key='support'
           />
           <Button
+            href='/donation'
+            text='Learn More'
             variant='learnMore'
-            text={secondaryCta.label}
-            href={secondaryCta.href}
+            key='learnMore'
           />
         </div>
       </div>
