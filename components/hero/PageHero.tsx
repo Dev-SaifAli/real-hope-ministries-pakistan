@@ -21,7 +21,7 @@ export default function PageHero ({ title, imageSrc, subtitle }: PageHeroProps) 
   return (
     <section className='relative min-h-[600px] md:min-h-[800px] flex items-center justify-center overflow-hidden'>
       <Image
-        src='/home-hero.png'
+        src={imageSrc}
         alt='Hero background'
         fill
         className='object-cover object-center -z-20'

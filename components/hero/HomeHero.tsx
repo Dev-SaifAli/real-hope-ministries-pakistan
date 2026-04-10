@@ -17,7 +17,6 @@ function PlayButton() {
   )
 }
 
-// ── Variants — explicitly typed as Variants ──────────────
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -29,11 +28,7 @@ const containerVariants: Variants = {
 }
 
 const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-    // ✅ filter as TargetAndTransition — wrap in style-compatible way
-  },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
@@ -77,79 +72,89 @@ export default function HomeHero({
   const [playing, setPlaying] = useState(false)
 
   return (
-    <section
-      aria-label='Homepage hero'
-      className='relative h-screen w-full overflow-hidden'
-      onClick={() => setPlaying(true)}
-    >
-      <img
-        src='/home-hero.png'
-        alt='Hero background'
-        className='absolute inset-0 h-full w-full object-cover'
-      />
+    // ── Outer wrapper — adds margin + padding like reference image ──
+    // px-4 md:px-6 → breathing room from screen edges
+    // pt-24 → space so content clears the fixed navbar
+    <div className='w-full px-4 md:px-6 pt-4'>
 
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_25%,rgba(0,0,0,0.8)_100%)]' />
-
-      {/* ── Left Content ── */}
-      <motion.div
-        className='relative z-10 flex h-full items-center-safe'
-        variants={containerVariants}
-        initial='hidden'
-        animate='visible'
+      {/* ── Hero section — rounded corners like reference ── */}
+      <section
+        aria-label='Homepage hero'
+        className='relative w-full overflow-hidden rounded-2xl md:rounded-3xl'
+        style={{ height: 'calc(100vh - 1.5rem)' }}  // full height minus top padding
+        onClick={() => setPlaying(true)}
       >
-        <div className='pl-8 md:pl-16 text-white'>
+        {/* Background image */}
+        <img
+          src='/home-hero.png'
+          alt='Hero background'
+          className='absolute inset-0 h-full w-full object-cover'
+        />
 
-          <motion.p
-            variants={itemVariants}
-            className='text-lg md:text-2xl mb-3 italic underline font-display font-semibold'
-          >
-            Real Hope Ministries Pakistan
-          </motion.p>
+        {/* Radial gradient overlay */}
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_25%,rgba(0,0,0,0.8)_100%)]' />
 
-          <motion.h1
-            variants={itemVariants}
-            className='font-display font-semibold text-white text-2xl leading-[44px] md:text-4xl md:leading-[60px] mb-4 drop-shadow-md'
-          >
-            {title}
-          </motion.h1>
-
-          <motion.p
-            variants={itemVariants}
-            className='text-lg md:text-lg mb-15'
-          >
-            {subtitle}
-          </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            className='flex gap-4'
-          >
-            <Button href='/donation' text='Support Us' variant='support' />
-            <Button href='/donation' text='Learn More' variant='learnMore' />
-          </motion.div>
-
-        </div>
-      </motion.div>
-
-      {/* ── Play Button ── */}
-      {!playing && (
+        {/* ── Left Content ── */}
         <motion.div
-          className='absolute inset-0 flex items-center justify-center z-10'
-          variants={playButtonVariants}
+          className='relative z-10 flex h-full items-center'
+          variants={containerVariants}
           initial='hidden'
           animate='visible'
         >
-          <motion.div
-            className='absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/30'
-            variants={pulseVariants}
-            animate='animate'
-          />
-          <div className='group'>
-            <PlayButton />
+          <div className='pl-8 md:pl-16 text-white'>
+
+            <motion.p
+              variants={itemVariants}
+              className='text-lg md:text-2xl mb-3 italic leading-1.5 underline font-display font-semibold'
+            >
+              Real Hope Ministries Pakistan
+            </motion.p>
+
+            <motion.h1
+              variants={itemVariants}
+              className='font-display font-semibold text-white text-2xl leading-[44px] md:text-4xl md:leading-[60px] mb-4 drop-shadow-md'
+            >
+              {title}
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className='text-lg md:text-lg mb-10'
+            >
+              {subtitle}
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className='flex gap-4'
+            >
+              <Button href='/donation' text='Support Us' variant='support' />
+              <Button href='/donation' text='Learn More' variant='learnMore' />
+            </motion.div>
+
           </div>
         </motion.div>
-      )}
 
-    </section>
+        {/* ── Play Button ── */}
+        {!playing && (
+          <motion.div
+            className='absolute inset-0 flex items-center justify-center z-10'
+            variants={playButtonVariants}
+            initial='hidden'
+            animate='visible'
+          >
+            <motion.div
+              className='absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/30'
+              variants={pulseVariants}
+              animate='animate'
+            />
+            <div className='group'>
+              <PlayButton />
+            </div>
+          </motion.div>
+        )}
+
+      </section>
+    </div>
   )
 }
