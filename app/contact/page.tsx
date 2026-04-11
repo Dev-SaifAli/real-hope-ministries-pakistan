@@ -62,6 +62,7 @@ export default function ContactUs () {
   return (
     <>
       <PageHero
+        showButton={false}
         title='Be a part of the change and help bring hope to communities in need.'
         subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
         imageSrc='/contact-hero.png'

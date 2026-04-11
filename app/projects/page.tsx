@@ -6,6 +6,7 @@ export default function HomePage () {
     <>
       <main>
         <PageHero
+        href='#projects'
           title='Hope for Communities Across Pakistan'
           subtitle='Serving people through care, support, and outreach.'
           imageSrc='/home-hero.png'

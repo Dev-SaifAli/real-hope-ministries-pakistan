@@ -67,6 +67,7 @@ function VideoCard ({ video }: { video: Video }) {
   const cloudName = 'dq6gu9ghf'
   return (
     <div
+      
       className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
       onClick={() => setPlaying(true)}
     >
@@ -126,7 +127,8 @@ export default function AboutSection () {
   }
 
   return (
-    <section className='w-full bg-white mt-11 md:mt-20 overflow-hidden'>
+    <section id='about'
+     className='w-full bg-white mt-11 md:mt-20 overflow-hidden'>
       {/* ── Section Header ── */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
         <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-5 md:mb-8'>

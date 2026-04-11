@@ -195,7 +195,7 @@ export default function HomeHero ({
               className='flex flex-wrap gap-3 justify-center sm:justify-start'
             >
               <Button href='/donation' text='Support Us' variant='support' />
-              <Button href='/about' text='Learn More' variant='learnMore' />
+              <Button href='#about' text='Learn More' variant='learnMore' />
             </motion.div>
           </div>
         </motion.div>

@@ -11,6 +11,7 @@ export default function AboutPage () {
     <>
       <main>
         <PageHero
+          href='#about'
           title='About Our Mission'
           subtitle='We are committed to bringing hope and support to communities in need.'
           imageSrc='/home-hero.png'
