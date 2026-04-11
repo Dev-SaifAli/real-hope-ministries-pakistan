@@ -10,6 +10,8 @@
   --color-green: #2e9e6f;
   --color-orange: #ffa500;
   --color-pearl: #fff5e6;
+  --radius-5xl: 3rem;
+  
 }
 
 /* --- Base Resets & Global Styles --- */
@@ -28,8 +30,7 @@
     /* Uses the Open Sans variable mapped above */
     font-family: var(--font-open-sans), sans-serif;
     color: #000000;
-    background: #ffffff;
-    line-height: 1.6;
+    /* background-color: #f5f9ff; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

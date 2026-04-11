@@ -1,5 +1,5 @@
-import Button from '../ui/Button';
-import Image from 'next/image';
+import Button from '../ui/Button'
+import Image from 'next/image'
 
 type PageHeroProps = {
   title: string
@@ -19,7 +19,7 @@ export default function PageHero ({ title, imageSrc, subtitle }: PageHeroProps) 
     return title
   }
   return (
-    <section className='relative min-h-[600px] md:min-h-[800px] flex items-center justify-center overflow-hidden'>
+    <section className=' min-h-screen w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
       <Image
         src={imageSrc}
         alt='Hero background'
@@ -27,9 +27,6 @@ export default function PageHero ({ title, imageSrc, subtitle }: PageHeroProps) 
         className='object-cover object-center -z-20'
         loading='lazy'
       />
-
-      {/* Overlay */}
-      <div className='absolute inset-0 bg-black/50' />
 
       <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
         {/* Title — Responsive Font and Leading */}

@@ -6,17 +6,52 @@ interface Video {
   id: number
   thumbnail: string
   alt: string
-  youtubeId?: string
+  mediaSrc?: string
 }
 
 const videos: Video[] = [
-  { id: 1, thumbnail: '/videos/video-1.png', alt: 'Real Hope Ministry community gathering' },
-  { id: 2, thumbnail: '/videos/video-2.png', alt: 'Widows ministry - Christmas clothes' },
-  { id: 3, thumbnail: '/videos/video-3.png', alt: 'Freedom from slavery project' },
-  { id: 4, thumbnail: '/videos/video-4.png', alt: 'Clean water project' },
-  { id: 5, thumbnail: '/videos/video-5.png', alt: 'Food distribution' },
-  { id: 6, thumbnail: '/videos/video-6.png', alt: 'Youth mission' },
-  { id: 7, thumbnail: '/videos/video-7.png', alt: 'Orphanage project' }
+  {
+    id: 1,
+    thumbnail: '/videos/video-1.png',
+    alt: 'Real Hope Ministry community gathering',
+    mediaSrc: ''
+  },
+  {
+    id: 2,
+    thumbnail: '/videos/video-2.png',
+    alt: 'Widows ministry - Christmas clothes',
+    mediaSrc: 'v1775908824/WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv.mp4'
+  },
+  {
+    id: 3,
+    thumbnail: '/videos/video-3.png',
+    alt: 'Freedom from slavery project',
+    mediaSrc: ''
+  },
+  {
+    id: 4,
+    thumbnail: '/videos/video-4.png',
+    alt: 'Clean water project',
+    mediaSrc: 'v1775909497/clean-water_ixmfdk.mp4'
+  },
+  {
+    id: 5,
+    thumbnail: '/videos/video-5.png',
+    alt: 'Food distribution',
+    mediaSrc: ''
+  },
+  {
+    id: 6,
+    thumbnail: '/videos/video-6.png',
+    alt: 'Youth mission',
+    mediaSrc: ''
+  },
+  {
+    id: 7,
+    thumbnail: '/videos/video-7.png',
+    alt: 'Orphanage project',
+    mediaSrc: ''
+  }
 ]
 
 function PlayButton () {
@@ -29,26 +64,47 @@ function PlayButton () {
 
 function VideoCard ({ video }: { video: Video }) {
   const [playing, setPlaying] = useState(false)
-
+  const cloudName = 'dq6gu9ghf'
   return (
     <div
       className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
       onClick={() => setPlaying(true)}
     >
-      <img src={video.thumbnail} alt={video.alt} className='w-full h-full object-cover' />
+      <img
+        src={video.thumbnail}
+        alt={video.alt}
+        className='w-full h-full object-cover'
+      />
       <div className='absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-200' />
       {!playing && (
         <div className='absolute inset-0 flex items-center justify-center'>
           <PlayButton />
         </div>
       )}
-      {playing && video.youtubeId && (
-        <iframe
-          className='absolute inset-0 w-full h-full'
-          src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-          allow='autoplay; encrypted-media'
-          allowFullScreen
-        />
+      {playing && video.mediaSrc && (
+        <div className='absolute inset-0 bg-black'>
+          <video
+            className='w-full h-full object-cover rounded-[inherit]'
+            autoPlay
+            controls
+            playsInline
+            // f_auto aur q_auto optimized delivery
+            src={`https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/${video.mediaSrc}`}
+          >
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Optional: Close Button */}
+          <button
+            onClick={e => {
+              e.stopPropagation()
+              setPlaying(false)
+            }}
+            className='absolute top-2 right-2 z-10 bg-white/20 hover:bg-white/40 text-white rounded-full p-1'
+          >
+            ✕
+          </button>
+        </div>
       )}
     </div>
   )

@@ -11,9 +11,9 @@ export default function AboutPage () {
     <>
       <main>
         <PageHero
-          title='Our Mission for Hope and Services'
-          subtitle='Empowering Vulnerable communities across Pakistan through compassionate aid, Sustainable Development , and unwavering supports'
-          imageSrc='/about-hero.png'
+          title='About Our Mission'
+          subtitle='We are committed to bringing hope and support to communities in need.'
+          imageSrc='/home-hero.png'
         />
         <AboutSection />
         <MissionVisionSection />

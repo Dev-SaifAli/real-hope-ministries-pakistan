@@ -21,10 +21,9 @@ interface ButtonProps {
 // components/ui/Button.tsx
 
 const variantStyles: Record<ButtonVariant, string> = {
-
   // ── Hero buttons ─────────────────────────────────────────────
   support:
-    'bg-navy text-white w-[160px] h-[50px] rounded-[14px] ' +
+    'bg-navy text-white px-6 py-2 w-[150px] h-[40px] rounded-[12px] sm:w-[160px] sm:h-[50px] sm:rounded-[14px] ' +
     'transition-all duration-200 ' +
     'hover:opacity-90 hover:shadow-md ' +
     'active:scale-95 active:opacity-80 ' +
@@ -32,7 +31,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   supportNav:
-    'bg-navy text-white w-[160px] h-[50px] rounded-[14px] shadow-lg ' +
+    'bg-navy text-white w-[160px] h-[50px] rounded-[14px] shadow-lg' +
     'transition-all duration-200 ' +
     'hover:opacity-90 hover:shadow-xl ' +
     'active:scale-95 active:shadow-md ' +
@@ -40,7 +39,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   learnMore:
-    'bg-transparent text-white w-[160px] h-[50px] rounded-[14px] border-[1.55px] border-white ' +
+    'bg-transparent text-white e px-6 py-2 w-[150px] h-[40px] rounded-[12px] sm:w-[160px] sm:h-[50px] sm:rounded-[14px] border-[1.55px] border-white ' +
     'transition-all duration-200 ' +
     'hover:bg-white/10 hover:shadow-md ' +
     'active:scale-95 active:bg-white/20 ' +
@@ -80,7 +79,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'hover:bg-navy hover:text-white hover:shadow-lg ' +
     'active:scale-95 active:shadow-none ' +
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ' +
-    'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none'
 }
 
 const Button: React.FC<ButtonProps> = ({ variant, text, href }) => {
@@ -90,7 +89,7 @@ const Button: React.FC<ButtonProps> = ({ variant, text, href }) => {
       className={`
         inline-flex items-center justify-center
         whitespace-nowrap
-        text-[15px] font-semibold font-display
+        text-sm sm:text-base xl:text-lg  font-display font-medium
         transition-all duration-200 active:scale-95
         ${variantStyles[variant]}
       `}
