@@ -11,7 +11,7 @@ export default function HomePage () {
   return (
     <>
       <main>
-        <HomeHero />
+        <HomeHero photoId='home-hero_hlzazt' />
         <AboutSection />
         <MinistriesSection />
         <StatsSection />

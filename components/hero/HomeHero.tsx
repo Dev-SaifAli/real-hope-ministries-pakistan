@@ -9,6 +9,7 @@ interface HeroProps {
   title?: string
   subtitle?: string
   videoSrc?: string
+  photoId?:string
 }
 
 // Defined outside — never recreated on render
@@ -59,7 +60,8 @@ function PlayIcon () {
 export default function HomeHero ({
   title = 'Hope , Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
-  videoSrc = '/videos/hero-video.mp4'
+  videoSrc = '/videos/hero-video.mp4',
+  photoId='/home-hero.png'
 }: HeroProps) {
   const renderTitle = function (title: string) {
     if (title === 'Hope , Help and Humanity') {
@@ -117,7 +119,7 @@ export default function HomeHero ({
       >
         {/* ── LCP image — loads immediately, priority flag ── */}
         <Image
-          src='/home-hero.png'
+          src={`https://res.cloudinary.com/dq6gu9ghf/image/upload/q_auto,f_auto/${photoId}`}
           alt='Children at a water pump — Real Hope Ministries Pakistan'
           fill
           priority
