@@ -1,58 +1,8 @@
 'use client'
-
 import { useState } from 'react'
+import VideoSection from '@/components/VideoSection'
 
-interface Video {
-  id: number
-  thumbnail: string
-  alt: string
-  youtubeId?: string
-}
-
-const videos: Video[] = [
-  { id: 1, thumbnail: '/videos/video-1.png', alt: 'Real Hope Ministry community gathering' },
-  { id: 2, thumbnail: '/videos/video-2.png', alt: 'Widows ministry - Christmas clothes' },
-  { id: 3, thumbnail: '/videos/video-3.png', alt: 'Freedom from slavery project' },
-  { id: 4, thumbnail: '/videos/video-4.png', alt: 'Clean water project' },
-  { id: 5, thumbnail: '/videos/video-5.png', alt: 'Food distribution' },
-  { id: 6, thumbnail: '/videos/video-6.png', alt: 'Youth mission' },
-  { id: 7, thumbnail: '/videos/video-7.png', alt: 'Orphanage project' }
-]
-
-function PlayButton () {
-  return (
-    <div className='w-12 h-12 sm:w-14 sm:h-14 bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200 rounded-full'>
-      <div className='w-0 h-0 ml-1 border-t-[9px] border-t-transparent border-b-[9px] border-b-transparent border-l-[16px] border-l-navy' />
-    </div>
-  )
-}
-
-function VideoCard ({ video }: { video: Video }) {
-  const [playing, setPlaying] = useState(false)
-
-  return (
-    <div
-      className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
-      onClick={() => setPlaying(true)}
-    >
-      <img src={video.thumbnail} alt={video.alt} className='w-full h-full object-cover' />
-      <div className='absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-200' />
-      {!playing && (
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <PlayButton />
-        </div>
-      )}
-      {playing && video.youtubeId && (
-        <iframe
-          className='absolute inset-0 w-full h-full'
-          src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-          allow='autoplay; encrypted-media'
-          allowFullScreen
-        />
-      )}
-    </div>
-  )
-}
+const SLIDE_COUNT = 7
 
 export default function AboutSection () {
   const [activeSlide, setActiveSlide] = useState(0)
@@ -61,17 +11,17 @@ export default function AboutSection () {
     setActiveSlide(index)
     const slider = document.getElementById('video-slider')
     if (!slider) return
-    const firstCard = slider.firstElementChild as HTMLElement
-    if (!firstCard) return
-    // FIX: use scrollWidth to calculate exact per-slide distance
     const totalWidth = slider.scrollWidth - slider.clientWidth
-    const perSlide = totalWidth / (videos.length - 1)
+    const perSlide = totalWidth / (SLIDE_COUNT - 1)
     slider.scrollTo({ left: index * perSlide, behavior: 'smooth' })
   }
 
   return (
-    <section className='w-full bg-white mt-11 md:mt-20 overflow-hidden'>
-      {/* ── Section Header ── */}
+    <section
+      id='about'
+      className='w-full bg-white mt-11 md:mt-20 overflow-hidden'
+    >
+      {/* Section Header */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
         <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-5 md:mb-8'>
           About Real Hope Pakistan
@@ -93,32 +43,24 @@ export default function AboutSection () {
         </p>
       </div>
 
+      {/* Video Slider */}
       <div className='max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10'>
         <div
           id='video-slider'
-          className='flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4'
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           onScroll={e => {
             const slider = e.currentTarget
-            const firstCard = slider.firstElementChild as HTMLElement
-            if (!firstCard) return
-            // FIX: same scrollWidth calculation for onScroll sync
             const totalWidth = slider.scrollWidth - slider.clientWidth
-            const perSlide = totalWidth / (videos.length - 1)
-            const newSlide = Math.round(slider.scrollLeft / perSlide)
-            setActiveSlide(newSlide)
+            const perSlide = totalWidth / (SLIDE_COUNT - 1)
+            setActiveSlide(Math.round(slider.scrollLeft / perSlide))
           }}
         >
-          {videos.map((video: Video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-          <div className='flex-shrink-0 w-4 sm:w-6' />
+          <VideoSection />
         </div>
       </div>
 
-      {/* ── Dot Indicators ── */}
+      {/* Dot Indicators */}
       <div className='flex items-center justify-center gap-2 mt-6 md:mt-8'>
-        {videos.map((_, index) => (
+        {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
           <button
             key={index}
             onClick={() => handleDotClick(index)}

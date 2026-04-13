@@ -1,10 +1,18 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import PageHero from '@/components/hero/PageHero'
+
+import { Mail, Phone, MapPin, ArrowRight, Link } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import FormInput from '@/components/ui/FormInput'
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+const MapComponent = dynamic(() => import('@/components/ui/MapComponent'), {
+  ssr: false,
+  loading: () => (
+    <div className='w-full h-[220px] rounded-xl bg-gray-100 animate-pulse' />
+  )
+}) as React.ComponentType<{ lat: number; lng: number }>
 
 const contactDetails = [
   { icon: <Mail className='w-5 h-5 text-navy' />, value: 'absd@gmail.com' },
@@ -32,6 +40,10 @@ const formFields = [
   }
 ]
 
+// Lahore coordinates
+const OFFICE_LAT = 31.5204
+const OFFICE_LNG = 74.3587
+
 export default function ContactUs () {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -48,82 +60,119 @@ export default function ContactUs () {
   }
 
   return (
-    <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-24 py-12 md:py-20'>
-      <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
-        {/* ── Left Column ── */}
-        <div className='flex flex-col'>
-          <h1 className='text-[40px] sm:text-[48px] md:text-[56px] font-semibold text-navy mb-4 leading-tight'>
-            Get in <span className='text-green'>Touch</span>
-          </h1>
+    <>
+      <PageHero
+        showButton={false}
+        title='Be a part of the change and help bring hope to communities in need.'
+        subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
+        imageSrc='/contact-hero.png'
+      />
 
-          <p className='font-sans text-black text-[16px] md:text-[18px] leading-relaxed mb-10 max-w-md'>
-            If you have any questions about our work or would like to support
-            our mission, feel free to contact us.
-          </p>
+      <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-24 py-12 md:py-20'>
+        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
+          {/* ── Left Column ── */}
+          <div className='flex flex-col'>
+            <h1 className='text-[40px] sm:text-[48px] md:text-[56px] font-semibold text-navy mb-4 leading-tight'>
+              Get in <span className='text-green'>Touch</span>
+            </h1>
 
-          <div>
-            <h2 className='text-[20px] md:text-[24px] font-semibold font-display text-navy mb-4'>
-              Contact details
-            </h2>
-            <div className='bg-[#0B2545]/10 px-6 py-8 space-y-6 w-full max-w-sm'>
-              {contactDetails.map((item, i) => (
-                <div key={i} className='flex items-center gap-4'>
-                  <div className='shrink-0 text-navy'>{item.icon}</div>
-                  <span className='text-black text-[15px] md:text-[16px] font-sans'>
-                    {item.value}
+            <p className='font-sans text-black text-[16px] md:text-[18px] leading-relaxed mb-10 max-w-md'>
+              If you have any questions about our work or would like to support
+              our mission, feel free to contact us.
+            </p>
+
+            <div>
+              <h2 className='text-[20px] md:text-[24px] font-semibold font-display text-navy mb-4'>
+                Contact details
+              </h2>
+              <div className='bg-[#f3f4f6]/90 rounded-2xl px-6 py-8 space-y-6 w-full max-w-sm'>
+                {contactDetails.map((item, i) => (
+                  <div key={i} className='flex items-center gap-4'>
+                    <div className='shrink-0 text-navy'>{item.icon}</div>
+                    <span className='text-black text-[15px] md:text-[16px] font-sans'>
+                      {item.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ✅ Map + Visit Our Office — screenshot jaisa, left column mein */}
+            <div className='mt-8 w-full max-w-sm'>
+              {/* Leaflet Map */}
+              <MapComponent lat={OFFICE_LAT} lng={OFFICE_LNG} />
+
+              {/* Visit Our Office */}
+              <div className='mt-4'>
+                <h3 className='font-display font-semibold text-navy text-[16px] mb-1'>
+                  Visit Our Office
+                </h3>
+                <div className='flex items-center gap-2 mb-3'>
+                  <MapPin className='w-4 h-4 text-navy shrink-0' />
+                  <span className='font-sans text-black text-[14px]'>
+                    123 Hope Street, Lahore, Pakistan
                   </span>
                 </div>
-              ))}
+
+                <a
+                  href={`https://www.google.com/maps?q=${OFFICE_LAT},${OFFICE_LNG}`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center gap-2 font-sans font-semibold text-navy text-[14px] hover:text-green transition-colors duration-200'
+                >
+                  Get a Direction
+                  <ArrowRight className='w-4 h-4' />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* ── Right Column ── */}
-        <div className='lg:mt-[14px]'>
-          <h2 className='text-[24px] md:text-[32px] font-semibold font-display text-navy mb-6'>
-            Send Us a Message
-          </h2>
+          {/* ── Right Column — same as before ── */}
+          <div className='lg:mt-[14px]'>
+            <h2 className='text-[24px] md:text-[32px] font-semibold font-display text-navy mb-6'>
+              Send Us a Message
+            </h2>
 
-          <form className='bg-[#0B2545]/10 p-6 sm:p-10 md:py-10 space-y-5'>
-            {formFields.map(field => (
-              <FormInput
-                key={field.id}
-                id={field.id}
-                label={field.label}
-                type={field.type}
-                placeholder={field.placeholder}
-                value={formData[field.id as keyof typeof formData]}
-                onChange={handleChange}
-              />
-            ))}
+            <form className='bg-[#f3f4f6]/90 rounded-2xl p-6 sm:p-10 md:py-10 space-y-5'>
+              {formFields.map(field => (
+                <FormInput
+                  key={field.id}
+                  id={field.id}
+                  label={field.label}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  value={formData[field.id as keyof typeof formData]}
+                  onChange={handleChange}
+                />
+              ))}
 
-            {/* ── Textarea — FormInput mein nahi hai, yahan raha ── */}
-            <div>
-              <label
-                htmlFor='message'
-                className='block text-[16px] font-bold font-sans text-black mb-2'
+              <div>
+                <label
+                  htmlFor='message'
+                  className='block text-[16px] font-bold font-sans text-black mb-2'
+                >
+                  Message
+                </label>
+                <textarea
+                  id='message'
+                  rows={4}
+                  placeholder='Enter Your Message'
+                  value={formData.message}
+                  onChange={handleChange}
+                  className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans placeholder-black text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-navy'
+                />
+              </div>
+
+              <button
+                type='submit'
+                className='w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'
               >
-                Message
-              </label>
-              <textarea
-                id='message'
-                rows={4}
-                placeholder='Enter Your Message'
-                value={formData.message}
-                onChange={handleChange}
-                className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans placeholder-black text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-navy'
-              />
-            </div>
-
-            <button
-              type='submit'
-              className='w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'
-            >
-              Send Message
-            </button>
-          </form>
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

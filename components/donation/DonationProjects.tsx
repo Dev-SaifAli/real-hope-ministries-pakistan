@@ -1,4 +1,4 @@
-import ProjectCard, { Project } from '../ProjectCard'
+import ProjectCard, { Project } from '@/components/ProjectCard'
 
 const projects: Project[] = [
   {
@@ -7,7 +7,8 @@ const projects: Project[] = [
     description:
       'Installing hand pumps and wells to provide safe, accessible drinking water to remote villages.',
     image: '/projects/clean-water.webp',
-    alt: 'Children playing with clean water'
+    alt: 'Children playing with clean water',
+    date: 'May 10 to 15'
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ const projects: Project[] = [
     description:
       'Delivering essential food rations to impoverished families struggling with food insecurity.',
     image: '/projects/food.webp',
-    alt: 'Food distribution'
+    alt: 'Food distribution',
+    date: 'June 15 to 25'
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ const projects: Project[] = [
     description:
       'Empowering marginalized individuals through education, skill-building, and social support.',
     image: '/projects/free-people.webp',
-    alt: 'Family standing together'
+    alt: 'Family standing together',
+    date: 'May 16 to 25'
   },
   {
     id: 4,
@@ -31,7 +34,8 @@ const projects: Project[] = [
     description:
       'Providing a safe home, education, and loving care for orphaned and abandoned children.',
     image: '/projects/orphanage.webp',
-    alt: 'Young man holding toys for children'
+    alt: 'Young man holding toys for children',
+    date: 'May 10 to 15'
   },
   {
     id: 5,
@@ -39,7 +43,8 @@ const projects: Project[] = [
     description:
       'Offering legal, emotional, and financial support to those facing religious persecution.',
     image: '/projects/persecution.webp',
-    alt: 'Women sitting together'
+    alt: 'Women sitting together',
+    date: 'May 10 to 15'
   },
   {
     id: 6,
@@ -47,7 +52,8 @@ const projects: Project[] = [
     description:
       'Rescuing bonded laborers from brick kilns and helping them start independent, free lives.',
     image: '/projects/slavery.webp',
-    alt: 'Person working at brick kiln'
+    alt: 'Person working at brick kiln',
+    date: 'May 10 to 15'
   },
   {
     id: 7,
@@ -55,7 +61,8 @@ const projects: Project[] = [
     description:
       'Providing monthly stipends, medical care, and vocational training to destitute widows.',
     image: '/projects/widows.webp',
-    alt: 'Women and children gathering'
+    alt: 'Women and children gathering',
+    date: 'May 10 to 15'
   },
   {
     id: 8,
@@ -63,23 +70,27 @@ const projects: Project[] = [
     description:
       'Equipping the next generation with leadership skills, spiritual guidance, and education.',
     image: '/projects/youth.webp',
-    alt: 'Hands joined in prayer'
+    alt: 'Hands joined in prayer',
+    date: 'May 10 to 15'
   }
 ]
 
-export default function MinistriesSection () {
+{
+  /* ── Grid: Projects ── */
+}
+{
+  /* FIX: 1-col mobile, 2-col sm, 3-col lg, 4-col xl */
+}
+export default function DonationProjects () {
   return (
-    <section className='w-full bg-white py-8 sm:py-10 md:py-12 px-4  sm:px-6 md:px-10'>
-      <div className='text-center px-4 sm:px-6 mb-7 sm:mb-8 md:mb-10 max-w-[900px] mx-auto'>
-        <h2 className='font-display font-semibold text-navy text-2xl sm:text-4xl md:text-4xl lg:text-5xl   leading-tight'>
-          Our Ministries and <span className='text-green'>Projects</span>
-        </h2>
-      </div>
-      <div id='projects' className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 md:gap-y-12 max-w-480 mx-auto'>
-        {projects.map(project => (
-          <ProjectCard  key={project.id} project={project} />
-        ))}
-      </div>
-    </section>
+    <div id='donation' className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-8 sm:mb-14 md:mb-20'>
+      {projects.map(project => (
+        <ProjectCard
+          key={project.id}
+          project={project}
+          showDonateButton={true}
+        />
+      ))}
+    </div>
   )
 }
