@@ -1,115 +1,8 @@
 'use client'
-
 import { useState } from 'react'
+import VideoSection from '@/components/VideoSection'
 
-interface Video {
-  id: number
-  thumbnail: string
-  alt: string
-  mediaSrc?: string
-}
-
-const videos: Video[] = [
-  {
-    id: 1,
-    thumbnail: '/videos/video-1.png',
-    alt: 'Real Hope Ministry community gathering',
-    mediaSrc: ''
-  },
-  {
-    id: 2,
-    thumbnail: '/videos/video-2.png',
-    alt: 'Widows ministry - Christmas clothes',
-    mediaSrc: 'v1775908824/WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv.mp4'
-  },
-  {
-    id: 3,
-    thumbnail: '/videos/video-3.png',
-    alt: 'Freedom from slavery project',
-    mediaSrc: ''
-  },
-  {
-    id: 4,
-    thumbnail: '/videos/video-4.png',
-    alt: 'Clean water project',
-    mediaSrc: 'v1775909497/clean-water_ixmfdk.mp4'
-  },
-  {
-    id: 5,
-    thumbnail: '/videos/video-5.png',
-    alt: 'Food distribution',
-    mediaSrc: ''
-  },
-  {
-    id: 6,
-    thumbnail: '/videos/video-6.png',
-    alt: 'Youth mission',
-    mediaSrc: ''
-  },
-  {
-    id: 7,
-    thumbnail: '/videos/video-7.png',
-    alt: 'Orphanage project',
-    mediaSrc: ''
-  }
-]
-
-function PlayButton () {
-  return (
-    <div className='w-12 h-12 sm:w-14 sm:h-14 bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200 rounded-full'>
-      <div className='w-0 h-0 ml-1 border-t-[9px] border-t-transparent border-b-[9px] border-b-transparent border-l-[16px] border-l-navy' />
-    </div>
-  )
-}
-
-function VideoCard ({ video }: { video: Video }) {
-  const [playing, setPlaying] = useState(false)
-  const cloudName = 'dq6gu9ghf'
-  return (
-    <div
-      
-      className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
-      onClick={() => setPlaying(true)}
-    >
-      <img
-        src={video.thumbnail}
-        alt={video.alt}
-        className='w-full h-full object-cover'
-      />
-      <div className='absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-200' />
-      {!playing && (
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <PlayButton />
-        </div>
-      )}
-      {playing && video.mediaSrc && (
-        <div className='absolute inset-0 bg-black'>
-          <video
-            className='w-full h-full object-cover rounded-[inherit]'
-            autoPlay
-            controls
-            playsInline
-            // f_auto aur q_auto optimized delivery
-            src={`https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/${video.mediaSrc}`}
-          >
-            Your browser does not support the video tag.
-          </video>
-
-          {/* Optional: Close Button */}
-          <button
-            onClick={e => {
-              e.stopPropagation()
-              setPlaying(false)
-            }}
-            className='absolute top-2 right-2 z-10 bg-white/20 hover:bg-white/40 text-white rounded-full p-1'
-          >
-            ✕
-          </button>
-        </div>
-      )}
-    </div>
-  )
-}
+const SLIDE_COUNT = 7
 
 export default function AboutSection () {
   const [activeSlide, setActiveSlide] = useState(0)
@@ -118,18 +11,17 @@ export default function AboutSection () {
     setActiveSlide(index)
     const slider = document.getElementById('video-slider')
     if (!slider) return
-    const firstCard = slider.firstElementChild as HTMLElement
-    if (!firstCard) return
-    // FIX: use scrollWidth to calculate exact per-slide distance
     const totalWidth = slider.scrollWidth - slider.clientWidth
-    const perSlide = totalWidth / (videos.length - 1)
+    const perSlide = totalWidth / (SLIDE_COUNT - 1)
     slider.scrollTo({ left: index * perSlide, behavior: 'smooth' })
   }
 
   return (
-    <section id='about'
-     className='w-full bg-white mt-11 md:mt-20 overflow-hidden'>
-      {/* ── Section Header ── */}
+    <section
+      id='about'
+      className='w-full bg-white mt-11 md:mt-20 overflow-hidden'
+    >
+      {/* Section Header */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
         <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-5 md:mb-8'>
           About Real Hope Pakistan
@@ -151,32 +43,24 @@ export default function AboutSection () {
         </p>
       </div>
 
+      {/* Video Slider */}
       <div className='max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10'>
         <div
           id='video-slider'
-          className='flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4'
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           onScroll={e => {
             const slider = e.currentTarget
-            const firstCard = slider.firstElementChild as HTMLElement
-            if (!firstCard) return
-            // FIX: same scrollWidth calculation for onScroll sync
             const totalWidth = slider.scrollWidth - slider.clientWidth
-            const perSlide = totalWidth / (videos.length - 1)
-            const newSlide = Math.round(slider.scrollLeft / perSlide)
-            setActiveSlide(newSlide)
+            const perSlide = totalWidth / (SLIDE_COUNT - 1)
+            setActiveSlide(Math.round(slider.scrollLeft / perSlide))
           }}
         >
-          {videos.map((video: Video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-          <div className='flex-shrink-0 w-4 sm:w-6' />
+          <VideoSection />
         </div>
       </div>
 
-      {/* ── Dot Indicators ── */}
+      {/* Dot Indicators */}
       <div className='flex items-center justify-center gap-2 mt-6 md:mt-8'>
-        {videos.map((_, index) => (
+        {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
           <button
             key={index}
             onClick={() => handleDotClick(index)}
