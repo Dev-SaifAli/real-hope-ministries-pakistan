@@ -77,13 +77,15 @@ export default function GetInvolved () {
         title='Be a part of the change and help bring hope to communities in need.'
         subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
         imageSrc='/home-hero.png'
+        href='#involved'
       />
       {/* // FIX: px-4 mobile → px-8 sm → px-16 md → px-24 lg — prevents content
       touching edges on 320px */}
       <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-24 mt-20'>
         {/* ── Section 1: Header ── */}
         {/* FIX: mb-10 mobile, mb-32 md+ — too much gap on small screens */}
-        <div className='text-center px-4 sm:px-6 mb-10 md:mb-16 max-w-[900px] mx-auto'>
+        <div id='involved'
+         className='text-center px-4 sm:px-6 mb-10 md:mb-16 max-w-[900px] mx-auto'>
           <h1 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 md:mb-6'>
             Ways to <span className='text-green'>Get Involve</span>
           </h1>

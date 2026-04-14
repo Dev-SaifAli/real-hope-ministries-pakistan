@@ -36,21 +36,19 @@ export default function PageHero ({
         loading='lazy'
       />
 
-      <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
+      <div className='relative z-10 text-center  mx-auto px-6'>
         {/* Title — Responsive Font and Leading */}
         <h1
           className='
-            font-display font-[515] text-white 
-            text-2xl leading-[44px]             
-            md:text-4xl md:leading-[60px]       
-            lg:text-6xl lg:leading-[84px]       
-            mb-6 drop-shadow-md mx-auto
+            font-display max-w-5xl font-semibold text-white 
+            impact-heading       
+            mb-4 drop-shadow-md mx-auto
           '
         >
           {renderTitle()}
         </h1>
 
-        <p className='font-sans font-normal text-white/90 text-lg md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed'>
+        <p className='font-sans max-w-5xl impact-para text-white/90  mb-7  mx-auto leading-relaxed'>
           {subtitle}
         </p>
         {showButton && <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>

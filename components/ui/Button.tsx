@@ -65,7 +65,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
   // ── Watch Story ───────────────────────────────────────────────
   watchStory:
-    'bg-green text-white px-8 h-[50px] rounded-[14px] ' +
+    'bg-orange text-white px-8 h-[50px] rounded-[14px] ' +
     'transition-all duration-200 ' +
     'hover:bg-[#226e4d] hover:shadow-md ' +
     'active:scale-95 active:bg-[#1a5a3e] ' +

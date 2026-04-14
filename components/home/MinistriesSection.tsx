@@ -71,7 +71,7 @@ export default function MinistriesSection () {
   return (
     <section className='w-full bg-white py-8 sm:py-10 md:py-12 px-4  sm:px-6 md:px-10'>
       <div className='text-center px-4 sm:px-6 mb-7 sm:mb-8 md:mb-10 max-w-[900px] mx-auto'>
-        <h2 className='font-display font-semibold text-navy text-2xl sm:text-4xl md:text-4xl lg:text-5xl   leading-tight'>
+        <h2 className='font-display font-semibold text-navy impact-heading'>
           Our Ministries and <span className='text-green'>Projects</span>
         </h2>
       </div>

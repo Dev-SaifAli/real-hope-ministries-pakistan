@@ -62,7 +62,7 @@ const sections: Section[] = [
 function SectionBlock ({ section, index }: { section: Section; index: number }) {
   return (
    <div className={`pb-7.5 border-b border-navy ${index !== 0 ? 'mt-8 md:mt-10 lg:mt-14' : ''}`}>
-      <h2 className='text-navy text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-6 tracking-tight'>
+      <h2 className='text-navy text-2xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-6 tracking-tight'>
         {section.title}
       </h2>
 
@@ -70,7 +70,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
         {section.paragraphs?.map((para, i) => (
           <p
             key={i}
-            className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
+            className='font-sans text-black impact-para'
           >
             {para}
           </p>
@@ -82,7 +82,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.bullets.map((bullet, i) => (
             <li
               key={i}
-              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
+              className='font-sans text-black impact-para'
             >
               {bullet}
             </li>
@@ -100,13 +100,13 @@ export default function TermsAndConditions () {
     <div className='min-h-screen w-full bg-[#EBEBEB] py-12 md:py-24'>
       {/* ── Centered Header ── */}
       <div className='text-center mb-12 md:mb-20 px-4'>
-        <h1 className='text-4xl sm:text-5xl md:text-6xl font-semibold mb-5 tracking-tight font-display text-black'>
+        <h1 className='impact-heading font-semibold mb-5 tracking-tight font-display text-black'>
           Terms &amp; Conditions
         </h1>
-        <p className='text-lg sm:text-xl lg:text-2xl font-semibold leading-snug max-w-3xl mx-auto'>
+        <p className='impact-para font-semibold leading-snug max-w-3xl mx-auto'>
           Please read these terms &amp; conditions before using our website.
         </p>
-        <p className='text-lg sm:text-xl md:text-2xl font-semibold mt-2'>Last Updated: January 2026</p>
+        <p className='impact-para font-semibold mt-2'>Last Updated: January 2026</p>
       </div>
 
       {/* ── Left-aligned Sections ── */}

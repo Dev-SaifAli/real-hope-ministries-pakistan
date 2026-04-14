@@ -11,9 +11,15 @@
   --color-orange: #ffa500;
   --color-pearl: #fff5e6;
   --radius-5xl: 3rem;
-  
 }
-
+@layer components {
+  .impact-para {
+    @apply text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed;
+  }
+  .impact-heading {
+    @apply text-[25px] sm:text-3xl md:text-5xl leading-tight;
+  }
+}
 /* --- Base Resets & Global Styles --- */
 @layer base {
   *,

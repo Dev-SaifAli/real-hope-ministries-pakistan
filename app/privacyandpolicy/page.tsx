@@ -79,8 +79,8 @@ const sections: Section[] = [
         value: 'privacy@realhopepakistan.org',
         isLink: true
       },
-      { label: 'Phone', value: '+92 (0) 123 456 7890' },
-      { label: 'Address', value: '123 Hope Avenue, Islamabad, Pakistan' }
+      { label: 'Phone', value: '+92 300 9823626' },
+      { label: 'Address', value: 'Madina Green Valley, Faisalabad' }
     ]
   }
 ]
@@ -94,7 +94,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
         index !== 0 ? 'mt-8 md:mt-10 lg:mt-14' : ''
       }`}
     >
-      <h2 className='text-navy text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-6 tracking-tight'>
+      <h2 className='text-navy text-2xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-6 tracking-tight'>
         {section.title}
       </h2>
 
@@ -102,7 +102,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
         {section.paragraphs?.map((para, i) => (
           <p
             key={i}
-            className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
+            className='font-sans text-black impact-para'
           >
             {para}
           </p>
@@ -114,7 +114,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.bullets.map((bullet, i) => (
             <li
               key={i}
-              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-relaxed'
+              className='font-sans text-black impact-para leading-relaxed'
             >
               {bullet}
             </li>
@@ -127,7 +127,7 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
           {section.contactDetails.map((item, i) => (
             <p
               key={i}
-              className='font-sans text-black text-[15px] sm:text-[18px] md:text-[19px] leading-normal'
+              className='font-sans text-black impact-para leading-normal'
             >
               <span className='font-semibold text-green'>{item.label}: </span>
               {item.isLink ? (
@@ -155,14 +155,14 @@ export default function PrivacyAndPolicy () {
     <div className='min-h-screen w-full bg-[#EBEBEB] py-12 md:py-24'>
       {/* ── Centered Header ── */}
       <div className='text-center mb-12 md:mb-20 px-4'>
-        <h1 className='text-4xl sm:text-5xl md:text-6xl font-semibold mb-5 tracking-tight font-display text-black'>
+        <h1 className='impact-heading font-semibold mb-5 tracking-tight font-display text-black'>
           Privacy &amp; Policy
         </h1>
-        <p className='text-lg sm:text-xl lg:text-2xl font-semibold leading-snug max-w-5xl mx-auto'>
+        <p className='impact-para font-semibold leading-snug max-w-5xl mx-auto'>
           We are committed to protecting your personal information and personal
           rights.
         </p>
-        <p className='text-lg sm:text-xl lg:text-2xl font-semibold mt-2'>
+        <p className=' impact-para font-semibold mt-2'>
           Last Updated: January 2026
         </p>
       </div>

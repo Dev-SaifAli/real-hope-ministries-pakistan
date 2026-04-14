@@ -15,11 +15,11 @@ const MapComponent = dynamic(() => import('@/components/ui/MapComponent'), {
 }) as React.ComponentType<{ lat: number; lng: number }>
 
 const contactDetails = [
-  { icon: <Mail className='w-5 h-5 text-navy' />, value: 'absd@gmail.com' },
-  { icon: <Phone className='w-5 h-5 text-navy' />, value: '+1 (555) 000-0000' },
+  { icon: <Mail className='w-5 h-5 text-navy' />, value: 'zashan789789@gmail.com' },
+  { icon: <Phone className='w-5 h-5 text-navy' />, value: '+92 300 9823626' },
   {
     icon: <MapPin className='w-5 h-5 text-navy' />,
-    value: '123 Hope Street, Lahore, Pakistan'
+    value: 'Madina Green Valley, Faisalabad'
   }
 ]
 
@@ -72,11 +72,11 @@ export default function ContactUs () {
         <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
           {/* ── Left Column ── */}
           <div className='flex flex-col'>
-            <h1 className='text-[40px] sm:text-[48px] md:text-[56px] font-semibold text-navy mb-4 leading-tight'>
+            <h1 className=' font-semibold text-navy mb-4 impact-heading'>
               Get in <span className='text-green'>Touch</span>
             </h1>
 
-            <p className='font-sans text-black text-[16px] md:text-[18px] leading-relaxed mb-10 max-w-md'>
+            <p className='font-sans text-black impact-para mb-10 max-w-lg'>
               If you have any questions about our work or would like to support
               our mission, feel free to contact us.
             </p>
@@ -110,7 +110,7 @@ export default function ContactUs () {
                 <div className='flex items-center gap-2 mb-3'>
                   <MapPin className='w-4 h-4 text-navy shrink-0' />
                   <span className='font-sans text-black text-[14px]'>
-                    123 Hope Street, Lahore, Pakistan
+                    Madina green valley, faisalabad
                   </span>
                 </div>
 

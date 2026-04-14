@@ -54,7 +54,7 @@ export default function ProjectCard({
         </h3>
 
         {/* ── Description — grows to fill space ── */}
-        <p className='font-sans text-black/70 text-[14px] sm:text-[15px] leading-relaxed flex-1'>
+        <p className='font-sans text-black/70 text-[14px] sm:text-[17px] leading-relaxed flex-1'>
           {project.description}
         </p>
 
