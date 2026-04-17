@@ -21,13 +21,13 @@ const navLinks: NavLink[] = [
 ]
 
 const sidebarVariants = {
-  hidden: { x: '100%' },
+  hidden: { x: '-100%' },
   visible: {
     x: 0,
     transition: { type: 'spring' as const, stiffness: 300, damping: 30 }
   },
   exit: {
-    x: '100%',
+    x: '-100%',
     transition: { type: 'spring' as const, stiffness: 300, damping: 30 }
   }
 }
@@ -39,24 +39,29 @@ const backdropVariants = {
 }
 
 const pillTransition = { type: 'spring' as const, stiffness: 400, damping: 30 }
-const ctaHover = { y: -2, scale: 1.03 }
-const ctaTransition = { type: 'spring' as const, stiffness: 300 }
 
 export default function Navbar () {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [isAtTop, setIsAtTop] = useState(true)
   const activePath = usePathname()
   const scrolledRef = useRef(false)
 
   const handleScroll = useCallback(() => {
-    const scrolled = window.scrollY > 40
-    if (scrolled !== scrolledRef.current) {
-      scrolledRef.current = scrolled
-      setIsScrolled(scrolled)
+    const currentY = window.scrollY
+    const shouldShow = currentY < 50 || (currentY > 200 && currentY < 700)
+    const atTop = currentY < 50
+    // visibility control
+    if (shouldShow !== scrolledRef.current) {
+      scrolledRef.current = shouldShow
+      setIsVisible(shouldShow)
     }
+    // style control
+    setIsAtTop(atTop)
   }, [])
 
   useEffect(() => {
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
@@ -73,20 +78,28 @@ export default function Navbar () {
 
   return (
     <>
-      <nav className='fixed top-0 left-0 right-0 z-50 px-10 pt-4'>
+      <nav className='fixed top-0 left-0 right-0 z-50 lg:px-10 pt-4'>
         <motion.div
           className={`
             max-w-480 mx-auto flex items-center justify-between
             rounded-full px-3 sm:px-6 py-2.5
             transition-all duration-300
             ${
-              isScrolled
-                ? 'bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)]'
-                : 'bg-white/0 shadow-none'
+              isAtTop
+                ? 'bg-white/0 shadow-none'
+                : 'bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)]'
             }
           `}
-          animate={{ scale: isScrolled ? 0.99 : 1, y: isScrolled ? -2 : 0 }}
-          transition={{ duration: 0.3 }}
+          initial={{ y: -100, opacity: 0 }}
+          animate={{
+            y: isVisible ? 0 : -100,
+            opacity: isVisible ? 1 : 0,
+            scale: isVisible ? 0.99 : 1
+          }}
+          transition={{
+            duration: 0.35,
+            ease: 'easeInOut'
+          }}
         >
           {/* Logo */}
           <Link
@@ -103,9 +116,9 @@ export default function Navbar () {
             />
             <span
               className={`
-              font-semibold font-display text-base md:text-lg whitespace-nowrap
+              font-semibold font-display text-base lg:text-xl whitespace-nowrap
               transition-colors duration-300
-              ${isScrolled ? 'text-black' : 'text-white'}
+              ${isAtTop ? 'text-white' : 'text-navy'}
             `}
             >
               RHM Pakistan
@@ -129,14 +142,14 @@ export default function Navbar () {
                     href={link.href}
                     className={`
                       relative z-10 px-3 xl:px-4 py-2 rounded-full
-                      md:text-base lg:text-lg font-medium
-                      transition-colors duration-200 whitespace-nowrap block
+                      text-base xl:text-lg 
+                      transition-colors duration-200 whitespace-nowrap block font-sans font-semibold
                       ${
                         isActive
                           ? 'text-white'
-                          : isScrolled
-                          ? 'text-black hover:text-green'
-                          : 'text-white/90 hover:text-white'
+                          : isAtTop
+                          ? 'text-white hover:text-green'
+                          : 'text-navy hover:text-green'
                       }
                     `}
                   >
@@ -146,7 +159,7 @@ export default function Navbar () {
                     <motion.div
                       className='absolute inset-0 rounded-full pointer-events-none'
                       whileHover={{
-                        backgroundColor: isScrolled
+                        backgroundColor: isAtTop
                           ? 'rgba(0,0,0,0.05)'
                           : 'rgba(255,255,255,0.1)'
                       }}
@@ -161,7 +174,11 @@ export default function Navbar () {
           {/* Right cluster */}
           <div className='flex flex-row items-center gap-2 shrink-0'>
             <div className='hidden sm:block lg:block'>
-              <motion.div whileHover={ctaHover} transition={ctaTransition}>
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              >
                 <Button
                   variant='supportNav'
                   text='Support Us'
@@ -181,7 +198,7 @@ export default function Navbar () {
                 <span
                   key={i}
                   className={`block w-5 h-0.5 rounded transition-colors duration-300 ${
-                    isScrolled ? 'bg-black' : 'bg-white'
+                    isAtTop ? 'bg-white' : 'bg-navy'
                   }`}
                 />
               ))}
@@ -210,7 +227,7 @@ export default function Navbar () {
               role='dialog'
               aria-modal='true'
               aria-label='Navigation menu'
-              className='fixed top-0 right-0 bottom-0 z-[70] w-[320px] min-w-[320px] bg-navy/50 backdrop-blur-xl flex flex-col px-5 py-10'
+              className='fixed top-0 left-0 bottom-0 z-[70] w-[320px] min-w-[320px] bg-navy/50 backdrop-blur-xl flex flex-col px-5 py-10'
               variants={sidebarVariants}
               initial='hidden'
               animate='visible'
@@ -265,7 +282,7 @@ export default function Navbar () {
                         onClick={closeMenu}
                         className={`
                           flex items-center w-full px-4 py-3 rounded-xl
-                          text-base font-medium transition-colors duration-200 min-h-[44px]
+                          text-base font-semibold font-sans transition-colors duration-200 min-h-[44px]
                           ${
                             isActive
                               ? 'bg-green text-white'
