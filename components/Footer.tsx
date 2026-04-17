@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
+import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 interface FooterLink {
   label: string
   href: string
@@ -20,13 +20,13 @@ const quickLinks: FooterLink[] = [
 ]
 
 const ministries: FooterLink[] = [
-  { label: 'Orphanage', href: '#orphanage-project' },
-  { label: 'Clean Water', href: '#clean-water-project' },
-  { label: 'Widow Support', href: '#widows-ministry' },
-  { label: 'Freedom Slavery', href: '#freedom-from-slavery' },
-  { label: 'Persecution Support', href: '#persecution-support' },
-  { label: 'Food Support', href: '#food-project' },
-  { label: 'Youth Mission', href: '#youth-of-mission' }
+  { label: 'Orphanage', href: '#orphanage-ministry' },
+  { label: 'Clean Water', href: '#clean-water-ministry' },
+  { label: 'Widow Support', href: '#free-people-ministry' },
+  { label: 'Freedom Slavery', href: '#prayer-&-relief-ministry' },
+  { label: 'Persecution Support', href: '#freedom-from-slavery' },
+  { label: 'Food Support', href: '#food-ministry' },
+  { label: 'Youth Mission', href: '#bibel-distribution-ministry' } 
 ]
 
 const socialLinks = [
@@ -58,31 +58,40 @@ export default function Footer () {
     <footer className='w-full bg-navy text-white'>
       {/* ── Main Footer Content ── */}
       <div className='max-w-480 mx-auto px-4 sm:px-6 md:px-10 py-12 md:py-16'>
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 items-start'>
-          <div className='flex flex-col gap-4 md:gap-5 col-span-2 md:col-span-2 lg:col-span-1'>
-            <Image
-              src='/nav-logo.png'
-              alt='Real Hope Ministries Pakistan'
-              width={65}
-              height={65}
-              className='w-12 h-12 sm:w-16.25 sm:h-16.25 rounded-full object-contain'
-            />
-            <h3 className='font-sans font-bold text-white text-[16px] sm:text-[18px]'>
-              Real Hope Ministries Pakistan
-            </h3>
-            <p className='font-sans text-white text-[16px] sm:text-[16px] leading-relaxed'>
-              Bringing sustainable change, emergency relief, and compassionate
-              support to communities across Pakistan.
-            </p>
+        <div className='grid grid-cols-1 lg:grid-cols-4 gap-8 md:gap-12 items-start'>
+          <div className='flex flex-col gap-10 col-span-2 lg:col-span-1'>
+            <div className='flex flex-col gap-4 md:gap-5 '>
+              <Image
+                src='/nav-logo.png'
+                alt='Real Hope Ministries Pakistan'
+                width={65}
+                height={65}
+                className='w-12 h-12 sm:w-16.25 sm:h-16.25 md:w-12 md:h-12 rounded-full object-contain'
+              />
+              <h3 className='font-sans font-bold text-white text-[16px] sm:text-[18px]'>
+                Real Hope Ministries Pakistan
+              </h3>
+              <p className='font-sans text-white text-[16px] sm:text-[16px] leading-relaxed'>
+                Bringing sustainable change, emergency relief, and compassionate
+                support to communities across Pakistan.
+              </p>
+            </div>
+
+            <div>
+              <p className='italic font-sans font-semibold  text-white text-base sm:text-lg'>
+                Founded by:
+              </p>
+              <p className='font-sans font-bold text-white text-base md:text-lg lg:text-xl'>Brother Kyle Schulz</p>
+            </div>
           </div>
 
           {/* ── Columns 2 & 3: Quick Links + Ministries ── */}
           {footerColumns.map((column: FooterColumn) => (
-            <div key={column.title} className='flex flex-col gap-4 md:gap-5'>
+            <div key={column.title} className='flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 col-span-2 lg:col-span-1'>
               <h3 className='font-sans font-bold text-white text-[16px] sm:text-[18px]'>
                 {column.title}
               </h3>
-              <ul className='flex flex-col gap-2 md:gap-3'>
+              <ul className='flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8'>
                 {column.links.map((link: FooterLink) => (
                   <li key={link.href}>
                     <Link
@@ -99,7 +108,7 @@ export default function Footer () {
 
           {/* ── Column 4: Contact + Social Icons ── */}
           {/* FIX: col-span-2 md:col-span-1 — full width on mobile */}
-          <div className='flex flex-col gap-3 col-span-2 md:col-span-1'>
+          <div className='flex flex-col gap-6 col-span-2 md:col-span-1'>
             <h3 className='font-sans font-bold text-white text-[16px] sm:text-[18px]'>
               Contact with Us
             </h3>

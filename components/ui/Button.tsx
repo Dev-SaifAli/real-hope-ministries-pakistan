@@ -31,12 +31,12 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   supportNav:
-    'bg-navy text-white w-[160px] h-[50px] rounded-[14px] shadow-lg' +
-    'transition-all duration-200 ' +
-    'hover:opacity-90 hover:shadow-xl ' +
-    'active:scale-95 active:shadow-md ' +
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ' +
-    'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+  'bg-navy text-white w-[160px] h-[50px] rounded-[14px] shadow-lg ' +
+  'transition-all duration-200 ease-out ' +
+  'hover:brightness-110 hover:shadow-xl ' +
+  'active:scale-95 active:brightness-95 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 ' +
+  'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   learnMore:
     'bg-transparent text-white e px-6 py-2 w-[150px] h-[40px] rounded-[12px] sm:w-[160px] sm:h-[50px] sm:rounded-[14px] border-[1.55px] border-white ' +
@@ -89,7 +89,7 @@ const Button: React.FC<ButtonProps> = ({ variant, text, href }) => {
       className={`
         inline-flex items-center justify-center
         whitespace-nowrap
-        text-sm sm:text-base xl:text-lg  font-display font-medium
+        text-sm sm:text-base xl:text-lg  font-sans font-semibold
         transition-all duration-200 active:scale-95
         ${variantStyles[variant]}
       `}

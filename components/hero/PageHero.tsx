@@ -13,7 +13,7 @@ export default function PageHero ({
   title,
   imageSrc,
   subtitle,
-  href='#',
+  href = '#',
   showButton = true
 }: PageHeroProps) {
   const renderTitle = () => {
@@ -35,6 +35,7 @@ export default function PageHero ({
         className='object-cover object-center -z-20'
         loading='lazy'
       />
+      <div className='absolute inset-0 bg-black/20 -z-10' />
 
       <div className='relative z-10 text-center  mx-auto px-6'>
         {/* Title — Responsive Font and Leading */}
@@ -48,23 +49,25 @@ export default function PageHero ({
           {renderTitle()}
         </h1>
 
-        <p className='font-sans max-w-5xl impact-para text-white/90  mb-7  mx-auto leading-relaxed'>
+        <p className='font-sans max-w-5xl impact-para font-semibold text-white mb-7  mx-auto leading-relaxed'>
           {subtitle}
         </p>
-        {showButton && <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
-          <Button
-            href='/donation'
-            text='Support Us'
-            variant='support'
-            key='support'
-          />
-          <Button
-            href={href}
-            text='Learn More'
-            variant='learnMore'
-            key='learnMore'
-          />
-        </div>}
+        {showButton && (
+          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+            <Button
+              href='/donation'
+              text='Support Us'
+              variant='support'
+              key='support'
+            />
+            <Button
+              href={href}
+              text='Learn More'
+              variant='learnMore'
+              key='learnMore'
+            />
+          </div>
+        )}
       </div>
     </section>
   )

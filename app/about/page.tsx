@@ -1,6 +1,7 @@
 import PageHero from '@/components/hero/PageHero'
 
 import MissionVisionSection from '@/components/about/MissionVisionSection'
+import FounderSection from '@/components/about/FounderSection'
 import CTASection from '@/components/home/CTASection'
 import AboutSection from '@/components/home/AboutSection'
 import StatsSection from '@/components/home/StatsSection'
@@ -18,6 +19,7 @@ export default function AboutPage () {
         />
         <AboutSection />
         <MissionVisionSection />
+        <FounderSection/>
         <StatsSection />
         <VoicesSection />
         <CTASection />
