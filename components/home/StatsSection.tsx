@@ -1,54 +1,169 @@
-import Image from 'next/image'
+'use client'
 
+import { useEffect, useRef, useState } from 'react'
+import { Users, Droplet, House, MapPin } from 'lucide-react'
+import Button from '../ui/Button'
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 interface Stat {
   id: number
-  value: string
+  numeric: number
+  suffix: string
   label: string
-  icon: string
-  alt: string
+  icon: React.ReactNode
 }
 
+// ─── Data ─────────────────────────────────────────────────────────────────────
 const stats: Stat[] = [
-  { id: 1, value: '50,000+', label: 'People Helped Annually', icon: '/icons/stats/people.svg', alt: 'People icon' },
-  { id: 2, value: '350', label: 'Water Pumps Installed', icon: '/icons/stats/water.svg', alt: 'Water drop icon' },
-  { id: 3, value: '800', label: 'Families Supported', icon: '/icons/stats/home.svg', alt: 'Home icon' },
-  { id: 4, value: '45', label: 'Communities Reached', icon: '/icons/stats/location.svg', alt: 'Location pin icon' }
+  {
+    id: 1,
+    numeric: 50000,
+    suffix: '+',
+    label: 'People Helped Annually',
+    icon: <Users size={28} strokeWidth={1.5} className='text-slate-600' />
+  },
+  {
+    id: 2,
+    numeric: 350,
+    suffix: '',
+    label: 'Water Pumps Installed',
+    icon: <Droplet size={28} strokeWidth={1.5} className='text-slate-600' />
+  },
+  {
+    id: 3,
+    numeric: 800,
+    suffix: '',
+    label: 'Families Supported',
+    icon: <House size={28} strokeWidth={1.5} className='text-slate-600' />
+  },
+  {
+    id: 4,
+    numeric: 450,
+    suffix: '',
+    label: 'Communities Reached',
+    icon: <MapPin size={28} strokeWidth={1.5} className='text-slate-600' />
+  }
 ]
 
+// ─── useCountUp hook ──────────────────────────────────────────────────────────
+// Starts ONLY when element enters viewport — then counts 0 → target
+function useCountUp (target: number, duration: number = 2000) {
+  const [count, setCount] = useState(0)
+  const [hasStarted, setHasStarted] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  // Watch for visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true)
+        }
+      },
+      { threshold: 0.3 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [hasStarted])
+
+  // Count up with easeOutQuart
+  useEffect(() => {
+    if (!hasStarted) return
+
+    let startTime: number | null = null
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const elapsed = timestamp - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 4)  // easeOutQuart
+      setCount(Math.floor(target * eased))
+      if (progress < 1) requestAnimationFrame(animate)
+      else setCount(target)
+    }
+
+    requestAnimationFrame(animate)
+  }, [hasStarted, target, duration])
+
+  return { count, ref }
+}
+
+// ─── StatCard ─────────────────────────────────────────────────────────────────
 function StatCard ({ stat }: { stat: Stat }) {
+  const { count, ref } = useCountUp(stat.numeric)
+
   return (
-    // gap-3 on mobile, gap-5 on sm+ — tighter vertical rhythm on small screens
-    <div className='flex flex-col items-center gap-3 sm:gap-5'>
-      {/* Icon circle: slightly smaller on mobile to preserve whitespace */}
-      <div className='w-14 h-14 sm:w-[72px] sm:h-[72px] rounded-full bg-[#1a3a5c] flex items-center justify-center'>
-        <Image
-          src={stat.icon}
-          alt={stat.alt}
-          width={32}
-          height={32}
-          className='opacity-90'
-        />
+    <div
+      ref={ref}
+      className='
+        flex flex-col gap-3
+        bg-white rounded-2xl sm:rounded-3xl
+        items-center w-full justify-center mx-auto py-8 px-4
+        shadow-[0_2px_16px_rgba(0,0,0,0.06)]
+        border border-gray-100
+        transition-shadow duration-300
+        hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]
+      '
+    >
+      {/* Icon */}
+      <div className='w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center shrink-0'>
+        {stat.icon}
       </div>
-      {/* Stat value: 32px mobile → 40px sm → 48px md — prevents overflow at 320px */}
-      <p className='font-display font-[680] text-white text-[32px] sm:text-[40px] md:text-[38px] lg:text-[48px] sm:tracking-wide leading-none'>
-        {stat.value}
+
+      {/* Animated number */}
+      <p className='font-display font-bold text-navy text-3xl sm:text-4xl leading-none tracking-tight'>
+        {count.toLocaleString('en-US')}{stat.suffix}
       </p>
-      {/* Label: 14px on mobile, 16px on sm+ */}
-      <p className='font-sans text-white text-[15px] sm:text-[16px] md:text-[14px] lg:text-[20px] text-center'>
+
+      {/* Label */}
+      <p className='font-sans text-sm sm:text-[15px] text-center leading-snug'>
         {stat.label}
       </p>
     </div>
   )
 }
 
+// ─── StatsSection ─────────────────────────────────────────────────────────────
 export default function StatsSection () {
   return (
-    <section className='w-full bg-navy mt-11 sm:mt-14 md:mt-16 py-12 md:py-16 px-4 sm:px-6'>
-      <div className='max-w-[1920px] mx-auto'>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-6'>
-          {stats.map((stat: Stat) => (
-            <StatCard key={stat.id} stat={stat} />
-          ))}
+    <section className='w-full bg-white mb-6 mt-12  sm:mb-9 sm:mt-17.5  px-4 sm:px-6 md:px-10'>
+      <div className='mx-auto flex justify-center'>
+
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
+
+          {/* ── Left: Heading + Para + Button ── */}
+          <div className='flex flex-col'>
+            <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px]  mb-5'>
+              Creating{' '}
+              <span className='text-green'>Lasting Impact</span>
+              <br />
+              Across Communities in{' '}
+              <span className='text-green'>Pakistan</span>
+            </h2>
+
+            {/* ✅ max-w-md — para on lg won't stretch too wide */}
+            <p className='font-sans text-black impact-para mb-8 md:mb-10 max-w-150 '>
+              Through our ongoing efforts across Pakistan, we have been able to
+              support vulnerable communities, provide essential resources, and
+              create opportunities for a better future. Our work is focused on
+              delivering real, measurable impact by addressing immediate needs
+              while also building long-term support systems. Every initiative we
+              undertake is driven by compassion, transparency, and a commitment
+              to meaningful change.
+            </p>
+
+            <div>
+              <Button href='/donation' text='Support Our Mission' variant='supportMission' />
+            </div>
+          </div>
+
+          {/* ── Right: 2x2 stat cards ── */}
+          <div className='grid grid-cols-2 gap-4 sm:gap-5'>
+            {stats.map(stat => (
+              <StatCard key={stat.id} stat={stat} />
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

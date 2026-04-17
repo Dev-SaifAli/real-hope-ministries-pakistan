@@ -53,10 +53,10 @@ export default function DonationForm () {
         {/* ── Left: Description + Trust Points ── */}
         <div className='space-y-6 md:space-y-8'>
           <div>
-            <h2 className='text-2xl sm:text-3xl md:text-4xl font-semibold font-display text-navy mb-3 md:mb-4'>
+            <h2 className='impact-heading font-semibold font-display text-navy mb-3 md:mb-4'>
               Make a <span className='text-green'>Difference</span> Today
             </h2>
-            <p className='font-sans text-black text-[15px] sm:text-lg md:text-xl leading-relaxed'>
+            <p className='font-sans text-black impact-para'>
               Your generosity transforms communities. Select an amount below to
               contribute.
             </p>
@@ -67,10 +67,10 @@ export default function DonationForm () {
               <div key={i} className='flex items-start gap-4'>
                 <CheckCircle className='w-5 h-5 md:w-6 md:h-6 text-green flex-shrink-0 mt-1' />
                 <div className='space-y-1'>
-                  <p className='font-sans text-navy font-semibold text-base sm:text-lg md:text-xl'>
+                  <p className='font-sans text-navy font-semibold impact-para'>
                     {point.title}
                   </p>
-                  <p className='font-sans text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed'>
+                  <p className='font-sans text-gray-700 text-sm sm:text-base md:text-[17px] leading-relaxed'>
                     {point.description}
                   </p>
                 </div>

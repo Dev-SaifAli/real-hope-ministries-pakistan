@@ -9,9 +9,9 @@ interface ContactCard {
 }
 
 const contactCards: ContactCard[] = [
-  { id: 1, title: 'Headquarters', value: '123 Hope Street, Lahore, Pakistan', icon: '/icons/contact/location.svg', alt: 'Location pin icon' },
-  { id: 2, title: 'Email Us', value: 'absd@gmail.com', icon: '/icons/contact/email.svg', alt: 'Email envelope icon' },
-  { id: 3, title: 'Call Us', value: '0000000000000', icon: '/icons/contact/phone.svg', alt: 'Phone icon' }
+  { id: 1, title: 'Headquarters', value: 'Madina Green Valley, Faisalabad', icon: '/icons/contact/location.svg', alt: 'Location pin icon' },
+  { id: 2, title: 'Email Us', value: 'zashan789789@gmail.com', icon: '/icons/contact/email.svg', alt: 'Email envelope icon' },
+  { id: 3, title: 'Call Us', value: '+92 300 9823626', icon: '/icons/contact/phone.svg', alt: 'Phone icon' }
 ]
 
 function ContactCard ({ card }: { card: ContactCard }) {
@@ -21,11 +21,11 @@ function ContactCard ({ card }: { card: ContactCard }) {
       <div className='sm:w-[42px] sm:h-[42px] md:w-[52px] md:h-[52px] lg:w-[60px] lg:h-[60px] rounded-full bg-[#EBEBEB] flex items-center justify-center shrink-0'>
         <Image src={card.icon} alt={card.alt} width={26} height={26} />
       </div>
-      <h3 className='font-display font-semibold text-navy text-base sm:text-base md:text-lg lg:text-2xl'>
+      <h3 className='font-display font-semibold text-navy text-base sm:text-base md:text-lg lg:text-xl'>
         {card.title}
       </h3>
       {/* break-all prevents long email/phone values from overflowing on mobile */}
-      <p className='font-sans text-black text-base sm:text-sm md:text-base lg:text-xl break-all sm:break-normal'>
+      <p className='font-sans text-black impact-para break-all sm:break-normal'>
         {card.value}
       </p>
     </div>

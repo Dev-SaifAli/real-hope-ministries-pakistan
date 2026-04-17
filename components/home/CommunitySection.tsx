@@ -16,7 +16,7 @@ export default function CommunitySection () {
           Community In <span className='text-green'>Action</span>
         </h2>
 
-        <p className='font-sans text-black text-[15px] sm:text-lg md:text-xl'>
+        <p className='font-sans text-black impact-para'>
           Real stories and meaningful moments captured during our fieldwork
           across Pakistan, highlighting the communities we serve and the impact
           of compassion, support, and hope in everyday lives.

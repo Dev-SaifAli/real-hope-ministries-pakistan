@@ -65,10 +65,10 @@ export default function VoicesSection () {
       <div className='max-w-480 mx-auto'>
         {/* ── Header ── */}
         <div className='text-center mb-8 md:mb-12 max-w-225 mx-auto'>
-          <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-4'>
+          <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4'>
             Voices from the <span className='text-green'>Field</span>
           </h2>
-          <p className='text-black text-[15px] sm:text-[18px] leading-relaxed'>
+          <p className='text-black impact-para'>
             See the real impact of your support. Through these stories and
             moments, we witness the incredible strength of the communities we
             serve.

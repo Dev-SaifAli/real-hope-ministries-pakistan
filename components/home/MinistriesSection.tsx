@@ -3,41 +3,40 @@ import ProjectCard, { Project } from '../ProjectCard'
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Clean Water Project',
+    title: 'Clean Water Ministry',
     description:
-      'Installing hand pumps and wells to provide safe, accessible drinking water to remote villages.',
+      'We aim to install 100 water pumps, each costing $700, to ensure long-term access to water.',
     image: '/projects/clean-water.webp',
     alt: 'Children playing with clean water'
   },
   {
     id: 2,
-    title: 'Food Project',
+    title: 'Food Ministry',
     description:
-      'Delivering essential food rations to impoverished families struggling with food insecurity.',
+      'Supporting 700 families with essential food supplies, at $100 per family.',
     image: '/projects/food.webp',
     alt: 'Food distribution'
   },
   {
     id: 3,
-    title: 'Free People',
+    title: 'Free People Ministry',
     description:
-      'Empowering marginalized individuals through education, skill-building, and social support.',
+      'Helping families rebuild their lives, with an estimated $5,000 per family for complete support.',
     image: '/projects/free-people.webp',
     alt: 'Family standing together'
   },
   {
     id: 4,
-    title: 'Orphanage Project',
-    description:
-      'Providing a safe home, education, and loving care for orphaned and abandoned children.',
+    title: 'Orphanage Ministry',
+    description: `70 orphan children in brick areas need support. Orphanage fund: $500,000. \n$100 per child for food and essentials.`,
     image: '/projects/orphanage.webp',
     alt: 'Young man holding toys for children'
   },
   {
     id: 5,
-    title: 'Persecution Support',
+    title: 'Prayer & Relief Ministry',
     description:
-      'Offering legal, emotional, and financial support to those facing religious persecution.',
+      'Over 500 families need urgent help. $4,000 per family is required for rescue, relief, and prayer support.',
     image: '/projects/persecution.webp',
     alt: 'Women sitting together'
   },
@@ -45,7 +44,7 @@ const projects: Project[] = [
     id: 6,
     title: 'Freedom from Slavery',
     description:
-      'Rescuing bonded laborers from brick kilns and helping them start independent, free lives.',
+      'Over 500 families are trapped in brick kiln slavery. $4,000 is needed to free each family.',
     image: '/projects/slavery.webp',
     alt: 'Person working at brick kiln'
   },
@@ -53,15 +52,15 @@ const projects: Project[] = [
     id: 7,
     title: 'Widows Ministry',
     description:
-      'Providing monthly stipends, medical care, and vocational training to destitute widows.',
+      'Supporting 60+ widows in need.\n$1,000 per widow for essential care and support.',
     image: '/projects/widows.webp',
     alt: 'Women and children gathering'
   },
   {
     id: 8,
-    title: 'Youth of Mission',
+    title: 'Bibel Distribution Ministry',
     description:
-      'Equipping the next generation with leadership skills, spiritual guidance, and education.',
+      'Each Bible costs $50, and we need many more to spreading hope and reaching communities in need.',
     image: '/projects/youth.webp',
     alt: 'Hands joined in prayer'
   }
@@ -69,15 +68,22 @@ const projects: Project[] = [
 
 export default function MinistriesSection () {
   return (
-    <section className='w-full bg-white py-8 sm:py-10 md:py-12 px-4  sm:px-6 md:px-10'>
-      <div className='text-center px-4 sm:px-6 mb-7 sm:mb-8 md:mb-10 max-w-[900px] mx-auto'>
-        <h2 className='font-display font-semibold text-navy text-2xl sm:text-4xl md:text-4xl lg:text-5xl   leading-tight'>
+    <section className='w-full bg-white mt-7 md:mt-14 lg:mt-21 px-4  sm:px-6 md:px-10'>
+      <div className='impact-section mb-7   sm:mb-8 md:mb-10 '>
+        <h2 className='font-display font-semibold text-navy impact-heading mb-2 md:mb-3 lg:mb-5'>
           Our Ministries and <span className='text-green'>Projects</span>
         </h2>
+        <p className='font-sans text-black impact-para px-2 sm:px-4'>
+          We operate multiple initiatives targeting critical needs across
+          Pakistan, from basic survival necessities to human rights advocacy.
+        </p>
       </div>
-      <div id='projects' className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 md:gap-y-12 max-w-480 mx-auto'>
+      <div
+        id='projects'
+        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 md:gap-y-14 lg:gap-y-18 max-w-480 mx-auto mb-6 sm:mb-8 md:mb-14 lg:mb-18'
+      >
         {projects.map(project => (
-          <ProjectCard  key={project.id} project={project} />
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
     </section>

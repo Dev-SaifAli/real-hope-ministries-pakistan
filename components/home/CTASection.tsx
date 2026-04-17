@@ -9,7 +9,7 @@ export default function CTASection () {
           Be a Part of the <span className='text-green'>Change</span>
         </h2>
         {/* mb-8 mobile, mb-10 md+ */}
-        <p className='font-sans text-black text-[15px] sm:text-[18px] md:text-[21px] leading-relaxed mx-auto mb-8 md:mb-10'>
+        <p className='font-sans text-black impact-para mx-auto mb-8 md:mb-10'>
           Your support makes our mission possible. Whether through prayer,
           volunteering, or financial giving, you can bring real hope to
           communities in need.
