@@ -7,7 +7,7 @@ export interface Project {
   description: string
   image: string
   alt: string
-  date?: string   // ← optional date badge e.g. "May 10 to 15"
+  date?: string // ← optional date badge e.g. "May 10 to 15"
 }
 
 interface ProjectCardProps {
@@ -15,32 +15,35 @@ interface ProjectCardProps {
   showDonateButton?: boolean
 }
 
-export default function ProjectCard({
+export default function ProjectCard ({
   project,
-  showDonateButton = false,
+  showDonateButton = false
 }: ProjectCardProps) {
   const projectSlug = project.title.toLowerCase().replace(/\s+/g, '-')
 
   return (
-    // ── Card — border, rounded-2xl, overflow hidden ──────────
-    // Reference image: white card, subtle border, rounded corners
     <div
       id={projectSlug}
-      className='flex flex-col w-full max-w-102 mx-auto h-full scroll-mt-20 rounded-2xl border border-gray-200 overflow-hidden bg-white'
+      className='flex flex-col w-full max-w-102 mx-auto h-full scroll-mt-20
+    group bg-white rounded-2xl overflow-hidden
+    outline-none
+    focus-visible:ring-2 focus-visible:ring-navy/80 focus-visible:ring-offset-4
+      '
+      tabIndex={0}
     >
       {/* ── Image — rounded top corners (card overflow clips it) ── */}
-      <div className='relative w-full h-60 sm:h-64 flex-shrink-0'>
+      <div className='relative w-full h-60 sm:h-64 flex-shrink-0 rounded-2xl overflow-hidden '>
         <Image
           src={project.image}
           alt={project.alt}
           fill
-          className='object-cover'
+          className='object-cover transition-transform duration-300 ease-in-out 
+                 group-hover:scale-110'
         />
       </div>
 
       {/* ── Card Body ── */}
-      <div className='flex flex-col flex-1 px-5 pt-4 pb-5 gap-3'>
-
+      <div className='flex flex-col flex-1  pt-4 pb-5 gap-1 sm:gap-3'>
         {/* ── Date Badge — like reference image ── */}
         {project.date && (
           <span className='inline-flex items-center self-start px-3 py-1 rounded-full bg-orange-100 text-[#e8a020] text-[12px] font-semibold font-sans'>
@@ -54,21 +57,16 @@ export default function ProjectCard({
         </h3>
 
         {/* ── Description — grows to fill space ── */}
-        <p className='font-sans text-black/70 text-[14px] sm:text-[17px] leading-relaxed flex-1'>
+        <p className='font-sans  impact-para flex-1 whitespace-pre-line'>
           {project.description}
         </p>
 
         {/* ── Donate Button — full width, at bottom ── */}
         {showDonateButton && (
           <div className='mt-2'>
-            <Button
-              variant='donate'
-              text='Donate Now'
-              href='/donation'
-            />
+            <Button variant='donate' text='Donate Now' href='/donation' />
           </div>
         )}
-
       </div>
     </div>
   )
