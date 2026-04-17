@@ -13,11 +13,14 @@
   --radius-5xl: 3rem;
 }
 @layer components {
+  .impact-section {
+    @apply text-center px-0 sm:px-6 lg:px-4 w-full sm:max-w-120 md:max-w-150 lg:max-w-175 mx-auto;
+  }
   .impact-para {
-    @apply text-[15px] sm:text-[16px] md:text-[18px] leading-relaxed;
+    @apply text-sm sm:text-[14px] md:text-[16px] lg:text-[17px] leading-relaxed;
   }
   .impact-heading {
-    @apply text-[25px] sm:text-3xl md:text-5xl leading-tight;
+    @apply  text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
   }
 }
 /* --- Base Resets & Global Styles --- */
