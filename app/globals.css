@@ -20,7 +20,7 @@
     @apply text-sm sm:text-[14px] md:text-[16px] lg:text-[17px] leading-relaxed;
   }
   .impact-heading {
-    @apply  text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
   }
 }
 /* --- Base Resets & Global Styles --- */
@@ -53,7 +53,20 @@
   h6 {
     font-family: var(--font-poppins), sans-serif;
   }
+  /* Chrome, Safari */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
+  /* Firefox */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* IE/Edge (old) */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+  }
   a {
     text-decoration: none;
     color: inherit;

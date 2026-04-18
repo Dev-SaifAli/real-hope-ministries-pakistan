@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect, useMemo } from 'react'
 
-const CLOUD_NAME = 'dq6gu9ghf'
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 
 export interface Video {
   id: number
@@ -36,8 +36,11 @@ function ComingSoonOverlay ({ onClose }: { onClose: () => void }) {
         This video is being prepared
       </span>
       <button
-        onClick={onClose}
-        className='mt-3 bg-white/20 hover:bg-white/40 text-white rounded-full px-4 py-1 text-sm'
+        onClick={e => {
+          e.stopPropagation() // ← parent div ka onClick rok do
+          onClose()
+        }}
+        className='mt-3 bg-white/20 hover:bg-navy/40 text-white rounded-full px-4 py-1 text-sm'
       >
         ✕ Close
       </button>
@@ -67,7 +70,6 @@ function VideoPlayer ({
 
     video.load()
 
-    // safer autoplay
     const playPromise = video.play()
     if (playPromise) {
       playPromise.catch(() => {})
@@ -82,7 +84,6 @@ function VideoPlayer ({
 
   return (
     <div className='absolute inset-0 bg-black'>
-      {/* Progress indicators */}
       {sources.length > 1 && (
         <div className='absolute top-2 left-1/2 -translate-x-1/2 flex gap-1 z-10'>
           {sources.map((_, i) => (
@@ -111,8 +112,11 @@ function VideoPlayer ({
       </video>
 
       <button
-        onClick={onClose}
-        className='absolute top-2 right-2 z-10 bg-white/20 hover:bg-white/40 text-white rounded-full p-1'
+        onClick={e => {
+          e.stopPropagation() // ← parent div ka onClick rok do
+          onClose()
+        }}
+        className='absolute top-2 right-2 z-10 bg-white/20 hover:bg-white/40 text-white rounded-2xl  p-1'
       >
         ✕
       </button>
@@ -142,7 +146,7 @@ export default function VideoCard ({ video }: { video: Video }) {
 
   return (
     <div
-      className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
+      className='shrink-0 rounded-2xl relative snap-center w-[92vw] sm:w-90 md:w-95 lg:w-105 h-55 sm:h-65 lg:h-70 overflow-hidden cursor-pointer group'
       onClick={handleClick}
     >
       {/* Thumbnail */}
@@ -173,13 +177,13 @@ export default function VideoCard ({ video }: { video: Video }) {
       {state === 'coming' && <ComingSoonOverlay onClose={handleClose} />}
 
       {/* Player */}
-      {state === 'playing' && hasVideo && (
+      {state === 'playing' && hasVideo ? (
         <VideoPlayer
           sources={sources}
           poster={video.thumbnail}
           onClose={handleClose}
         />
-      )}
+      ) : null}
     </div>
   )
 }

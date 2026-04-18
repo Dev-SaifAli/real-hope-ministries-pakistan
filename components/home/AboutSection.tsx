@@ -1,20 +1,68 @@
 'use client'
-import { useState } from 'react'
+
+import { useRef, useState, useCallback } from 'react'
 import VideoSection from '@/components/VideoSection'
 
 const SLIDE_COUNT = 7
 
 export default function AboutSection () {
   const [activeSlide, setActiveSlide] = useState(0)
+  const trackRef = useRef<HTMLDivElement>(null) // ✅ video-track pe ref
+  const sliderRef = useRef<HTMLDivElement>(null) // scroll container pe ref
+  const isAutoScrolling = useRef(false)
 
-  const handleDotClick = (index: number) => {
+  // ── Dot click ────────────────────────────────────────────────
+  const handleDotClick = useCallback((index: number) => {
+    const track = trackRef.current // video-track div
+    const slider = sliderRef.current // scroll container
+
+    if (!track || !slider) return
+
+    // ✅ slides are direct children of video-track
+    const child = track.children[index] as HTMLElement
+    if (!child) return
+
     setActiveSlide(index)
-    const slider = document.getElementById('video-slider')
-    if (!slider) return
-    const totalWidth = slider.scrollWidth - slider.clientWidth
-    const perSlide = totalWidth / (SLIDE_COUNT - 1)
-    slider.scrollTo({ left: index * perSlide, behavior: 'smooth' })
-  }
+    isAutoScrolling.current = true
+
+    // ✅ offsetLeft of child relative to track
+    // track itself has px-4 padding — child.offsetLeft accounts for this
+    const scrollTo =
+      child.offsetLeft - slider.offsetWidth / 2 + child.offsetWidth / 2
+
+    slider.scrollTo({ left: scrollTo, behavior: 'smooth' })
+
+    setTimeout(() => {
+      isAutoScrolling.current = false
+    }, 900)
+  }, [])
+
+  // ── Manual scroll ─────────────────────────────────────────────
+  const handleScroll = useCallback(() => {
+    if (isAutoScrolling.current) return
+
+    const track = trackRef.current
+    const slider = sliderRef.current
+    if (!track || !slider) return
+
+    const sliderCenter = slider.scrollLeft + slider.offsetWidth / 2
+
+    let closestIndex = 0
+    let closestDistance = Infinity
+
+    Array.from(track.children).forEach((child, index) => {
+      const el = child as HTMLElement
+      // ✅ offsetLeft relative to track (scroll container)
+      const childCenter = el.offsetLeft + el.offsetWidth / 2
+      const distance = Math.abs(sliderCenter - childCenter)
+      if (distance < closestDistance) {
+        closestDistance = distance
+        closestIndex = index
+      }
+    })
+
+    setActiveSlide(closestIndex)
+  }, [])
 
   return (
     <section
@@ -27,41 +75,36 @@ export default function AboutSection () {
           About Real Hope Pakistan
         </p>
         <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4 md:mb-6'>
-          A Mission of <span className='text-green'>Compassion</span>,{' '}
-          <br className='hidden md:block' />
-          Faith and Action
+          A Mission of <span className='text-green'>Compassion</span>,
+          <br className='hidden md:block' /> Faith and Action
         </h2>
         <p className='font-sans text-black impact-para'>
           Real Hope Pakistan is committed to serving the most vulnerable
-          communities across the nation. Guided by a spirit of humanitarianism,
-          we work tirelessly to address immediate needs while fostering
-          long-term empowerment. From providing clean water and food to
-          advocating for freedom and supporting widows and orphans, our mission
-          is rooted in the belief that every life is valuable. Together, we are
-          building a foundation of real hope, transforming lives one community
-          at a time.
+          communities across the nation...
         </p>
       </div>
 
       {/* Video Slider */}
       <div className='max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10'>
         <div
-          id='video-slider'
-          onScroll={e => {
-            const slider = e.currentTarget
-            const totalWidth = slider.scrollWidth - slider.clientWidth
-            const perSlide = totalWidth / (SLIDE_COUNT - 1)
-            setActiveSlide(Math.round(slider.scrollLeft / perSlide))
-          }}
+          ref={sliderRef} // ✅ scroll container ref
+          className='flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar'
+          onScroll={handleScroll}
         >
-          <VideoSection />
+          {/* ✅ trackRef pass karo VideoSection ko */}
+          <VideoSection
+            trackRef={trackRef}
+            activeSlide={activeSlide}
+            setActiveSlide={setActiveSlide}
+          />
         </div>
       </div>
 
-      {/* Dot Indicators */}
+      {/* Dots */}
       <div className='flex items-center justify-center gap-2 mt-6 md:mt-8'>
         {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
           <button
+            type='button'
             key={index}
             onClick={() => handleDotClick(index)}
             aria-label={`Go to slide ${index + 1}`}
