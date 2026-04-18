@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 interface FooterLink {
   label: string
   href: string
