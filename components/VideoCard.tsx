@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect, useMemo } from 'react'
 
-const CLOUD_NAME = 'dq6gu9ghf'
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 
 export interface Video {
   id: number
@@ -142,7 +142,7 @@ export default function VideoCard ({ video }: { video: Video }) {
 
   return (
     <div
-      className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
+      className='shrink-0 rounded-2xl relative snap-center w-[92vw] sm:w-90 md:w-95 lg:w-105 h-55  sm:h-65 lg:h-70 overflow-hidden cursor-pointer group'
       onClick={handleClick}
     >
       {/* Thumbnail */}

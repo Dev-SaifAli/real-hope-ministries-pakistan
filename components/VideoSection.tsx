@@ -35,7 +35,7 @@ const videos: Video[] = [
     id: 5,
     thumbnail: 'IMG_0674_rax0vi',
     alt: 'Food distribution',
-    mediaSrc:'IDDV1562_mjwyyo'
+    mediaSrc: 'IDDV1562_mjwyyo'
   },
   {
     id: 6,
@@ -51,16 +51,33 @@ const videos: Video[] = [
   }
 ]
 
-export default function VideoSection () {
+export default function VideoSection({
+  trackRef,          // ← add 
+  activeSlide,
+  setActiveSlide,
+}: {
+  trackRef: React.RefObject<HTMLDivElement>   // ← add 
+  activeSlide: number
+  setActiveSlide: (index: number) => void
+}) {
   return (
     <div
-      className='flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4'
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      ref={trackRef}                          // ← ref 
+      id='video-track'
+      className='flex gap-4 sm:gap-6 px-4'
     >
-      {videos.map(video => (
-        <VideoCard key={video.id} video={video} />
+      {videos.map((video, index) => (
+        <div
+          key={video.id}
+          onClick={() => setActiveSlide(index)}
+          className={`
+            shrink-0 snap-center transition-all duration-300 cursor-pointer
+            ${activeSlide === index ? 'scale-100 opacity-100 z-10' : 'scale-90 opacity-60'}
+          `}
+        >
+          <VideoCard video={video} />
+        </div>
       ))}
-      <div className='shrink-0 w-4 sm:w-6' />
     </div>
   )
 }
