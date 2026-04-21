@@ -48,7 +48,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
   // ── CTA Section buttons ───────────────────────────────────────
   supportMission:
-    'bg-navy text-white px-8 h-[50px] rounded-[14px] ' +
+    'bg-navy text-white  py-2 px-6 h-[50px] rounded-[14px] ' +
     'transition-all duration-200 ' +
     'hover:bg-[#071a33] hover:shadow-md ' +
     'active:scale-95 active:bg-[#050f1f] ' +
@@ -56,7 +56,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   getInvolved:
-    'bg-transparent text-navy px-8 h-[50px] rounded-[14px] border-2 border-navy ' +
+    'bg-transparent text-navy  py-2 px-12 h-[50px] rounded-[14px] border-3 border-navy ' +
     'transition-all duration-200 ' +
     'hover:bg-navy hover:text-white hover:shadow-md ' +
     'active:scale-95 active:bg-[#071a33] ' +
@@ -65,10 +65,10 @@ const variantStyles: Record<ButtonVariant, string> = {
 
   // ── Watch Story ───────────────────────────────────────────────
   watchStory:
-    'bg-orange text-white px-8 h-[50px] rounded-[14px] ' +
+    'bg-[#F59E0B] text-white py-2 px-6 h-[50px] rounded-[14px] ' +
     'transition-all duration-200 ' +
-    'hover:bg-[#226e4d] hover:shadow-md ' +
-    'active:scale-95 active:bg-[#1a5a3e] ' +
+    'hover:bg-orange hover:shadow-md ' +
+    'active:scale-95 active:bg-orange ' +
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 ' +
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
@@ -89,7 +89,7 @@ const Button: React.FC<ButtonProps> = ({ variant, text, href }) => {
       className={`
         inline-flex items-center justify-center
         whitespace-nowrap
-        text-sm sm:text-base xl:text-lg  font-sans font-semibold
+        text-sm sm:text-base xl:text-base  font-sans font-semibold
         transition-all duration-200 active:scale-95
         ${variantStyles[variant]}
       `}

@@ -13,8 +13,8 @@ export default function AboutPage () {
       <main>
         <PageHero
           href='#about'
-          title='About Our Mission'
-          subtitle='We are committed to bringing hope and support to communities in need.'
+          title='Our Mission for Hope and Services'
+          subtitle='Empowering Vulnerable communities across Pakistan through compassionate aid, Sustainable Development , and unwavering supports'
           imageSrc='/home-hero.png'
         />
         <AboutSection />

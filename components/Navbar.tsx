@@ -47,6 +47,12 @@ export default function Navbar () {
   const activePath = usePathname()
   const scrolledRef = useRef(false)
 
+  const pathName = usePathname()
+  const isLightPage =
+    pathName === '/termsandconditions' || pathName === '/privacyandpolicy'
+  const isScrolled = !isAtTop
+  const isLegalPage = isLightPage
+
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY
     const shouldShow = currentY < 50 || (currentY > 200 && currentY < 700)
@@ -78,23 +84,34 @@ export default function Navbar () {
 
   return (
     <>
-      <nav className='fixed top-0 left-0 right-0 z-50 lg:px-10 pt-4'>
+      <nav className={`fixed top-0 left-0 right-0 z-50 `}>
         <motion.div
           className={`
-            max-w-480 mx-auto flex items-center justify-between
-            rounded-full px-3 sm:px-6 py-2.5
-            transition-all duration-300
-            ${
-              isAtTop
-                ? 'bg-white/0 shadow-none'
-                : 'bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)]'
-            }
-          `}
+    flex items-center justify-between
+           
+    transition-all duration-300
+    
+    ${
+      isLegalPage && !isScrolled
+        ? 'w-full md:px-20 md:py-3  rounded-none bg-white'
+        : 'rounded-full'
+    }
+
+   ${
+     isLegalPage
+       ? 'w-full bg-white px-4 md:px-6 py-3'
+       : isScrolled
+       ? 'w-full max-w-[1200px] xl:max-w-275 2xl:max-w-350 mx-auto mt-4 px-4 md:px-6 py-3 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)] rounded-full transition-all duration-300'
+       : 'w-full max-w-[1200px] xl:max-w-480 mx-auto px-4 md:px-20 py-3 bg-transparent rounded-full'
+   }
+  `}
           initial={{ y: -100, opacity: 0 }}
           animate={{
             y: isVisible ? 0 : -100,
             opacity: isVisible ? 1 : 0,
-            scale: isVisible ? 0.99 : 1
+
+            // FIX: Only scale down if it's NOT a legal page or if it IS scrolled
+            scale: isLegalPage && !isScrolled ? 1 : isVisible ? 0.99 : 1
           }}
           transition={{
             duration: 0.35,
@@ -104,21 +121,22 @@ export default function Navbar () {
           {/* Logo */}
           <Link
             href='/'
-            className='flex flex-row items-center gap-2 shrink-0 min-w-0'
+            className='flex flex-row items-center gap-8 shrink-0 min-w-0'
           >
             <Image
               src='/nav-logo.png'
               alt='RHM Pakistan'
               width={40}
               height={40}
-              className='w-8 h-8 sm:w-10 sm:h-10 rounded-full shrink-0'
+              className='w-8 h-8 sm:w-12 sm:h-12 rounded-full shrink-0'
               priority
             />
             <span
               className={`
               font-semibold font-display text-base lg:text-xl whitespace-nowrap
               transition-colors duration-300
-              ${isAtTop ? 'text-white' : 'text-navy'}
+             
+            ${isScrolled || isLegalPage ? 'text-navy' : 'text-white'}
             `}
             >
               RHM Pakistan
@@ -147,9 +165,9 @@ export default function Navbar () {
                       ${
                         isActive
                           ? 'text-white'
-                          : isAtTop
-                          ? 'text-white hover:text-green'
-                          : 'text-navy hover:text-green'
+                          : isScrolled || isLegalPage
+                          ? 'text-navy hover:text-green'
+                          : 'text-white hover:text-green'
                       }
                     `}
                   >

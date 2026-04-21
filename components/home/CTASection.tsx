@@ -4,8 +4,8 @@ export default function CTASection () {
   return (
     // py-12 mobile, py-20 md+ — px-4 mobile se start
     <section className='w-full bg-white mb-12 sm:mb-18 md:mb-23 px-4 sm:px-6'>
-      <div className='max-w-[925px] mx-auto text-center'>
-        <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight mb-2 md:mb-6'>
+      <div className='impact-section'>
+        <h2 className='font-display font-semibold text-navy impact-heading leading-tight mb-2 md:mb-6'>
           Be a Part of the <span className='text-green'>Change</span>
         </h2>
         {/* mb-8 mobile, mb-10 md+ */}
@@ -15,7 +15,7 @@ export default function CTASection () {
           communities in need.
         </p>
         {/* gap-3 mobile, gap-5 sm+ — buttons stack on very small screens */}
-        <div className='flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5'>
+        <div className='flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10'>
           <Button
             variant='supportMission'
             text='Support our mission'

@@ -80,7 +80,7 @@ export default function Footer () {
               <p className='italic font-sans font-semibold  text-white text-base sm:text-lg'>
                 Founded by:
               </p>
-              <p className='font-sans font-bold text-white text-base md:text-lg lg:text-xl'>Brother Kyle Schulz</p>
+              <p className='font-sans font-bold text-white text-base md:text-lg lg:text-2xl'>Brother Kyle Schulz</p>
             </div>
           </div>
 
