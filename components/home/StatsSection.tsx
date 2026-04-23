@@ -133,16 +133,15 @@ export default function StatsSection () {
 
           {/* ── Left: Heading + Para + Button ── */}
           <div className='flex flex-col'>
-            <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px]  mb-5'>
+            <h2 className='font-display font-semibold text-navy impact-heading mb-5'>
               Creating{' '}
               <span className='text-green'>Lasting Impact</span>
               <br />
-              Across Communities in{' '}
-              <span className='text-green'>Pakistan</span>
+              Across Communities in <span className='text-green'>Pakistan</span>
             </h2>
 
             {/* ✅ max-w-md — para on lg won't stretch too wide */}
-            <p className='font-sans text-black impact-para mb-8 md:mb-10 max-w-150 '>
+            <p className='font-sans text-black impact-para  mb-8 md:mb-10 max-w-150 '>
               Through our ongoing efforts across Pakistan, we have been able to
               support vulnerable communities, provide essential resources, and
               create opportunities for a better future. Our work is focused on

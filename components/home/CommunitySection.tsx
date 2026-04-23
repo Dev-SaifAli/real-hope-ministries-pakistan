@@ -11,7 +11,7 @@ export default function CommunitySection () {
   return (
     <section id='community' className='w-full bg-white py-14 sm:py-16 md:py-18 lg:py-20 overflow-hidden '>
       {/* ── Header — centered ── */}
-      <div className='text-center px-4 sm:px-6 mb-10 md:mb-10 lg:mb-12 max-w-[900px] mx-auto'>
+      <div className='impact-section'>
         <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl  leading-tight mb-2 md:mb-6'>
           Community In <span className='text-green'>Action</span>
         </h2>

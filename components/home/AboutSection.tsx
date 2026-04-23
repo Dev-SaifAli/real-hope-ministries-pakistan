@@ -71,21 +71,27 @@ export default function AboutSection () {
     >
       {/* Section Header */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
-        <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-5 md:mb-8'>
+        <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-8'>
           About Real Hope Pakistan
         </p>
         <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4 md:mb-6'>
           A Mission of <span className='text-green'>Compassion</span>,
           <br className='hidden md:block' /> Faith and Action
         </h2>
-        <p className='font-sans text-black impact-para'>
+        <p className='font-sans text-black impact-para  '>
           Real Hope Pakistan is committed to serving the most vulnerable
-          communities across the nation...
+          communities across the nation. Guided by a spirit of humanitarianism,
+          we work tirelessly to address immediate needs while fostering
+          long-term empowerment. From providing clean water and food to
+          advocating for freedom and supporting widows and orphans, our mission
+          is rooted in the belief that every life is valuable. Together, we are
+          building a foundation of real hope, transforming lives one community
+          at atime.
         </p>
       </div>
 
       {/* Video Slider */}
-      <div className='max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10'>
+      <div className='max-w-360 mx-auto px-4 sm:px-6 lg:px-10'>
         <div
           ref={sliderRef} // ✅ scroll container ref
           className='flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar'

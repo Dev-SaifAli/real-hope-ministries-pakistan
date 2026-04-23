@@ -34,6 +34,7 @@ export default function HomeHero ({
 }: HeroProps) {
   const [videoReady, setVideoReady] = useState(false)
   const [showVideo, setShowVideo] = useState(false)
+  const [animateHero, setAnimateHero] = useState(false)
 
   const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -41,7 +42,12 @@ export default function HomeHero ({
   // Inject video only once hero enters viewport
   useEffect(() => {
     const section = sectionRef.current
-    if (!section || typeof IntersectionObserver === 'undefined') return
+
+    if (!section || typeof IntersectionObserver === 'undefined') {
+      setShowVideo(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -51,9 +57,23 @@ export default function HomeHero ({
       },
       { threshold: 0.1 }
     )
+
     observer.observe(section)
+
     return () => observer.disconnect()
   }, [])
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVideoReady(true)
+    }, 1500)
+
+    return () => clearTimeout(timer)
+  }, [])
+  useEffect(() => {
+    if (videoReady || !showVideo) {
+      setAnimateHero(true)
+    }
+  }, [videoReady, showVideo])
 
   const handleVideoCanPlay = useCallback(() => {
     setVideoReady(true)
@@ -66,8 +86,7 @@ export default function HomeHero ({
     <section
       ref={sectionRef}
       aria-label='Homepage hero'
-      className='relative w-full overflow-hidden '
-      style={{ height: '100svh' }}
+      className='relative w-full min-h-screen overflow-hidden '
     >
       {/* ── LCP image fallback ── */}
       <Image
@@ -82,7 +101,6 @@ export default function HomeHero ({
         }`}
         style={{ zIndex: 0 }}
       />
-
       {/* ── Lazy autoplay video ── */}
       {showVideo && (
         <video
@@ -99,24 +117,20 @@ export default function HomeHero ({
           style={{ zIndex: 1 }}
         />
       )}
-
       {/* Gradient overlay */}
-      <div
-        className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_25%,rgba(0,0,0,0.8)_100%)]'
-        style={{ zIndex: 2 }}
-      />
+      <div className='absolute   bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_50%,rgba(0,0,0,0.5)87.02%)] inset-0 flex items-center z-10' />
       {/* ── Text — bottom-left, padding mirrors hero outer px ── */}
       <motion.div
         className='absolute inset-0 flex items-center'
         style={{ zIndex: 3 }}
         variants={containerVariants}
         initial='hidden'
-        animate='visible'
+        animate={animateHero ? 'visible' : 'hidden'}
       >
-        <div className='w-full px-10  '>
+        <div className='w-full px-20  '>
           <motion.p
             variants={itemVariants}
-            className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-xl mb-2 sm:mb-3   font-display font-medium leading-snug w-fit group  sm:mx-0 '
+            className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3   font-display font-semibold leading-snug w-fit group  sm:mx-0 '
           >
             Real Hope Ministries Pakistan
             <span className='absolute left-0 -bottom-1 h-[2px] w-0 bg-white rounded-full transition-all duration-300 group-hover:w-full' />
@@ -130,7 +144,7 @@ export default function HomeHero ({
 
           <motion.p
             variants={itemVariants}
-            className='impact-para mb-7 text-white'
+            className='impact-para font-semibold mb-7 text-white'
           >
             {subtitle}
           </motion.p>

@@ -1,12 +1,12 @@
 import PageHero from '@/components/hero/PageHero'
 import MinistriesSection from '@/components/home/MinistriesSection'
 import CTASection from '@/components/home/CTASection'
-export default function HomePage () {
+export default function AboutPage () {
   return (
     <>
       <main>
         <PageHero
-        href='#projects'
+          href='#projects'
           title='Hope for Communities Across Pakistan'
           subtitle='Serving people through care, support, and outreach.'
           imageSrc='/home-hero.png'

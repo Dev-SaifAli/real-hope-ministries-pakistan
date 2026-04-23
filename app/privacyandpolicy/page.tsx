@@ -168,7 +168,7 @@ export default function PrivacyAndPolicy () {
       </div>
 
       {/* ── Responsive Layout Container ── */}
-      <div className='max-w-480 mx-auto px-6 sm:px-10 md:pl-20 md:pr-40 lg:pl-30 lg:pr-60'>
+      <div className='max-w-480 mx-auto px-6 sm:px-10 md:pl-20 md:pr-40 lg:pl-18 lg:pr-50'>
         {sections.map((section, index) => (
           <SectionBlock key={section.id} section={section} index={index} />
         ))}

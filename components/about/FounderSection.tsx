@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
 export default function FounderSection () {
-  // const founderImage = cloudinary copilot
-
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+  const founderImage = `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_600/Gemini_Generated_Image_a92rp6a92rp6a92r1_1_eqmulq`
   return (
     <section className='w-full bg-white px-4 sm:px-6 md:px-10  lg:mt-19'>
       <div className='max-w-480 mx-auto'>
@@ -15,14 +15,14 @@ export default function FounderSection () {
               className='absolute inset-0 rounded-2xl'
               style={{
                 background:
-                  'radial-gradient(ellipse at 60% 40%, #2E9E6F55 0%, #ffffff00 70%)'
+                  'linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, #2E9E6F 100%)'
               }}
             />
 
             {/* Founder photo */}
-            <div className='relative w-full h-[380px] lg:h-[460px] rounded-2xl overflow-hidden'>
+            <div className='relative w-full h-[380px] lg:h-[600px] rounded-2xl overflow-hidden'>
               <Image
-                src='https://res.cloudinary.com/<your-cloud-name>/image/upload/f_auto,q_auto,w_600/about/founder.png'
+                src={founderImage}
                 alt='Brother Kyle Schulz — Founder & Leader'
                 fill
                 className='object-cover object-top'
@@ -34,12 +34,12 @@ export default function FounderSection () {
           {/* ── Right: Text content ── */}
           <div className='flex flex-col flex-1'>
             {/* Small label */}
-            <p className='font-display font-semibold text-navy text-[14px] sm:text-[16px] '>
+            <p className='font-display font-[550] text-navy text-[14px] sm:text-[16px] '>
               The Visionary Behind the Mission
             </p>
 
             {/* Name — "Brother" navy, "Kyle Schulz" green */}
-            <h2 className='font-display font-semibold text-navy text-3xl md:text-4xl lg:text-5xl leading-relaxed '>
+            <h2 className='font-display font-semibold text-navy text-3xl md:text-4xl xl:text-5xl 2xl:text-5xl leading-relaxed '>
               Brother <span className='text-green'>Kyle Schulz</span>
             </h2>
 
@@ -48,7 +48,7 @@ export default function FounderSection () {
             </p>
 
             {/* Description */}
-            <p className='font-sans text-black text-[15px] md:text-[16px] leading-relaxed  mt-2'>
+            <p className='font-sans text-black impact-para mt-3 xl:mt-6 2xl:mt-8'>
               With a deep commitment to serving communities, Brother Kyle Schulz
               leads the mission with compassion, purpose, and a vision for
               lasting impact. His leadership continues to inspire meaningful

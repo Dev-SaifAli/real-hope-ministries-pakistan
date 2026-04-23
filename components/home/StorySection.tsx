@@ -12,7 +12,7 @@ interface StoryProps {
 }
 
 export default function StorySection ({
-  titleHighlight = 'Bondage to Freedom:',
+  titleHighlight = 'Bondage to Freedom',
   titleRest = 'The Story of the Masih Family',
   description = `For three generations, the Masih family worked at a brick kiln to pay off an
     insurmountable debt. Through the 'Freedom from Slavery' initiative, Real
@@ -60,7 +60,7 @@ export default function StorySection ({
           {/* Text Block */}
           <div className='flex flex-col gap-2 sm:gap-4 md:gap-6 max-w-[560px] text-center md:text-left'>
             <h2 className='font-display font-semibold text-navy text-[26px] sm:text-[32px] md:text-[40px] leading-tight'>
-              From <span className='text-green'>{titleHighlight}</span>
+              From <span className='text-green'>{titleHighlight}</span><span className='text-navy'>:</span>
               <br />
               {renderTitle()}
             </h2>

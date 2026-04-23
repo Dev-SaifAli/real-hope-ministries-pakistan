@@ -43,7 +43,7 @@ export default function ProjectCard ({
       </div>
 
       {/* ── Card Body ── */}
-      <div className='flex flex-col flex-1  pt-4 pb-5 gap-1 sm:gap-3'>
+      <div className='flex flex-col flex-1  pt-5 pb-5 gap-1 sm:gap-3'>
         {/* ── Date Badge — like reference image ── */}
         {project.date && (
           <span className='inline-flex items-center self-start px-3 py-1 rounded-full bg-orange-100 text-[#e8a020] text-[12px] font-semibold font-sans'>
@@ -52,14 +52,12 @@ export default function ProjectCard ({
         )}
 
         {/* ── Title ── */}
-        <h3 className='text-navy font-display font-semibold text-[20px] md:text-[22px] leading-tight'>
+        <h3 className='text-navy font-display font-semibold text-[20px] md:text-[22px] xl:text-2xl leading-tight'>
           {project.title}
         </h3>
 
         {/* ── Description — grows to fill space ── */}
-        <p className='font-sans  impact-para flex-1 whitespace-pre-line'>
-          {project.description}
-        </p>
+        <p className='font-sans  impact-para flex-1 '>{project.description}</p>
 
         {/* ── Donate Button — full width, at bottom ── */}
         {showDonateButton && (
