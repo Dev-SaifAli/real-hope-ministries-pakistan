@@ -74,6 +74,8 @@ export default function GetInvolved () {
   return (
     <>
       <PageHero
+        primaryButtonText='Become a Volunteer'
+        secondaryButtonText='Donate Now'
         title='Be a part of the change and help bring hope to communities in need.'
         subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
         imageSrc='/home-hero.png'

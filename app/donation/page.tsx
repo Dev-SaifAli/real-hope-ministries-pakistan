@@ -6,7 +6,9 @@ export default function HomePage () {
     <>
       <main>
         <PageHero
-        href="#donation"
+          href='#donation'
+          
+          secondaryButtonText='Get Involve'
           title='Support Our Mission Bring Hope to Communities in Pakistan'
           subtitle='We are dedicated to uplifting the marginalized, providing essential aid, and building sustainable futures through compassion and action.'
           imageSrc='/home-hero.png'
