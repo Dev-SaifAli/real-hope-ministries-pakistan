@@ -7,9 +7,10 @@ export default function AboutPage () {
       <main>
         <PageHero
           href='#projects'
+          secondaryButtonText='Get Involve'
           title='Hope for Communities Across Pakistan'
           subtitle='Serving people through care, support, and outreach.'
-          imageSrc='/home-hero.png'
+          imageSrc='Mask_group_1_qnvxbp'
         />
 
         <MinistriesSection />

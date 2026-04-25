@@ -2,23 +2,24 @@
 
 import React, { useState } from 'react'
 import PageHero from '@/components/hero/PageHero'
-
-import { Mail, Phone, MapPin, ArrowRight, Link } from 'lucide-react'
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import FormInput from '@/components/ui/FormInput'
 
 const MapComponent = dynamic(() => import('@/components/ui/MapComponent'), {
   ssr: false,
   loading: () => (
-    <div className='w-full h-[220px] rounded-xl bg-gray-100 animate-pulse' />
+    <div className='w-full h-full rounded-xl bg-gray-100 animate-pulse flex items-center justify-center'>
+      <span className='text-gray-400 font-sans'>Loading Map...</span>
+    </div>
   )
-}) as React.ComponentType<{ lat: number; lng: number }>
+})
 
 const contactDetails = [
-  { icon: <Mail className='w-5 h-5 text-navy' />, value: 'zashan789789@gmail.com' },
-  { icon: <Phone className='w-5 h-5 text-navy' />, value: '+92 300 9823626' },
+  { icon: <Mail className='w-5 h-5' />, value: 'zashan789789@gmail.com' },
+  { icon: <Phone className='w-5 h-5' />, value: '+92 300 9823626' },
   {
-    icon: <MapPin className='w-5 h-5 text-navy' />,
+    icon: <MapPin className='w-5 h-5' />,
     value: 'Madina Green Valley, Faisalabad'
   }
 ]
@@ -40,9 +41,8 @@ const formFields = [
   }
 ]
 
-// Lahore coordinates
-const OFFICE_LAT = 31.5204
-const OFFICE_LNG = 74.3587
+const OFFICE_LAT = 31.4504
+const OFFICE_LNG = 73.135
 
 export default function ContactUs () {
   const [formData, setFormData] = useState({
@@ -65,13 +65,13 @@ export default function ContactUs () {
         showButton={false}
         title='Be a part of the change and help bring hope to communities in need.'
         subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
-        imageSrc='/contact-hero.png'
+        imageSrc='Mask_group_8_f9ldyb'
       />
 
       <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-24 py-12 md:py-20'>
-        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
+        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24  '>
           {/* ── Left Column ── */}
-          <div className='flex flex-col'>
+          <div className='flex flex-col h-full'>
             <h1 className=' font-semibold text-navy mb-4 impact-heading'>
               Get in <span className='text-green'>Touch</span>
             </h1>
@@ -98,12 +98,10 @@ export default function ContactUs () {
             </div>
 
             {/* ✅ Map + Visit Our Office — screenshot jaisa, left column mein */}
-            <div className='mt-8 w-full max-w-sm'>
-              {/* Leaflet Map */}
-              <MapComponent lat={OFFICE_LAT} lng={OFFICE_LNG} />
-
+            <div className='mt-auto w-full flex flex-col flex-grow'>
               {/* Visit Our Office */}
-              <div className='mt-4'>
+
+              <div className='my-4'>
                 <h3 className='font-display font-semibold text-navy text-[16px] mb-1'>
                   Visit Our Office
                 </h3>
@@ -123,6 +121,11 @@ export default function ContactUs () {
                   Get a Direction
                   <ArrowRight className='w-4 h-4' />
                 </a>
+              </div>
+
+              {/* Leaflet Map */}
+              <div className='w-full flex-grow min-h-[350px] rounded-2xl overflow-hidden '>
+                <MapComponent lat={OFFICE_LAT} lng={OFFICE_LNG} />
               </div>
             </div>
           </div>

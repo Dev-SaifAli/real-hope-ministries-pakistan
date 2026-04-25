@@ -45,8 +45,8 @@ export default function Navbar () {
   const [isVisible, setIsVisible] = useState(true)
   const [isAtTop, setIsAtTop] = useState(true)
   const activePath = usePathname()
-  const scrolledRef = useRef(false)
-
+  // const scrolledRef = useRef(false)
+  const lastScrollY = useRef(0)
   const pathName = usePathname()
   const isLightPage =
     pathName === '/termsandconditions' || pathName === '/privacyandpolicy'
@@ -55,15 +55,14 @@ export default function Navbar () {
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY
-    const shouldShow = currentY < 50 || (currentY > 200 && currentY < 700)
-    const atTop = currentY < 50
-    // visibility control
-    if (shouldShow !== scrolledRef.current) {
-      scrolledRef.current = shouldShow
-      setIsVisible(shouldShow)
+    if (currentY < lastScrollY.current || currentY < 50) {
+      setIsVisible(true)
+    } else if (currentY > 100 && currentY > lastScrollY.current) {
+      setIsVisible(false)
     }
-    // style control
-    setIsAtTop(atTop)
+
+    setIsAtTop(currentY < 50)
+    lastScrollY.current = currentY
   }, [])
 
   useEffect(() => {
@@ -91,18 +90,14 @@ export default function Navbar () {
            
     transition-all duration-300
     
-    ${
-      isLegalPage && !isScrolled
-        ? 'w-full md:px-20 md:py-3  rounded-none bg-white'
-        : 'rounded-full'
-    }
+   
 
    ${
-     isLegalPage
-       ? 'w-full bg-white px-4 md:px-6 py-3'
-       : isScrolled
-       ? 'w-full max-w-[1200px] xl:max-w-275 2xl:max-w-350 mx-auto mt-4 px-4 md:px-6 py-3 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)] rounded-full transition-all duration-300'
-       : 'w-full max-w-[1200px] xl:max-w-480 mx-auto px-4 md:px-20 py-3 bg-transparent rounded-full'
+     isScrolled
+       ? 'w-full mx-auto mt-4 px-6 lg:px-8 py-3 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.14)] rounded-full max-w-[95%] sm:max-w-[90%] md:max-w-[90%] lg:max-w-[90%] xl:max-w-280 2xl:max-w-350'
+       : isLegalPage
+       ? 'w-full bg-white  px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 py-3 rounded-none'
+       : 'w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 py-3 bg-transparent rounded-none max-w-480'
    }
   `}
           initial={{ y: -100, opacity: 0 }}
@@ -121,7 +116,7 @@ export default function Navbar () {
           {/* Logo */}
           <Link
             href='/'
-            className='flex flex-row items-center gap-8 shrink-0 min-w-0'
+            className='flex flex-row items-center gap-4 shrink-0 min-w-0'
           >
             <Image
               src='/nav-logo.png'
@@ -216,7 +211,7 @@ export default function Navbar () {
                 <span
                   key={i}
                   className={`block w-5 h-0.5 rounded transition-colors duration-300 ${
-                    isAtTop ? 'bg-white' : 'bg-navy'
+                    isAtTop ? 'bg-navy' : 'bg-navy'
                   }`}
                 />
               ))}

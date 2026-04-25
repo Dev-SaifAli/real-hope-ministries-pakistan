@@ -1,3 +1,4 @@
+import { buildImage, buildVideo } from '@/utils/cloudinary'
 import Image from 'next/image'
 import Button from './ui/Button'
 
@@ -20,7 +21,7 @@ export default function ProjectCard ({
   showDonateButton = false
 }: ProjectCardProps) {
   const projectSlug = project.title.toLowerCase().replace(/\s+/g, '-')
-
+   
   return (
     <div
       id={projectSlug}
@@ -34,7 +35,7 @@ export default function ProjectCard ({
       {/* ── Image — rounded top corners (card overflow clips it) ── */}
       <div className='relative w-full h-60 sm:h-64 flex-shrink-0 rounded-2xl overflow-hidden '>
         <Image
-          src={project.image}
+          src={buildImage(project.image , 800)}
           alt={project.alt}
           fill
           className='object-cover transition-transform duration-300 ease-in-out 
@@ -57,12 +58,12 @@ export default function ProjectCard ({
         </h3>
 
         {/* ── Description — grows to fill space ── */}
-        <p className='font-sans  impact-para flex-1 '>{project.description}</p>
+        <p className='font-sans whitespace-pre-line impact-para flex-1 '>{project.description}</p>
 
         {/* ── Donate Button — full width, at bottom ── */}
         {showDonateButton && (
           <div className='mt-2'>
-            <Button variant='donate' text='Donate Now' href='/donation' />
+            <Button variant='donate' text='Donate to this cause' href='/donation' />
           </div>
         )}
       </div>

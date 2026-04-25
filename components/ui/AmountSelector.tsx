@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-const amounts = ['$10', '$25', '$50', '$100', 'Custom']
+const amounts = ['$500', '$1000', '$2000', '$5000', 'Custom']
 
 export default function AmountSelector () {
   const [selected, setSelected] = useState('$50')
@@ -10,6 +10,7 @@ export default function AmountSelector () {
     <div className='flex flex-row justify-between gap-3'>
       {amounts.map(amount => (
         <button
+          type='button'
           key={amount}
           onClick={() => setSelected(amount)}
           className={`

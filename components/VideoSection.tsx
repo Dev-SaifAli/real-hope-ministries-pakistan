@@ -1,6 +1,6 @@
 'use client'
 import VideoCard, { type Video } from '@/components/VideoCard'
-import { RefObject } from 'react'
+// import { RefObject } from 'react'
 const videos: Video[] = [
   {
     id: 1,
@@ -47,7 +47,7 @@ const videos: Video[] = [
     id: 7,
     thumbnail: 'DSC_7676_1_mutgql',
     alt: 'Orphanage project',
-    mediaSrc: undefined
+    mediaSrc: 'Untitled_mrt8m2'
   }
 ]
 

@@ -3,17 +3,19 @@
 import { useRef, useEffect } from 'react'
 import { motion, useAnimation, useMotionValue } from 'framer-motion'
 import Image from 'next/image'
+import { buildImage} from '@/utils/cloudinary'
+
 
 interface CurvedCarouselProps {
   images: string[]
 }
 
 export default function CurvedCarousel ({ images }: CurvedCarouselProps) {
-  const CARD_WIDTH = 508
-  const CARD_GAP = 16
+  const CARD_WIDTH = 308
+  const CARD_GAP = 20
   const STEP = CARD_WIDTH + CARD_GAP
 
-  const looped = [...images, ...images, ...images]
+  const looped = [...images, ...images, ...images, ...images]
   const totalW = looped.length * STEP
   const startX = -(images.length * STEP)
 
@@ -77,7 +79,7 @@ export default function CurvedCarousel ({ images }: CurvedCarouselProps) {
             }}
           >
             <Image
-              src={src}
+              src={buildImage(src,800)}
               alt={`Slide ${index + 1}`}
               fill
               draggable={false}

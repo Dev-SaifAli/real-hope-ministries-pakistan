@@ -6,6 +6,7 @@ import { Users, Shield, Flame, Megaphone } from 'lucide-react'
 import FormInput from '@/components/ui/FormInput'
 import FormSelect from '@/components/ui/FormSelect'
 import Image from 'next/image'
+import { buildImage } from '@/utils/cloudinary'
 
 const involvementCards = [
   {
@@ -14,7 +15,7 @@ const involvementCards = [
     description:
       'Help in outreach programs, food distribution and community support directly on the ground.',
     image:
-      'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop'
+      'Mask_group_4_drqvat'
   },
   {
     icon: <Shield className='w-6 h-6 text-white' />,
@@ -22,7 +23,7 @@ const involvementCards = [
     description:
       'Organizations or churches can partner to support humanitarian missions and scale our impact.',
     image:
-      'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&auto=format&fit=crop'
+      'Mask_group_5_jkvblx'
   },
   {
     icon: <Flame className='w-6 h-6 text-white' />,
@@ -30,7 +31,7 @@ const involvementCards = [
     description:
       "Sponsor a water pump, a child's education, or provide ongoing support for a struggling family.",
     image:
-      'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&auto=format&fit=crop'
+      'Mask_group_6_zg0eyb'
   },
   {
     icon: <Megaphone className='w-6 h-6 text-white' />,
@@ -38,7 +39,7 @@ const involvementCards = [
     description:
       'Help share our mission through social media, community events, and word of mouth.',
     image:
-      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop'
+      'Mask_group_7_aawxky'
   }
 ]
 
@@ -78,7 +79,7 @@ export default function GetInvolved () {
         secondaryButtonText='Donate Now'
         title='Be a part of the change and help bring hope to communities in need.'
         subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
-        imageSrc='/home-hero.png'
+        imageSrc='Mask_group_1_qnvxbp'
         href='#involved'
       />
       {/* // FIX: px-4 mobile → px-8 sm → px-16 md → px-24 lg — prevents content
@@ -102,12 +103,13 @@ export default function GetInvolved () {
           {involvementCards.map((card, i) => (
             <div
               key={i}
-              className='group cursor-pointer bg-[#DDEBFFD4] rounded-2xl overflow-hidden flex flex-col h-full w-full'
+              className='group cursor-pointer bg-[#D9D9D9D6] rounded-2xl overflow-hidden flex flex-col h-full w-full'
             >
-              <div className='relative overflow-hidden w-full h-48 flex-shrink-0'>
+              <div className='relative overflow-hidden w-full h-52 flex-shrink-0'>
                 <Image
-                  src={card.image}
+                  src={buildImage(card.image,800)}
                   alt={card.title}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   fill
                   className='object-cover w-full h-full transition-transform duration-300 group-hover:scale-110'
                 />
@@ -115,9 +117,7 @@ export default function GetInvolved () {
 
               {/* ✅ p-4 — padding kam kiya, pb-5 bottom thoda */}
               <div className='p-4 pb-5 flex flex-col flex-1'>
-                <div className='w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center shrink-0 mb-4'>
-                  {card.icon}
-                </div>
+                
 
                 {/* ✅ text-[18px] fixed — responsive hata diya */}
                 <h3 className='text-navy font-display font-semibold  text-[20px] md:text-[22px]  leading-tight mb-2'>
@@ -140,13 +140,13 @@ export default function GetInvolved () {
             <h2 className='text-[24px] md:text-[32px] font-semibold font-display text-navy mb-4'>
               Start Your <span className='text-green'>Journey</span>
             </h2>
-            <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'>
+            <p className='font-sans text-black impact-para'>
               Fill out the form below and our team will get back to you with the
               next steps on how you can get involved.
             </p>
           </div>
 
-          <div className='bg-[#f3f4f6]/90 rounded-2xl p-6 sm:p-10 md:py-10 max-w-[860px] mx-auto'>
+          <div className=' border-1 border border-[#0000002B] shadow-[0px_5.38px_32.25px_0px_rgba(0,0,0,0.02)] rounded-2xl p-6 sm:p-10 md:py-10 max-w-[860px] mx-auto'>
             <form className='space-y-5' onSubmit={handleSubmit}>
               {/* ── Full Name — full width ── */}
               <FormInput
