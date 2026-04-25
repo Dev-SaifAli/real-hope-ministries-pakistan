@@ -134,7 +134,7 @@ export default function HomeHero ({
             className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3   font-display font-semibold leading-snug w-fit group  sm:mx-0 '
           >
             Real Hope Ministries Pakistan
-            <span className='absolute left-0 -bottom-1 h-[2px] w-0 bg-white rounded-full transition-all duration-300 group-hover:w-full' />
+            <span className='absolute left-0 -bottom-1 h-[2px] w-full bg-white rounded-full ' />
           </motion.p>
           <motion.h1
             variants={itemVariants}
