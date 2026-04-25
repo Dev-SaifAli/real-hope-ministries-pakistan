@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect, useMemo } from 'react'
 
-const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+import { buildImage, buildVideo } from '@/utils/cloudinary'
 
 export interface Video {
   id: number
@@ -10,13 +10,6 @@ export interface Video {
   mediaSrc?: string | string[]
 }
 
-/* ---------------- Utilities ---------------- */
-
-const buildImage = (src: string, width = 800) =>
-  `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,f_auto,w_${width}/${src}`
-
-const buildVideo = (src: string, width = 800) =>
-  `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,f_auto,vc_auto,w_${width}/${src}`
 
 /* ---------------- UI Components ---------------- */
 

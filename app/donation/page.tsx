@@ -11,7 +11,7 @@ export default function HomePage () {
           secondaryButtonText='Get Involve'
           title='Support Our Mission Bring Hope to Communities in Pakistan'
           subtitle='We are dedicated to uplifting the marginalized, providing essential aid, and building sustainable futures through compassion and action.'
-          imageSrc='/home-hero.png'
+          imageSrc='Mask_group_1_qnvxbp'
         />
         <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-20 pt-12 md:pt-28 lg:pt-20 pb-16 md:pb-20'>
           <div className='max-w-360 mx-auto'>

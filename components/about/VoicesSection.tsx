@@ -4,28 +4,62 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { buildImage, buildVideo } from '@/utils/cloudinary'
 
+const newIds = [
+  'IMG_0663_otmahe',
+  '3b760bfd9fefac72fe9adec50e24c5ec8110c0c8_epgiig',
+  'Mask_group_4_drqvat',
+  'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
+  'IMG_0803_g9zy0s',
+  'photo-4_racfz6',
+  'photo-5_lwvur4',
+  'widows_rvnx1s',
+  'orphanage_b3ciwu',
+  'food_vzy14n',
+  'DSC_7676_1_mutgql',
+  '9f9b70fed6ee900561182ee105c7024993851773_x6idlb',
+  'DSC_7679_1_hjzlhk',
+  'DSC_7690_1_xbcdqr',
+  'DSC_7820_1_qda3pj',
+]
 // ── DATA ──
 const ALL_PHOTOS = [
   {
     id: 1,
-    src: '/voices/side-1.webp',
+    src: 'photo-3_qxsn4b',
     alt: 'Blanket distribution to community'
   },
-  { id: 2, src: '/voices/side-2.webp', alt: 'Community gathering' },
-  { id: 3, src: '/voices/bottom-1.webp', alt: 'Child eating food' },
-  { id: 4, src: '/voices/bottom-2.webp', alt: 'Children eating together' },
-  { id: 5, src: '/voices/bottom-3.webp', alt: 'Large community event' },
+  {
+    id: 2,
+    src: '3b760bfd9fefac72fe9adec50e24c5ec8110c0c8_epgiig',
+    alt: 'Community gathering'
+  },
+  {
+    id: 3,
+    src: 'df169b1eb39ad8633a7854fa8187ce67bd8bbaa0_vdzfwc',
+    alt: 'Child eating food'
+  },
+  {
+    id: 4,
+    src: '3a4e13c06ca105ec79e46d16ff35adbb764906c4_qk5dhc',
+    alt: 'Children eating together'
+  },
+  {
+    id: 5,
+    src: 'c88d8ba9cc368e151485336b1073cdea69270d73_2_cgzaut',
+    alt: 'Large community event'
+  },
   // Add additional hidden photos here to increase the "+N" count
-  ...Array(15).fill({
-    src: '/voices/bottom-3.webp',
-    alt: 'More community moments'
-  })
+  ...newIds.map((id) => ({
+    src: id,
+    alt: 'Community moments'
+  }))
 ]
 
 const VIDEO_DATA = {
-  src: '/voices/video-thumb.webp',
-  youtubeId: 'YOUR_YOUTUBE_ID_HERE', // Replace with real ID
+  src: 'f7d7478b9ced771bd3d34f972d525e83dc0e1917_kzzx6v',
+  videoUrl: 'food-project_supddx', // Replace with real ID
   alt: 'Real Hope Ministry video'
 }
 
@@ -74,82 +108,86 @@ export default function VoicesSection () {
             serve.
           </p>
         </div>
-
-        {/* ── Main Grid ── */}
-        <div className='grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 mb-4'>
-          {/* VIDEO FEATURE */}
-          <div
-            className='relative h-65 sm:h-90 md:h-120  overflow-hidden cursor-pointer group bg-gray-100'
-            onClick={() => setPlaying(true)}
-          >
-            {!playing ? (
-              <>
-                <Image
-                  src={VIDEO_DATA.src}
-                  alt={VIDEO_DATA.alt}
-                  fill
-                  className='object-cover'
-                  priority
+        <div className='max-w-360 mx-auto px-4 sm:px-6 lg:px-10'>
+          {/* ── Main Grid ── */}
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6'>
+            {/* VIDEO CARD - Desktop pe 2 columns leta hai */}
+            <div
+              className='md:col-span-2 relative aspect-[1075/799]   rounded-[30px] overflow-hidden cursor-pointer group bg-gray-100'
+              onClick={() => setPlaying(true)}
+            >
+              {!playing ? (
+                <>
+                  <Image
+                    src={buildImage(VIDEO_DATA.src, 1600)}
+                    alt={VIDEO_DATA.alt}
+                    fill
+                    className='object-cover'
+                    priority
+                  />
+                  <div className='absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all' />
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <PlayButton />
+                  </div>
+                  {/* <div className='absolute bottom-0 left-0 right-0 bg-red-600 py-3 px-6'>
+                    <p className='text-white font-bold text-lg md:text-xl italic uppercase tracking-wider'>
+                      Please watch this video
+                    </p>
+                  </div> */}
+                </>
+              ) : (
+                <video
+                  className='absolute inset-0 w-full h-full object-cover'
+                  src={buildVideo(VIDEO_DATA.videoUrl)}
+                  autoPlay
+                  controls
+                  playsInline
                 />
-                <div className='absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all' />
-                <div className='absolute inset-0 flex items-center justify-center'>
-                  <PlayButton />
+              )}
+            </div>
+
+            <div className='flex flex-col gap-4 md:gap-6 h-full'>
+              {[0, 1].map(idx => (
+                <div
+                  key={idx}
+                  onClick={() => openLightbox(idx)}
+                  className='relative flex-1 aspect-[524/374] rounded-[30px] overflow-hidden cursor-pointer group'
+                >
+                  <Image
+                    src={buildImage(ALL_PHOTOS[idx].src, 800)}
+                    alt={ALL_PHOTOS[idx].alt}
+                    fill
+                    className='object-cover group-hover:scale-105 transition-transform duration-500'
+                  />
                 </div>
-              </>
-            ) : (
-              <iframe
-                title='youtube-video'
-                className='absolute inset-0 w-full h-full'
-                src={`https://www.youtube.com/embed/${VIDEO_DATA.youtubeId}?autoplay=1`}
-                allow='autoplay; encrypted-media'
-                allowFullScreen
-              />
-            )}
+              ))}
+            </div>
           </div>
 
-          {/* SIDE IMAGES STACK */}
-          <div className='grid grid-cols-2 md:grid-cols-1 gap-4'>
-            {[0, 1].map(idx => (
+          {/* ── BOTTOM ROW (3 Photos) ── */}
+          <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6'>
+            {[2, 3, 4].map(idx => (
               <div
                 key={idx}
                 onClick={() => openLightbox(idx)}
-                className='relative h-40 md:h-full  overflow-hidden cursor-pointer group'
+                className='relative aspect-[524/374] rounded-[30px] overflow-hidden cursor-pointer group'
               >
                 <Image
-                  src={ALL_PHOTOS[idx].src}
+                  src={buildImage(ALL_PHOTOS[idx].src, 800)}
                   alt={ALL_PHOTOS[idx].alt}
                   fill
                   className='object-cover group-hover:scale-105 transition-transform duration-500'
                 />
+                {idx === 4 && ALL_PHOTOS.length > 5 && (
+                  <div className='absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity group-hover:opacity-60'>
+                    <span className='text-white text-4xl md:text-5xl font-bold'>
+                      +{ALL_PHOTOS.length - 4}
+                    </span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-        </div>
-
-        {/* BOTTOM ROW (3 Photos) */}
-        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-          {[2, 3, 4].map(idx => (
-            <div
-              key={idx}
-              onClick={() => openLightbox(idx)}
-              className='relative h-55 sm:h-50 md:h-65  overflow-hidden cursor-pointer group'
-            >
-              <Image
-                src={ALL_PHOTOS[idx].src}
-                alt={ALL_PHOTOS[idx].alt}
-                fill
-                className='object-cover group-hover:scale-105 transition-transform duration-500'
-              />
-              {/* +N Overlay Logic on the last visible card */}
-              {idx === 4 && ALL_PHOTOS.length > 5 && (
-                <div className='absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity group-hover:opacity-90'>
-                  <span className='text-white text-4xl md:text-5xl font-black'>
-                    +{ALL_PHOTOS.length - 4}
-                  </span>
-                </div>
-              )}
-            </div>
-          ))}
         </div>
       </div>
 
@@ -206,7 +244,7 @@ export default function VoicesSection () {
               className='relative w-full max-w-5xl aspect-square md:aspect-video'
             >
               <Image
-                src={ALL_PHOTOS[photoIndex].src}
+                src={buildImage(ALL_PHOTOS[photoIndex].src, 1920)}
                 alt='Gallery view'
                 fill
                 className='object-contain'

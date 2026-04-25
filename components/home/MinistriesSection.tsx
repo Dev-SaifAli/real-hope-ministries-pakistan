@@ -6,7 +6,7 @@ const projects: Project[] = [
     title: 'Clean Water Ministry',
     description:
       'We aim to install 100 water pumps, each costing $700, to ensure long-term access to water.',
-    image: '/projects/clean-water.webp',
+    image: '9f9b70fed6ee900561182ee105c7024993851773_x6idlb',
     alt: 'Children playing with clean water'
   },
   {
@@ -14,7 +14,7 @@ const projects: Project[] = [
     title: 'Food Ministry',
     description:
       'Supporting 700 families with essential food supplies, at $100 per family.',
-    image: '/projects/food.webp',
+    image: 'food_vzy14n',
     alt: 'Food distribution'
   },
   {
@@ -22,22 +22,22 @@ const projects: Project[] = [
     title: 'Free People Ministry',
     description:
       'Helping families rebuild their lives, with an estimated $5,000 per family for complete support.',
-    image: '/projects/free-people.webp',
+    image: 'free-people_qtiqyy',
     alt: 'Family standing together'
   },
   {
     id: 4,
     title: 'Orphanage Ministry',
-    description: `70 orphan children in brick areas need support. Orphanage fund: $500,000. \n$100 per child for food and essentials.`,
-    image: '/projects/orphanage.webp',
+    description: `70 orphan children in brick areas need support. Orphanage fund: $500,000.\n$100 per child for food and essentials.`,
+    image: 'orphanage_b3ciwu',
     alt: 'Young man holding toys for children'
   },
   {
     id: 5,
-    title: 'Prayer & Relief Ministry',
+    title: 'Prayer Center',
     description:
-      'Over 500 families need urgent help. $4,000 per family is required for rescue, relief, and prayer support.',
-    image: '/projects/persecution.webp',
+      'Building a prayer center for the community. We aim to raise $800,000 for its construction.',
+    image: 'db44c20156648c910870664dfe10a96b2fddbfe9_sxrgj0',
     alt: 'Women sitting together'
   },
   {
@@ -45,7 +45,7 @@ const projects: Project[] = [
     title: 'Freedom from Slavery',
     description:
       'Over 500 families are trapped in brick kiln slavery. $4,000 is needed to free each family.',
-    image: '/projects/slavery.webp',
+    image: 'slavery_qyj1zw',
     alt: 'Person working at brick kiln'
   },
   {
@@ -53,7 +53,7 @@ const projects: Project[] = [
     title: 'Widows Ministry',
     description:
       'Supporting 60+ widows in need.\n$1,000 per widow for essential care and support.',
-    image: '/projects/widows.webp',
+    image: 'widows_rvnx1s',
     alt: 'Women and children gathering'
   },
   {
@@ -61,7 +61,7 @@ const projects: Project[] = [
     title: 'Bibel Distribution Ministry',
     description:
       'Each Bible costs $50, and we need many more to spreading hope and reaching communities in need.',
-    image: '/projects/youth.webp',
+    image: 'youth_uwafof',
     alt: 'Hands joined in prayer'
   }
 ]

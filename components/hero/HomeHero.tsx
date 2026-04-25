@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, type Variants } from 'framer-motion'
 import Button from '../ui/Button'
+import { buildImage } from '@/utils/cloudinary'
 
 interface HeroProps {
   title?: string
@@ -30,7 +31,7 @@ export default function HomeHero ({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
   videoSrc = '/videos/hero-video.mp4',
-  photoId = 'home-hero.png'
+  photoId = 'Mask_group_1_qnvxbp'
 }: HeroProps) {
   const [videoReady, setVideoReady] = useState(false)
   const [showVideo, setShowVideo] = useState(false)
@@ -65,7 +66,7 @@ export default function HomeHero ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setVideoReady(true)
-    }, 1500)
+    }, 60000)
 
     return () => clearTimeout(timer)
   }, [])
@@ -90,7 +91,7 @@ export default function HomeHero ({
     >
       {/* ── LCP image fallback ── */}
       <Image
-        src={`https://res.cloudinary.com/dq6gu9ghf/image/upload/q_auto,f_auto/${photoId}`}
+        src={buildImage(photoId, 1920)}
         alt='Real Hope Ministries Pakistan'
         fill
         priority
@@ -127,7 +128,7 @@ export default function HomeHero ({
         initial='hidden'
         animate={animateHero ? 'visible' : 'hidden'}
       >
-        <div className='w-full px-20  '>
+        <div className='main-container'>
           <motion.p
             variants={itemVariants}
             className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3   font-display font-semibold leading-snug w-fit group  sm:mx-0 '

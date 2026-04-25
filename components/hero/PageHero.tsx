@@ -1,6 +1,6 @@
 import Button from '../ui/Button'
 import Image from 'next/image'
-
+import { buildImage } from '@/utils/cloudinary'
 type PageHeroProps = {
   title: string
   imageSrc: string
@@ -33,13 +33,13 @@ export default function PageHero ({
   return (
     <section className=' min-h-screen w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
       <Image
-        src={imageSrc}
+        src={buildImage(imageSrc, 1920)}
         alt='Hero background'
         fill
         className='object-cover object-center -z-20'
         loading='lazy'
       />
-      <div className='absolute inset-0 bg-black/20 -z-10' />
+      {/* <div className='absolute inset-0 bg-black/20 -z-10' /> */}
 
       <div className='relative z-10 text-center  mx-auto px-6'>
         {/* Title — Responsive Font and Leading */}
@@ -57,7 +57,7 @@ export default function PageHero ({
           {subtitle}
         </p>
         {showButton && (
-          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+          <div className='flex flex-col sm:flex-row gap-8 justify-center items-center'>
             <Button
               href='/donation'
               text={primaryButtonText}

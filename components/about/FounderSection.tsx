@@ -1,8 +1,7 @@
 import Image from 'next/image'
-
+import { buildImage } from '@/utils/cloudinary'
 export default function FounderSection () {
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-  const founderImage = `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_600/Gemini_Generated_Image_a92rp6a92rp6a92r1_1_eqmulq`
+  const founderImage = 'Gemini_Generated_Image_a92rp6a92rp6a92r1_1_1_jkozj5'
   return (
     <section className='w-full bg-white px-4 sm:px-6 md:px-10  lg:mt-19'>
       <div className='max-w-480 mx-auto'>
@@ -22,7 +21,7 @@ export default function FounderSection () {
             {/* Founder photo */}
             <div className='relative w-full h-[380px] lg:h-[600px] rounded-2xl overflow-hidden'>
               <Image
-                src={founderImage}
+                src={buildImage(founderImage,800)}
                 alt='Brother Kyle Schulz — Founder & Leader'
                 fill
                 className='object-cover object-top'

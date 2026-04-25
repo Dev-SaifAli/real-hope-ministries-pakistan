@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { CheckCircle, Lock } from 'lucide-react'
+import { CircleCheck, Lock } from 'lucide-react'
 import FormInput from '@/components/ui/FormInput'
 import FormSelect from '@/components/ui/FormSelect'
 import AmountSelector from '@/components/ui/AmountSelector'
@@ -65,7 +65,7 @@ export default function DonationForm () {
           <div className='space-y-5 md:space-y-6'>
             {trustPoints.map((point, i) => (
               <div key={i} className='flex items-start gap-4'>
-                <CheckCircle className='w-5 h-5 md:w-6 md:h-6 text-green flex-shrink-0 mt-1' />
+                <CircleCheck className='w-5 h-5 md:w-6 md:h-6 text-green flex-shrink-0 mt-1' />
                 <div className='space-y-1'>
                   <p className='font-sans text-navy font-semibold impact-para'>
                     {point.title}
@@ -85,6 +85,7 @@ export default function DonationForm () {
           {/* Toggle */}
           <div className='flex rounded-lg border border-gray-200 p-1.5 bg-[#0B25454F] overflow-hidden'>
             <button
+              type='button'
               onClick={() => setDonationType('one-time')}
               className={`flex-1 py-2.5 md:py-3 text-sm font-semibold font-sans duration-200 transition-all rounded-md ${
                 donationType === 'one-time'
@@ -95,6 +96,7 @@ export default function DonationForm () {
               One-time donation
             </button>
             <button
+              type='button'
               onClick={() => setDonationType('monthly')}
               className={`flex-1 py-2.5 md:py-3 text-sm font-semibold font-sans duration-200 transition-all rounded-lg ${
                 donationType === 'monthly'

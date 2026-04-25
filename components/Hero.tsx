@@ -41,7 +41,7 @@ export default function Hero ({
       <div className='absolute inset-0 bg-black/50 -z-10' />
 
       {/* Content */}
-      <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
+      <div className='relative    z-10 text-center max-w-5xl mx-auto  '>
         {/* Title — Responsive Font and Leading */}
         <h1
           className='
