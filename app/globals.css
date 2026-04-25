@@ -17,14 +17,14 @@
     @apply text-center px-0 sm:px-6 lg:px-4 w-full sm:max-w-120 md:max-w-150 lg:max-w-175 mx-auto;
   }
   .impact-para {
-    @apply text-sm sm:text-[14px] md:text-[17px] xl:text-base leading-relaxed;
+    @apply text-sm sm:text-[14px] md:text-[17px] xl:text-lg leading-relaxed;
   }
   .impact-heading {
-    @apply text-2xl sm:text-3xl md:text-2xl xl:text-3xl 2xl:text-[34px] leading-tight;
+    @apply text-2xl sm:text-3xl md:text-2xl xl:text-3xl 2xl:text-[44px] leading-tight;
   }
 
   .main-container {
-    @apply w-full mx-auto px-8 lg:px-12 xl:px-16  2xl:px-20  max-w-[1920px];
+    @apply w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16  2xl:px-20  max-w-[1920px];
   }
 }
 /* --- Base Resets & Global Styles --- */

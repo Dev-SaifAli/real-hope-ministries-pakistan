@@ -137,24 +137,24 @@ export default function Navbar () {
               RHM Pakistan
             </span>
           </Link>
-
-          {/* Desktop links */}
-          <ul className='hidden lg:flex items-center gap-1 xl:gap-2 font-display'>
-            {navLinks.map(link => {
-              const isActive = activePath === link.href
-              return (
-                <li key={link.href} className='relative'>
-                  {isActive && (
-                    <motion.div
-                      layoutId='nav-pill'
-                      className='absolute inset-0 bg-green rounded-full shadow-md'
-                      transition={pillTransition}
-                    />
-                  )}
-                  <Link
-                    href={link.href}
-                    className={`
-                      relative z-10 px-3 xl:px-4 py-2 rounded-full
+          <div className = 'flex items-center gap-3'>
+            {/* Desktop links */}
+            <ul className='hidden lg:flex items-center gap-1 xl:gap-2 font-display'>
+              {navLinks.map(link => {
+                const isActive = activePath === link.href
+                return (
+                  <li key={link.href} className='relative'>
+                    {isActive && (
+                      <motion.div
+                        layoutId='nav-pill'
+                        className='absolute inset-0 bg-green rounded-full shadow-md'
+                        transition={pillTransition}
+                      />
+                    )}
+                    <Link
+                      href={link.href}
+                      className={`
+                      relative z-10 px-3 xl:px-8 py-1 rounded-full
                       text-base xl:text-lg 
                       transition-colors duration-200 whitespace-nowrap block font-sans font-semibold
                       ${
@@ -165,57 +165,58 @@ export default function Navbar () {
                           : 'text-white hover:text-green'
                       }
                     `}
-                  >
-                    {link.label}
-                  </Link>
-                  {!isActive && (
-                    <motion.div
-                      className='absolute inset-0 rounded-full pointer-events-none'
-                      whileHover={{
-                        backgroundColor: isAtTop
-                          ? 'rgba(0,0,0,0.05)'
-                          : 'rgba(255,255,255,0.1)'
-                      }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
-                </li>
-              )
-            })}
-          </ul>
+                    >
+                      {link.label}
+                    </Link>
+                    {!isActive && (
+                      <motion.div
+                        className='absolute inset-0 rounded-full pointer-events-none'
+                        whileHover={{
+                          backgroundColor: isAtTop
+                            ? 'rgba(0,0,0,0.05)'
+                            : 'rgba(255,255,255,0.1)'
+                        }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
 
-          {/* Right cluster */}
-          <div className='flex flex-row items-center gap-2 shrink-0'>
-            <div className='hidden sm:block lg:block'>
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            {/* Right cluster */}
+            <div className='flex flex-row items-center gap-2 shrink-0'>
+              <div className='hidden sm:block lg:block'>
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                >
+                  <Button
+                    variant='supportNav'
+                    text='Support Us'
+                    href='/donation'
+                  />
+                </motion.div>
+              </div>
+
+              {/* Hamburger */}
+              <button
+                className='lg:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 shrink-0'
+                onClick={openMenu}
+                aria-label='Open menu'
+                aria-expanded={menuOpen}
               >
-                <Button
-                  variant='supportNav'
-                  text='Support Us'
-                  href='/donation'
-                />
-              </motion.div>
+                {[0, 1, 2].map(i => (
+                  <span
+                    key={i}
+                    className={`block w-5 h-0.5 rounded transition-colors duration-300 ${
+                      isAtTop ? 'bg-navy' : 'bg-navy'
+                    }`}
+                  />
+                ))}
+              </button>
             </div>
-
-            {/* Hamburger */}
-            <button
-              className='lg:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 shrink-0'
-              onClick={openMenu}
-              aria-label='Open menu'
-              aria-expanded={menuOpen}
-            >
-              {[0, 1, 2].map(i => (
-                <span
-                  key={i}
-                  className={`block w-5 h-0.5 rounded transition-colors duration-300 ${
-                    isAtTop ? 'bg-navy' : 'bg-navy'
-                  }`}
-                />
-              ))}
-            </button>
           </div>
         </motion.div>
       </nav>

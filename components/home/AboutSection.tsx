@@ -67,11 +67,11 @@ export default function AboutSection () {
   return (
     <section
       id='about'
-      className='w-full bg-white mt-11 md:mt-20 overflow-hidden'
+      className='w-full bg-white mt-11 md:mt-16 overflow-hidden'
     >
       {/* Section Header */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
-        <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-8'>
+        <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-6'>
           About Real Hope Pakistan
         </p>
         <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4 md:mb-6'>
