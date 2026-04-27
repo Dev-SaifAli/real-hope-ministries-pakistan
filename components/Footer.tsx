@@ -56,7 +56,7 @@ const socialLinks = [
 //   { title: 'Ministries', links: ministries }
 // ]
 
-export default function Footer () {
+export default function Footer() {
   return (
     <footer className='w-full bg-navy text-white'>
       <div className='main-container py-12'>
@@ -157,7 +157,7 @@ export default function Footer () {
       <div className='main-container'>
         <div className='border-t border-white  py-8 flex flex-col md:flex-row items-center justify-between gap-6'>
           <p className='text-base font-sans font-regular text-white '>
-            © {new Date().getFullYear()} Real Hope Pakistan. All rights
+            © 2025 Real Hope Pakistan. All rights
             reserved.
           </p>
           <div className='flex items-center gap-8 text-base'>
