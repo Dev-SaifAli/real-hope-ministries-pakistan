@@ -87,7 +87,7 @@ export default function Navbar () {
         <motion.div
           className={`
     flex items-center justify-between
-gap-8 mx-auto
+ mx-auto 
 transition-all duration-300
     
    
@@ -116,7 +116,7 @@ transition-all duration-300
           {/* Logo */}
           <Link
             href='/'
-            className='flex flex-row items-center gap-2 xl:gap-4 shrink-0 min-w-0'
+            className='flex flex-row items-center gap-3 xl:gap-4 shrink-0 min-w-0'
           >
             <Image
               src='/nav-logo.png'
@@ -137,7 +137,7 @@ transition-all duration-300
               RHM Pakistan
             </span>
           </Link>
-          <div className='flex items-center gap-2 min-w-0 flex-1 justify-end'>
+          <div className='flex items-center  lg:gap-16 min-w-0 flex-1 justify-end'>
             {/* Desktop links */}
             <ul className='hidden lg:flex items-center    2xl:gap-2 font-display'>
               {navLinks.map(link => {
@@ -154,7 +154,7 @@ transition-all duration-300
                     <Link
                       href={link.href}
                       className={`
-                      relative z-10 px-3 md:px-6 2xl:px-8 py-1 rounded-full
+                      relative z-10 px-3 md:px-4 xl:px-8 py-1 rounded-full
                       text-base xl:text-lg 
                       transition-colors duration-200 whitespace-nowrap block font-sans font-semibold
                       ${
