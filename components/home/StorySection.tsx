@@ -39,12 +39,11 @@ export default function StorySection ({
 
   return (
     <section className='w-full bg-white   mb-12 sm:mb-18 '>
-      <div className='mx-auto main-container flex justify-between'>
+      <div className='  main-container flex justify-between'>
         <div className='flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-6 md:gap-8 lg:gap-14 w-full'>
-          
-          {/* Image Block */}
-          <div className='relative shrink-0 mx-auto md:max-0 w-[320px] h-[380px] sm:w-[340px] sm:h-[380px] md:w-[420px] md:h-[450px]'>
-            <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-4 border-white shadow-xl z-10'>
+          {/* Image Block — fixed container height to contain both circles */}
+          <div className='relative shrink-0 mx-auto md:mx-0 w-[320px] h-[380px] sm:w-[340px] sm:h-[380px] md:w-[500px] md:h-[480px]'>
+            <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-4 border-white z-10'>
               <Image
                 src={buildImage(primaryImage, 800)}
                 alt='Masih family at brick kiln'
@@ -52,7 +51,7 @@ export default function StorySection ({
                 className='object-cover object-center'
               />
             </div>
-            <div className='absolute top-[160px] left-[120px] sm:top-[170px] sm:left-[130px] md:top-[200px] md:left-[140px] w-[160px] h-[160px] sm:w-[170px] sm:h-[170px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden border-4 border-white shadow-xl z-20'>
+            <div className='absolute top-[160px] left-[120px] sm:top-[170px] sm:left-[130px] md:top-[250px] md:left-[230px] w-[160px] h-[160px] sm:w-[170px] sm:h-[170px] md:w-[210px] md:h-[210px] rounded-full overflow-hidden border-4 border-white shadow-xl z-20'>
               <Image
                 src={buildImage(secondaryImage, 800)}
                 alt='Working at brick kiln'

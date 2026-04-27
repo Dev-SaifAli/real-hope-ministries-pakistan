@@ -32,7 +32,6 @@ const contactCards: ContactCardData[] = [
 ]
 
 function ContactCardComponent({ card }: { card: ContactCardData }) {
-  // Icon ko variable mein store karein taake component ki tarah use ho sake
   const Icon = card.icon
 
   return (
@@ -59,8 +58,8 @@ function ContactCardComponent({ card }: { card: ContactCardData }) {
 
 export default function ContactInfoSection() {
   return (
-    <section className='w-full bg-[#EFEFEF] py-12 md:py-16 px-4 sm:px-6 md:px-10'>
-      <div className='max-w-[1400px] mx-auto'>
+    <section className='w-full bg-[#EFEFEF] '>
+      <div className='main-container py-12 md:py-16   '>
         <div className='flex flex-col sm:flex-row gap-4 md:gap-6 items-stretch'>
           {contactCards.map((card) => (
             <ContactCardComponent key={card.id} card={card} />
