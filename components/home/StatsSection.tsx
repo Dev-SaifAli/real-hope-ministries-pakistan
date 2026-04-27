@@ -20,34 +20,34 @@ const stats: Stat[] = [
     numeric: 50000,
     suffix: '+',
     label: 'People Helped Annually',
-    icon: <Users size={28} strokeWidth={1.5} className='text-slate-600' />
+    icon: <Users size={24} strokeWidth={1.5} className='text-slate-600' />
   },
   {
     id: 2,
     numeric: 350,
     suffix: '',
     label: 'Water Pumps Installed',
-    icon: <Droplet size={28} strokeWidth={1.5} className='text-slate-600' />
+    icon: <Droplet size={24} strokeWidth={1.5} className='text-slate-600' />
   },
   {
     id: 3,
     numeric: 800,
     suffix: '',
     label: 'Families Supported',
-    icon: <House size={28} strokeWidth={1.5} className='text-slate-600' />
+    icon: <House size={24} strokeWidth={1.5} className='text-slate-600' />
   },
   {
     id: 4,
     numeric: 450,
     suffix: '',
     label: 'Communities Reached',
-    icon: <MapPin size={28} strokeWidth={1.5} className='text-slate-600' />
+    icon: <MapPin size={24} strokeWidth={1.5} className='text-slate-600' />
   }
 ]
 
 // ─── useCountUp hook ──────────────────────────────────────────────────────────
 // Starts ONLY when element enters viewport — then counts 0 → target
-function useCountUp (target: number, duration: number = 2000) {
+function useCountUp(target: number, duration: number = 2000) {
   const [count, setCount] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -89,7 +89,7 @@ function useCountUp (target: number, duration: number = 2000) {
 }
 
 // ─── StatCard ─────────────────────────────────────────────────────────────────
-function StatCard ({ stat }: { stat: Stat }) {
+function StatCard({ stat }: { stat: Stat }) {
   const { count, ref } = useCountUp(stat.numeric)
 
   return (
@@ -97,21 +97,22 @@ function StatCard ({ stat }: { stat: Stat }) {
       ref={ref}
       className='
         flex flex-col gap-3
-        bg-white rounded-2xl sm:rounded-3xl
-        items-center w-full justify-center mx-auto py-8 px-4
+        bg-white rounded-2xl
+        items-center w-full max-w-[180px] sm:max-w-[240px] justify-center mx-auto py-6 px-4
         shadow-[0_2px_16px_rgba(0,0,0,0.06)]
         border border-gray-100
         transition-shadow duration-300
         hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]
       '
+
     >
       {/* Icon */}
-      <div className='w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center shrink-0'>
+      <div className='w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center shrink-0'>
         {stat.icon}
       </div>
 
       {/* Animated number */}
-      <p className='font-display font-bold text-navy text-3xl sm:text-4xl leading-none tracking-tight'>
+      <p className='font-display font-bold text-navy text-2xl sm:text-3xl leading-none tracking-tight'>
         {count.toLocaleString('en-US')}{stat.suffix}
       </p>
 
@@ -124,7 +125,7 @@ function StatCard ({ stat }: { stat: Stat }) {
 }
 
 // ─── StatsSection ─────────────────────────────────────────────────────────────
-export default function StatsSection () {
+export default function StatsSection() {
   return (
     <section className='main-container bg-white mb-6 mt-12  sm:mb-9 sm:mt-17.5  '>
       <div className='mx-auto flex justify-center'>

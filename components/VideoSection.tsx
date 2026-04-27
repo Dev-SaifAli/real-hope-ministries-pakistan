@@ -1,7 +1,7 @@
 'use client'
 import VideoCard, { type Video } from '@/components/VideoCard'
 // import { RefObject } from 'react'
-const videos: Video[] = [
+export const videos: Video[] = [
   {
     id: 1,
     thumbnail: 'video-1_caijjg',
@@ -52,28 +52,30 @@ const videos: Video[] = [
 ]
 
 export default function VideoSection ({
-  trackRef, // ← add
+  trackRef,
   activeSlide,
-  setActiveSlide
+  setActiveSlide,
+  videosList = videos // Fallback to default videos
 }: {
-  trackRef: React.RefObject<HTMLDivElement | null> // ← add
+  trackRef: React.RefObject<HTMLDivElement | null>
   activeSlide: number
   setActiveSlide: (index: number) => void
+  videosList?: Video[]
 }) {
   return (
     <div
-      ref={trackRef} // ← ref
+      ref={trackRef}
       id='video-track'
       className='flex gap-4 sm:gap-6 px-4'
     >
-      {videos.map((video, index) => (
+      {videosList.map((video, index) => (
         <div
-          key={video.id}
+          key={`${video.id}-${index}`}
           onClick={() => setActiveSlide(index)}
           className={`
             shrink-0 snap-center transition-all duration-300 cursor-pointer
             ${
-              activeSlide === index
+              (activeSlide % videos.length) === (index % videos.length)
                 ? 'scale-100 opacity-100 z-10'
                 : 'scale-90 opacity-60'
             }
@@ -85,3 +87,4 @@ export default function VideoSection ({
     </div>
   )
 }
+

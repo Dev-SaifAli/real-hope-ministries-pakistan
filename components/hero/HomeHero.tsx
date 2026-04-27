@@ -27,7 +27,7 @@ const itemVariants: Variants = {
   }
 }
 
-export default function HomeHero ({
+export default function HomeHero({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
   videoSrc = 'VID-20260425-WA0014_leuotp',
@@ -143,8 +143,10 @@ export default function HomeHero ({
             className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3 font-display font-semibold leading-snug w-fit group sm:mx-0'
           >
             Real Hope Ministries Pakistan
-            <span className='absolute left-0 -bottom-1 h-[2px] w-full bg-white rounded-full' />
+            <span className='absolute left-0 -bottom-1 h-[3px] w-full bg-[linear-gradient(to_right,white_0%,white_50%,transparent_100%)]' />
           </motion.p>
+
+
           <motion.h1
             variants={itemVariants}
             className='font-display font-semibold text-white text-[25px] sm:text-3xl md:text-5xl leading-tight mb-4 drop-shadow-md'
