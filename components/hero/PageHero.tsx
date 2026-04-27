@@ -21,13 +21,6 @@ export default function PageHero({
   secondaryButtonText = 'Learn More'
 }: PageHeroProps) {
   const renderTitle = () => {
-    if (title === 'Hope for Communities Across Pakistan') {
-      return (
-        <>
-          Hope for Communities Across <br /> Pakistan
-        </>
-      )
-    }
     return title
   }
   return (

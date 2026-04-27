@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useMotionValue, useAnimationFrame } from 'framer-motion'
 import Image from 'next/image'
-import { buildImage} from '@/utils/cloudinary'
-
+import { buildImage } from '@/utils/cloudinary'
 
 interface CurvedCarouselProps {
   images: string[]
@@ -15,29 +14,35 @@ export default function CurvedCarousel ({ images }: CurvedCarouselProps) {
   const CARD_GAP = 20
   const STEP = CARD_WIDTH + CARD_GAP
 
+  // Double the images for seamless loop
   const looped = [...images, ...images, ...images, ...images]
   const totalW = looped.length * STEP
   const startX = -(images.length * STEP)
 
   const x = useMotionValue(startX)
-  const controls = useAnimation()
   const isDragging = useRef(false)
 
-  const startAutoScroll = () => {
-    if (isDragging.current) return
-    controls.start({
-      x: [x.get(), x.get() - images.length * STEP],
-      transition: {
-        duration: images.length * 3,
-        ease: 'linear',
-        repeat: Infinity
-      }
-    })
-  }
+  // Speed: images.length * STEP / duration (old duration was images.length * 3)
+  // So speed = STEP / 3 pixels per second
+  const SPEED = STEP / 3
 
-  useEffect(() => {
-    startAutoScroll()
-  }, [])
+  useAnimationFrame((_t, delta) => {
+    if (isDragging.current) return
+
+    const moveBy = (SPEED * delta) / 1000
+    let newX = x.get() - moveBy
+
+    // Infinite wrap-around
+    // If we scroll past the second set, jump back by one set
+    const resetPoint = -(images.length * 2 * STEP)
+    if (newX < resetPoint) {
+      newX += images.length * STEP
+    } else if (newX > 0) {
+      newX -= images.length * STEP
+    }
+
+    x.set(newX)
+  })
 
   return (
     <div
@@ -48,23 +53,23 @@ export default function CurvedCarousel ({ images }: CurvedCarouselProps) {
       <motion.div
         className='absolute top-1/2 -translate-y-1/2 flex items-center cursor-grab active:cursor-grabbing'
         style={{ x, gap: `${CARD_GAP}px`, width: `${totalW}px` }}
-        animate={controls}
         drag='x'
         dragConstraints={{ left: -(images.length * 2 * STEP), right: 0 }}
         dragElastic={0.05}
         onDragStart={() => {
           isDragging.current = true
-          controls.stop()
         }}
         onDragEnd={() => {
           isDragging.current = false
+          // Ensure we stay within the loop bounds after drag
           const current = x.get()
           if (current < -(images.length * 2 * STEP) || current > 0) {
             x.set(startX)
           }
-          setTimeout(() => startAutoScroll(), 800)
         }}
       >
+
+
         {looped.map((src, index) => (
           <div
             key={index}

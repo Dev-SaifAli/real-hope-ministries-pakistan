@@ -27,7 +27,7 @@ const itemVariants: Variants = {
   }
 }
 
-export default function HomeHero ({
+export default function HomeHero({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
   videoSrc = '/videos/hero-video.mp4',
@@ -97,9 +97,8 @@ export default function HomeHero ({
         priority
         fetchPriority='high'
         sizes='100vw'
-        className={`object-cover transition-opacity duration-700 ${
-          videoReady ? 'opacity-0' : 'opacity-100'
-        }`}
+        className={`object-cover transition-opacity duration-700 ${videoReady ? 'opacity-0' : 'opacity-100'
+          }`}
         style={{ zIndex: 0 }}
       />
       {/* ── Lazy autoplay video ── */}
@@ -112,14 +111,13 @@ export default function HomeHero ({
           playsInline
           preload='none'
           onCanPlay={handleVideoCanPlay}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            videoReady ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'
+            }`}
           style={{ zIndex: 1 }}
         />
       )}
       {/* Gradient overlay */}
-      <div className='absolute   bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_50%,rgba(0,0,0,0.5)87.02%)] inset-0 flex items-center z-10' />
+      <div className='absolute   bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_50%,rgba(0,0,0,0.5)87.02%)] inset-0 flex  items-center z-10' />
       {/* ── Text — bottom-left, padding mirrors hero outer px ── */}
       <motion.div
         className='absolute inset-0 flex items-center'
@@ -131,11 +129,13 @@ export default function HomeHero ({
         <div className='main-container'>
           <motion.p
             variants={itemVariants}
-            className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3   font-display font-semibold leading-snug w-fit group  sm:mx-0 '
+            className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3 font-display font-semibold leading-snug w-fit group sm:mx-0'
           >
             Real Hope Ministries Pakistan
-            <span className='absolute left-0 -bottom-1 h-[2px] w-full bg-white rounded-full ' />
+            <span className='absolute left-0 -bottom-1 h-[3px] w-full bg-[linear-gradient(to_right,white_0%,white_50%,transparent_100%)]' />
           </motion.p>
+
+
           <motion.h1
             variants={itemVariants}
             className='font-display font-semibold text-white text-[25px] sm:text-3xl md:text-5xl leading-tight  mb-4 drop-shadow-md'
