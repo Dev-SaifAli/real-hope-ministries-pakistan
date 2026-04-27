@@ -210,7 +210,7 @@ export default function DonationForm () {
                 }`}
               >
                 <CreditCard className='w-6 h-6' />
-                <span className='font-semibold text-sm'>Credit Card</span>
+                <span className='font-semibold text-sm text-center'>Credit Card / Stripe</span>
               </button>
               <button
                 type='button'

@@ -15,7 +15,7 @@
 
 @layer components {
   .impact-section {
-    @apply text-center px-0 sm:px-6 lg:px-4 w-full sm:max-w-120 md:max-w-150 lg:max-w-175 mx-auto;
+    @apply text-center px-6 lg:px-10 w-full sm:max-w-[800px] md:max-w-[900px] mx-auto;
   }
 
   .impact-para {
