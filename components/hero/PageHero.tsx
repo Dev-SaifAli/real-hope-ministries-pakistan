@@ -46,7 +46,7 @@ export default function PageHero({
           {renderTitle()}
         </h1>
 
-        <p className='font-sans max-w-5xl impact-para font-semibold text-white mb-7  mx-auto leading-relaxed'>
+        <p className='font-sans max-w-2xl impact-para font-semibold text-white mb-7  mx-auto leading-relaxed'>
           {subtitle}
         </p>
         {showButton && (

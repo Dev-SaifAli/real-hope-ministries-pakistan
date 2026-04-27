@@ -12,23 +12,28 @@
   --color-pearl: #fff5e6;
   --radius-5xl: 3rem;
 }
+
 @layer components {
   .impact-section {
     @apply text-center px-0 sm:px-6 lg:px-4 w-full sm:max-w-120 md:max-w-150 lg:max-w-175 mx-auto;
   }
+
   .impact-para {
-    @apply text-sm sm:text-[14px] md:text-[17px]  leading-relaxed;
+    @apply text-sm sm:text-[14px] md:text-[17px] leading-relaxed;
   }
+
   .impact-heading {
-    @apply text-2xl sm:text-3xl md:text-2xl xl:text-3xl 2xl:text-[44px] leading-tight;
+    @apply text-2xl sm:text-3xl md:text-2xl xl:text-[40px] 2xl:text-[44px] leading-tight;
   }
 
   .main-container {
-    @apply w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16  2xl:px-20  max-w-[1920px];
+    @apply w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 max-w-[1920px];
   }
 }
+
 /* --- Base Resets & Global Styles --- */
 @layer base {
+
   *,
   *::before,
   *::after {
@@ -36,9 +41,11 @@
     margin: 0;
     padding: 0;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     /* Uses the Open Sans variable mapped above */
     font-family: var(--font-open-sans), sans-serif;
@@ -57,6 +64,7 @@
   h6 {
     font-family: var(--font-poppins), sans-serif;
   }
+
   /* Chrome, Safari */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -71,6 +79,7 @@
   .no-scrollbar {
     -ms-overflow-style: none;
   }
+
   a {
     text-decoration: none;
     color: inherit;
