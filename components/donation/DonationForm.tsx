@@ -48,8 +48,8 @@ export default function DonationForm () {
   return (
     <>
       {/* ── Section 2: Make a Difference + Donation Form ── */}
-      {/* FIX: 1-col mobile/md, 2-col lg+ */}
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 xl:gap-24 items-start'>
+      
+      <div className='main-container grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 xl:gap-24 items-start'>
         {/* ── Left: Description + Trust Points ── */}
         <div className='space-y-6 md:space-y-8'>
           <div>

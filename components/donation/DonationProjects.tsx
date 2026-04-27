@@ -77,11 +77,11 @@ const projects: Project[] = [
   /* ── Grid: Projects ── */
 }
 {
-  /* FIX: 1-col mobile, 2-col sm, 3-col lg, 4-col xl */
+   
 }
 export default function DonationProjects () {
   return (
-    <div id='donation' className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-8 sm:mb-14 md:mb-20'>
+    <div id='donation' className='main-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-8 sm:mb-14 md:mb-20'>
       {projects.map(project => (
         <ProjectCard
           key={project.id}
