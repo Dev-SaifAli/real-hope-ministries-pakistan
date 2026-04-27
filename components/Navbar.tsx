@@ -137,9 +137,9 @@ transition-all duration-300
               RHM Pakistan
             </span>
           </Link>
-          <div className='flex items-center  lg:gap-16 min-w-0 flex-1 justify-end'>
+          <div className='flex items-center gap-8 xl:gap-12 min-w-0 justify-end'>
             {/* Desktop links */}
-            <ul className='hidden lg:flex items-center    2xl:gap-2 font-display'>
+            <ul className='hidden lg:flex items-center gap-2 xl:gap-4 font-display'>
               {navLinks.map(link => {
                 const isActive = activePath === link.href
                 return (
@@ -154,8 +154,8 @@ transition-all duration-300
                     <Link
                       href={link.href}
                       className={`
-                      relative z-10 px-3 md:px-4 xl:px-8 py-1 rounded-full
-                      text-base xl:text-lg 
+                      relative z-10 px-3 md:px-4 xl:px-6 py-1.5 rounded-full
+                      text-base
                       transition-colors duration-200 whitespace-nowrap block font-sans font-semibold
                       ${
                         isActive
