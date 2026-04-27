@@ -108,16 +108,18 @@ export default function HomeHero({
         <div className='absolute inset-0' style={{ zIndex: 1 }}>
           <video
             ref={videoRef}
-            src={`${buildVideo(videoSrc)}?f_auto,q_auto:best`}
+            src={buildVideo(videoSrc)}
+            autoPlay
             muted
             loop
             playsInline
-            preload='metadata'
+            preload='auto'
             onCanPlay={handleVideoCanPlay}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
               videoReady ? 'opacity-100' : 'opacity-0'
             }`}
           />
+
           {/* Gradient always present on the video layer */}
           <div
             className='absolute inset-0 transition-opacity duration-700'
