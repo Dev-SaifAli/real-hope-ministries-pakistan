@@ -12,7 +12,7 @@ export const buildVideo = (src: string, width = 1920): string => {
   if (!src) return ''
   if (src.startsWith('http')) return src
 
-  // Transformations ko path ke andar comma-separated rakhein
-  // f_auto: best format, q_auto:best: high quality, br_5m: sharp bitrate
-  return `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,q_auto:best,w_${width},br_5m/${src}`
+  // Transformations: q_auto (auto quality), vc_auto (auto codec), w_1280 (max width for performance)
+  // Adding .mp4 at the end as a fallback extension hint
+  return `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,vc_auto,w_1280/${src}.mp4`
 }

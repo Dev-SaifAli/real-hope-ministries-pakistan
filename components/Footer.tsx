@@ -56,7 +56,7 @@ const socialLinks = [
 //   { title: 'Ministries', links: ministries }
 // ]
 
-export default function Footer () {
+export default function Footer() {
   return (
     <footer className='w-full bg-navy text-white'>
       <div className='main-container py-12'>
@@ -91,7 +91,7 @@ export default function Footer () {
           </div>
 
           {/* Column 2: Quick Links (2 out of 12 columns) */}
-          <div className='flex flex-col gap-6 xl:col-span-3'>
+          <div className='flex flex-col gap-6 xl:col-span-2'>
             <h3 className='font-sans font-bold text-white text-lg'>
               Quick Links
             </h3>
@@ -129,27 +129,31 @@ export default function Footer () {
           </div>
 
           {/* Column 4: Contact (3 out of 12 columns, aligned to the end) */}
-          <div className='flex flex-col gap-6 xl:col-span-2 xl:col-start-11 items-start  '>
-            <h3 className='font-sans font-bold text-white text-lg whitespace-nowrap'>
-              Contact with Us
-            </h3>
-            <div className='flex items-center gap-3'>
-              {socialLinks.map(social => (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  className='w-10 h-10 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform'
-                >
-                  <Image
-                    src={social.icon}
-                    alt={social.label}
-                    width={18}
-                    height={18}
-                  />
-                </Link>
-              ))}
+          <div className='xl:col-span-3 xl:col-start-10 xl:justify-self-end'>
+            <div className='flex flex-col gap-6 items-start'>
+              <h3 className='font-sans font-bold text-white text-lg whitespace-nowrap'>
+                Contact with Us
+              </h3>
+
+              <div className='flex items-center gap-3'>
+                {socialLinks.map(social => (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    className='w-10 h-10 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform'
+                  >
+                    <Image
+                      src={social.icon}
+                      alt={social.label}
+                      width={18}
+                      height={18}
+                    />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -157,7 +161,7 @@ export default function Footer () {
       <div className='main-container'>
         <div className='border-t border-white  py-8 flex flex-col md:flex-row items-center justify-between gap-6'>
           <p className='text-base font-sans font-regular text-white '>
-            © {new Date().getFullYear()} Real Hope Pakistan. All rights
+            © 2025 Real Hope Pakistan. All rights
             reserved.
           </p>
           <div className='flex items-center gap-8 text-base'>

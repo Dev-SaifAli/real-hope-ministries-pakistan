@@ -14,7 +14,7 @@ interface StoryProps {
   videoHref?: string
 }
 
-export default function StorySection ({
+export default function StorySection({
   titleHighlight = 'Bondage to Freedom',
   titleRest = 'The Story of the Masih Family',
   description = `For three generations, the Masih family worked at a brick kiln to pay off an
@@ -38,9 +38,9 @@ export default function StorySection ({
   }
 
   return (
-    <section className='w-full bg-white   mb-12 sm:mb-18 '>
+    <section className='w-full bg-white  mb-12 sm:mb-18 '>
       <div className='  main-container flex justify-between'>
-        <div className='flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-6 md:gap-8 lg:gap-14 w-full'>
+        <div className='flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-10 md:gap-10 lg:gap-20 w-full'>
           {/* Image Block — fixed container height to contain both circles */}
           <div className='relative shrink-0 mx-auto md:mx-0 w-[320px] h-[380px] sm:w-[340px] sm:h-[380px] md:w-[500px] md:h-[480px]'>
             <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-4 border-white z-10'>
@@ -68,7 +68,7 @@ export default function StorySection ({
               <br />
               {renderTitle()}
             </h2>
-            <p className='font-sans text-black impact-para mb-8 md:mb-8'>
+            <p className='font-sans text-black impact-para mb-6 md:mb-6'>
               {description}
             </p>
             <div
