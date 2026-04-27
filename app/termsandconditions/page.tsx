@@ -97,9 +97,9 @@ function SectionBlock ({ section, index }: { section: Section; index: number }) 
 
 export default function TermsAndConditions () {
   return (
-    <div className='min-h-screen w-full bg-[#EBEBEB] py-12 md:py-24'>
+    <div className='min-h-screen w-full bg-[#EBEBEB] py-32 sm:py-40'>
       {/* ── Centered Header ── */}
-      <div className='text-center mb-12 md:mb-20 px-4'>
+      <div className='text-center mb-16 sm:mb-20 xl:mb-24 px-4'>
         <h1 className='impact-heading font-semibold mb-5 tracking-tight font-display text-black'>
           Terms &amp; Conditions
         </h1>
@@ -110,7 +110,7 @@ export default function TermsAndConditions () {
       </div>
 
       {/* ── Left-aligned Sections ── */}
-      <div className='max-w-480 mx-auto px-6 sm:px-10 md:pl-20 md:pr-40 lg:pl-18 lg:pr-50'>
+      <div className='main-container md:pl-8 md:pr-20 lg:pl-12 lg:pr-30 xl:pl-16 xl:pr-40'>
         {sections.map((section, index) => (
           <SectionBlock key={section.id} section={section} index={index} />
         ))}

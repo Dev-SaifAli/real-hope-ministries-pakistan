@@ -68,8 +68,8 @@ export default function ContactUs () {
         imageSrc='Mask_group_8_f9ldyb'
       />
 
-      <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-24 py-12 md:py-20'>
-        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24  '>
+      <div className='min-h-screen w-full bg-white   py-12 md:py-20'>
+        <div className='main-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24  '>
           {/* ── Left Column ── */}
           <div className='flex flex-col h-full'>
             <h1 className=' font-semibold text-navy mb-4 impact-heading'>
@@ -124,7 +124,7 @@ export default function ContactUs () {
               </div>
 
               {/* Leaflet Map */}
-              <div className='w-full flex-grow min-h-[350px] rounded-2xl overflow-hidden '>
+              <div className='w-full flex-grow min-h-[300px] rounded-2xl overflow-hidden '>
                 <MapComponent lat={OFFICE_LAT} lng={OFFICE_LNG} />
               </div>
             </div>

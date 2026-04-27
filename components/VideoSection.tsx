@@ -66,7 +66,7 @@ export default function VideoSection ({
     <div
       ref={trackRef}
       id='video-track'
-      className='flex gap-4 sm:gap-6 px-4'
+      className='flex    '
     >
       {videosList.map((video, index) => (
         <div

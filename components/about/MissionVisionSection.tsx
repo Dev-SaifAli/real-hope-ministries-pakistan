@@ -1,7 +1,7 @@
 export default function MissionVisionSection () {
   return (
-    <section className='w-full bg-white mt-12 md:mt-20  lg:mt-28 px-4 sm:px-6 md:px-10'>
-      <div className='max-w-480 mx-auto'>
+    <section className='w-full bg-white mt-12 md:mt-20  lg:mt-28 '>
+      <div className='main-container'>
         <div className='grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-26 md:items-stretch'>
 
           {/* ── Mission Card ── */}
