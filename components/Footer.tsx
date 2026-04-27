@@ -60,10 +60,10 @@ export default function Footer() {
   return (
     <footer className='w-full bg-navy text-white'>
       <div className='main-container py-12'>
-        {/* Grid setup for 12 columns on desktop */}
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-10 md:gap-12    2xl:gap-12 items-start'>
-          {/* Column 1: Wide enough for text (5 out of 12 columns) */}
-          <div className='flex flex-col gap-6 md:gap-8 xl:col-span-4'>
+        {/* Flex setup for consistent distribution on desktop */}
+        <div className='flex flex-col md:grid md:grid-cols-2 xl:flex xl:flex-row xl:justify-between gap-10 md:gap-12 items-start'>
+          {/* Column 1: Info */}
+          <div className='flex flex-col gap-6 md:gap-8 xl:max-w-[350px]'>
             <div className='flex flex-col gap-2'>
               <Image
                 src='/nav-logo.png'
@@ -72,16 +72,16 @@ export default function Footer() {
                 height={65}
                 className='w-12 h-12 rounded-full'
               />
-              <h3 className='font-sans font-bold text-white  text-lg'>
+              <h3 className='font-sans font-bold text-white text-lg'>
                 Real Hope Ministries Pakistan
               </h3>
-              <p className='font-sans font-regular text-white text-base leading-relaxed max-w-[320px]'>
+              <p className='font-sans font-regular text-white text-base leading-relaxed'>
                 Bringing sustainable change, emergency relief, and compassionate
                 support to communities across Pakistan.
               </p>
             </div>
             <div>
-              <p className='italic font-sans font-semibold  text-lg'>
+              <p className='italic font-sans font-semibold text-lg'>
                 Founded by:
               </p>
               <p className='font-sans font-bold text-white text-xl lg:text-2xl mt-1'>
@@ -90,8 +90,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (2 out of 12 columns) */}
-          <div className='flex flex-col gap-6 xl:col-span-2'>
+          {/* Column 2: Quick Links */}
+          <div className='flex flex-col gap-6'>
             <h3 className='font-sans font-bold text-white text-lg'>
               Quick Links
             </h3>
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className='text-white hover:text-green  text-base'
+                    className='text-white hover:text-green text-base'
                   >
                     {link.label}
                   </Link>
@@ -109,8 +109,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Ministries (2 out of 12 columns) */}
-          <div className='flex flex-col gap-6 xl:col-span-3'>
+          {/* Column 3: Ministries */}
+          <div className='flex flex-col gap-6'>
             <h3 className='font-sans font-bold text-white text-lg'>
               Ministries
             </h3>
@@ -119,7 +119,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className='text-white hover:text-green   text-base'
+                    className='text-white hover:text-green text-base'
                   >
                     {link.label}
                   </Link>
@@ -128,33 +128,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact (3 out of 12 columns, aligned to the end) */}
-          <div className='xl:col-span-3 xl:col-start-10 xl:justify-self-end'>
-            <div className='flex flex-col gap-6 items-start'>
-              <h3 className='font-sans font-bold text-white text-lg whitespace-nowrap'>
-                Contact with Us
-              </h3>
+          {/* Column 4: Contact */}
+          <div className='flex flex-col gap-6 items-start'>
 
-              <div className='flex items-center gap-3'>
-                {socialLinks.map(social => (
-                  <Link
-                    key={social.label}
-                    href={social.href}
-                    className='w-10 h-10 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform'
-                  >
-                    <Image
-                      src={social.icon}
-                      alt={social.label}
-                      width={18}
-                      height={18}
-                    />
-                  </Link>
-                ))}
-              </div>
+            <h3 className='font-sans font-bold text-white text-lg whitespace-nowrap'>
+              Contact with Us
+            </h3>
+
+            <div className='flex items-center gap-3'>
+              {socialLinks.map(social => (
+                <Link
+                  key={social.label}
+                  href={social.href}
+                  className='w-10 h-10 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform'
+                >
+                  <Image
+                    src={social.icon}
+                    alt={social.label}
+                    width={18}
+                    height={18}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
-
         </div>
+
       </div>
 
       {/* Bottom Bar: border constrained inside max-width container */}

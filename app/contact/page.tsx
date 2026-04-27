@@ -44,7 +44,7 @@ const formFields = [
 const OFFICE_LAT = 31.4504
 const OFFICE_LNG = 73.135
 
-export default function ContactUs () {
+export default function ContactUs() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -63,8 +63,8 @@ export default function ContactUs () {
     <>
       <PageHero
         showButton={false}
-        title='Be a part of the change and help bring hope to communities in need.'
-        subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
+        title='Contact Us'
+        subtitle='We’d love to hear from you. Reach out to us for inquiries, partnerships, or support. Your Small Step can change someone’s entire life .'
         imageSrc='Mask_group_8_f9ldyb'
       />
 
@@ -98,7 +98,7 @@ export default function ContactUs () {
             </div>
 
             {/* ✅ Map + Visit Our Office — screenshot jaisa, left column mein */}
-            <div className='mt-auto w-full flex flex-col flex-grow'>
+            <div className='mt-auto w-full flex flex-col grow'>
               {/* Visit Our Office */}
 
               <div className='my-4'>
@@ -124,7 +124,7 @@ export default function ContactUs () {
               </div>
 
               {/* Leaflet Map */}
-              <div className='w-full flex-grow min-h-[300px] rounded-2xl overflow-hidden '>
+              <div className='w-full grow min-h-[300px] rounded-2xl overflow-hidden '>
                 <MapComponent lat={OFFICE_LAT} lng={OFFICE_LNG} />
               </div>
             </div>

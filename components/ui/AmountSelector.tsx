@@ -3,25 +3,30 @@ import { useState } from 'react'
 
 const amounts = ['$500', '$1000', '$2000', '$5000', 'Custom']
 
-export default function AmountSelector () {
-  const [selected, setSelected] = useState('$50')
+interface AmountSelectorProps {
+  value: string
+  onChange: (amount: string) => void
+}
 
+export default function AmountSelector ({ value, onChange }: AmountSelectorProps) {
   return (
-    <div className='flex flex-row justify-between gap-3'>
+    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3'>
+
       {amounts.map(amount => (
         <button
           type='button'
           key={amount}
-          onClick={() => setSelected(amount)}
+          onClick={() => onChange(amount)}
           className={`
-           h-9 w-29 px-2 sm:h-12 sm:w-32.75 sm:px-6 rounded-md text-[15px] sm:text-[17px] font-semibold
-            transition-all duration-200 border
+            h-10 sm:h-12 w-full px-1 sm:px-2 rounded-xl text-[14px] sm:text-[16px] font-bold
+            transition-all duration-200 border-2
             ${
-              selected === amount
-                ? 'bg-orange text-white border-orange' // active — orange
-                : 'bg-pearl text-black border-gray-200 hover:border-orange'
+              value === amount
+                ? 'bg-navy text-white border-navy shadow-lg shadow-navy/20'
+                : 'bg-white text-gray-600 border-gray-100 hover:border-navy/30'
             }
           `}
+
         >
           {amount}
         </button>
@@ -29,3 +34,4 @@ export default function AmountSelector () {
     </div>
   )
 }
+
