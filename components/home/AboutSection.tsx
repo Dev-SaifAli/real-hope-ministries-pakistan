@@ -1,32 +1,52 @@
 'use client'
 
-import { useRef, useState, useCallback } from 'react'
-import VideoSection from '@/components/VideoSection'
+import { useRef, useState, useCallback, useEffect } from 'react'
+import VideoSection, { videos } from '@/components/VideoSection'
 
-const SLIDE_COUNT = 7
+const SLIDE_COUNT = videos.length
 
-export default function AboutSection () {
-  const [activeSlide, setActiveSlide] = useState(0)
-  const trackRef = useRef<HTMLDivElement>(null) // ✅ video-track pe ref
-  const sliderRef = useRef<HTMLDivElement>(null) // scroll container pe ref
+export default function AboutSection() {
+  const totalVideos = videos.length
+  const extendedVideos = [...videos, ...videos, ...videos]
+
+  // Start in the middle set
+  const [activeSlide, setActiveSlide] = useState(totalVideos)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef<HTMLDivElement>(null)
   const isAutoScrolling = useRef(false)
+
+  // ── Initial Scroll ──────────────────────────────────────────
+  useEffect(() => {
+    const slider = sliderRef.current
+    const track = trackRef.current
+    if (!slider || !track) return
+
+    // Scroll to the first video of the middle set (Set B)
+    const middleSetStartChild = track.children[totalVideos] as HTMLElement
+    if (middleSetStartChild) {
+      const scrollTo =
+        middleSetStartChild.offsetLeft -
+        slider.offsetWidth / 2 +
+        middleSetStartChild.offsetWidth / 2
+      slider.scrollLeft = scrollTo
+    }
+  }, [totalVideos])
 
   // ── Dot click ────────────────────────────────────────────────
   const handleDotClick = useCallback((index: number) => {
-    const track = trackRef.current // video-track div
-    const slider = sliderRef.current // scroll container
+    const track = trackRef.current
+    const slider = sliderRef.current
 
     if (!track || !slider) return
 
-    // ✅ slides are direct children of video-track
-    const child = track.children[index] as HTMLElement
+    // Always scroll to the middle set (Set B)
+    const targetIndex = index + totalVideos
+    const child = track.children[targetIndex] as HTMLElement
     if (!child) return
 
-    setActiveSlide(index)
+    setActiveSlide(targetIndex)
     isAutoScrolling.current = true
 
-    // ✅ offsetLeft of child relative to track
-    // track itself has px-4 padding — child.offsetLeft accounts for this
     const scrollTo =
       child.offsetLeft - slider.offsetWidth / 2 + child.offsetWidth / 2
 
@@ -35,7 +55,7 @@ export default function AboutSection () {
     setTimeout(() => {
       isAutoScrolling.current = false
     }, 900)
-  }, [])
+  }, [totalVideos])
 
   // ── Manual scroll ─────────────────────────────────────────────
   const handleScroll = useCallback(() => {
@@ -47,12 +67,11 @@ export default function AboutSection () {
 
     const sliderCenter = slider.scrollLeft + slider.offsetWidth / 2
 
-    let closestIndex = 0
+    let closestIndex = totalVideos
     let closestDistance = Infinity
 
     Array.from(track.children).forEach((child, index) => {
       const el = child as HTMLElement
-      // ✅ offsetLeft relative to track (scroll container)
       const childCenter = el.offsetLeft + el.offsetWidth / 2
       const distance = Math.abs(sliderCenter - childCenter)
       if (distance < closestDistance) {
@@ -61,8 +80,32 @@ export default function AboutSection () {
       }
     })
 
-    setActiveSlide(closestIndex)
-  }, [])
+    // Infinite Jump Logic
+    // If we are in Set A (index < totalVideos)
+    if (closestIndex < totalVideos) {
+      const jumpTo = closestIndex + totalVideos
+      const targetChild = track.children[jumpTo] as HTMLElement
+      const scrollTo =
+        targetChild.offsetLeft - slider.offsetWidth / 2 + targetChild.offsetWidth / 2
+
+      // Instant jump
+      slider.scrollTo({ left: scrollTo, behavior: 'auto' })
+      setActiveSlide(jumpTo)
+    }
+    // If we are in Set C (index >= 2 * totalVideos)
+    else if (closestIndex >= 2 * totalVideos) {
+      const jumpTo = closestIndex - totalVideos
+      const targetChild = track.children[jumpTo] as HTMLElement
+      const scrollTo =
+        targetChild.offsetLeft - slider.offsetWidth / 2 + targetChild.offsetWidth / 2
+
+      // Instant jump
+      slider.scrollTo({ left: scrollTo, behavior: 'auto' })
+      setActiveSlide(jumpTo)
+    } else {
+      setActiveSlide(closestIndex)
+    }
+  }, [totalVideos])
 
   return (
     <section
@@ -71,7 +114,7 @@ export default function AboutSection () {
     >
       {/* Section Header */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
-        <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-6'>
+        <p className='font-display font-semibold text-green text-[16px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-6'>
           About Real Hope Pakistan
         </p>
         <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4 md:mb-6'>
@@ -93,15 +136,15 @@ export default function AboutSection () {
       {/* Video Slider */}
       <div className='max-w-360 mx-auto px-4 sm:px-6 lg:px-10'>
         <div
-          ref={sliderRef} // ✅ scroll container ref
-          className='flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar'
+          ref={sliderRef}
+          className='flex overflow-x-auto snap-x snap-mandatory no-scrollbar'
           onScroll={handleScroll}
         >
-          {/* ✅ trackRef pass karo VideoSection ko */}
           <VideoSection
             trackRef={trackRef}
             activeSlide={activeSlide}
             setActiveSlide={setActiveSlide}
+            videosList={extendedVideos}
           />
         </div>
       </div>
@@ -114,14 +157,14 @@ export default function AboutSection () {
             key={index}
             onClick={() => handleDotClick(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className={`rounded-full transition-all duration-200 ${
-              activeSlide === index
+            className={`rounded-full transition-all duration-200 ${(activeSlide % totalVideos) === index
                 ? 'w-3 h-3 bg-navy'
                 : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-            }`}
+              }`}
           />
         ))}
       </div>
     </section>
   )
 }
+

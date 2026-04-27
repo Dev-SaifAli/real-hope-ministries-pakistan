@@ -11,14 +11,14 @@ type PageHeroProps = {
   secondaryButtonText?: string
 }
 
-export default function PageHero ({
+export default function PageHero({
   title,
   imageSrc,
   subtitle,
   href = '#',
   showButton = true,
-  primaryButtonText ='Support Us ', 
-  secondaryButtonText = 'Learn More' 
+  primaryButtonText = 'Support Us ',
+  secondaryButtonText = 'Learn More'
 }: PageHeroProps) {
   const renderTitle = () => {
     if (title === 'Hope for Communities Across Pakistan') {
@@ -57,7 +57,7 @@ export default function PageHero ({
           {subtitle}
         </p>
         {showButton && (
-          <div className='flex flex-col sm:flex-row gap-8 justify-center items-center'>
+          <div className='flex flex-col sm:flex-row gap-8 justify-center  items-center'>
             <Button
               href='/donation'
               text={primaryButtonText}

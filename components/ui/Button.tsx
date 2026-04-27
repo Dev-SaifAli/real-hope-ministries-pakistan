@@ -23,7 +23,7 @@ interface ButtonProps {
 const variantStyles: Record<ButtonVariant, string> = {
   // ── Hero buttons ─────────────────────────────────────────────
   support:
-    'bg-navy text-white px-8 py-3   rounded-[15px]   sm:rounded-[14px] ' +
+    'bg-navy text-white px-12 py-3   rounded-[15px]   sm:rounded-[14px] ' +
     'transition-all duration-200 ' +
     'hover:opacity-90 hover:shadow-md ' +
     'active:scale-95 active:opacity-80 ' +
@@ -92,7 +92,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
 }
 
-const Button: React.FC<ButtonProps> = ({ variant, text, href='' }) => {
+const Button: React.FC<ButtonProps> = ({ variant, text, href = '' }) => {
   return (
     <Link
       href={href}
