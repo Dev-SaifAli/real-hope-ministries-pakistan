@@ -126,7 +126,7 @@ function StatCard ({ stat }: { stat: Stat }) {
 // ─── StatsSection ─────────────────────────────────────────────────────────────
 export default function StatsSection () {
   return (
-    <section className='w-full bg-white mb-6 mt-12  sm:mb-9 sm:mt-17.5  px-4 sm:px-6 md:px-10'>
+    <section className='main-container bg-white mb-6 mt-12  sm:mb-9 sm:mt-17.5  '>
       <div className='mx-auto flex justify-center'>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
