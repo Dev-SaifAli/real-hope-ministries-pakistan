@@ -5,7 +5,7 @@ import VideoSection, { videos } from '@/components/VideoSection'
 
 const SLIDE_COUNT = videos.length
 
-export default function AboutSection() {
+export default function AboutSection () {
   const totalVideos = videos.length
   const extendedVideos = [...videos, ...videos, ...videos]
 
@@ -33,29 +33,32 @@ export default function AboutSection() {
   }, [totalVideos])
 
   // ── Dot click ────────────────────────────────────────────────
-  const handleDotClick = useCallback((index: number) => {
-    const track = trackRef.current
-    const slider = sliderRef.current
+  const handleDotClick = useCallback(
+    (index: number) => {
+      const track = trackRef.current
+      const slider = sliderRef.current
 
-    if (!track || !slider) return
+      if (!track || !slider) return
 
-    // Always scroll to the middle set (Set B)
-    const targetIndex = index + totalVideos
-    const child = track.children[targetIndex] as HTMLElement
-    if (!child) return
+      // Always scroll to the middle set (Set B)
+      const targetIndex = index + totalVideos
+      const child = track.children[targetIndex] as HTMLElement
+      if (!child) return
 
-    setActiveSlide(targetIndex)
-    isAutoScrolling.current = true
+      setActiveSlide(targetIndex)
+      isAutoScrolling.current = true
 
-    const scrollTo =
-      child.offsetLeft - slider.offsetWidth / 2 + child.offsetWidth / 2
+      const scrollTo =
+        child.offsetLeft - slider.offsetWidth / 2 + child.offsetWidth / 2
 
-    slider.scrollTo({ left: scrollTo, behavior: 'smooth' })
+      slider.scrollTo({ left: scrollTo, behavior: 'smooth' })
 
-    setTimeout(() => {
-      isAutoScrolling.current = false
-    }, 900)
-  }, [totalVideos])
+      setTimeout(() => {
+        isAutoScrolling.current = false
+      }, 900)
+    },
+    [totalVideos]
+  )
 
   // ── Manual scroll ─────────────────────────────────────────────
   const handleScroll = useCallback(() => {
@@ -86,7 +89,9 @@ export default function AboutSection() {
       const jumpTo = closestIndex + totalVideos
       const targetChild = track.children[jumpTo] as HTMLElement
       const scrollTo =
-        targetChild.offsetLeft - slider.offsetWidth / 2 + targetChild.offsetWidth / 2
+        targetChild.offsetLeft -
+        slider.offsetWidth / 2 +
+        targetChild.offsetWidth / 2
 
       // Instant jump
       slider.scrollTo({ left: scrollTo, behavior: 'auto' })
@@ -97,7 +102,9 @@ export default function AboutSection() {
       const jumpTo = closestIndex - totalVideos
       const targetChild = track.children[jumpTo] as HTMLElement
       const scrollTo =
-        targetChild.offsetLeft - slider.offsetWidth / 2 + targetChild.offsetWidth / 2
+        targetChild.offsetLeft -
+        slider.offsetWidth / 2 +
+        targetChild.offsetWidth / 2
 
       // Instant jump
       slider.scrollTo({ left: scrollTo, behavior: 'auto' })
@@ -134,7 +141,7 @@ export default function AboutSection() {
       </div>
 
       {/* Video Slider */}
-      <div className='max-w-360 mx-auto px-4 sm:px-6 lg:px-10'>
+      <div className=' main-container'>
         <div
           ref={sliderRef}
           className='flex overflow-x-auto snap-x snap-mandatory no-scrollbar'
@@ -157,14 +164,14 @@ export default function AboutSection() {
             key={index}
             onClick={() => handleDotClick(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className={`rounded-full transition-all duration-200 ${(activeSlide % totalVideos) === index
+            className={`rounded-full transition-all duration-200 ${
+              activeSlide % totalVideos === index
                 ? 'w-3 h-3 bg-navy'
                 : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-              }`}
+            }`}
           />
         ))}
       </div>
     </section>
   )
 }
-
