@@ -27,7 +27,7 @@
   }
 
   .main-container {
-    @apply w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 max-w-[1920px];
+    @apply w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-16 max-w-[1920px];
   }
 }
 

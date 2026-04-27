@@ -38,12 +38,12 @@ export default function StorySection({
   }
 
   return (
-    <section className='w-full bg-white  mb-12 sm:mb-18 '>
-      <div className='  main-container flex justify-between'>
-        <div className='flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-10 md:gap-10 lg:gap-20 w-full'>
+    <section className='w-full bg-white  '>
+      <div className='  main-container flex justify-between  mb-12 sm:mb-18 2xl:mb-40 '>
+        <div className='flex flex-col lg:flex-row items-center justify-center gap-2 sm:gap-10 md:gap-10 lg:gap-20 2xl:gap-52 w-full'>
           {/* Image Block — fixed container height to contain both circles */}
           <div className='relative shrink-0 mx-auto md:mx-0 w-[320px] h-[380px] sm:w-[340px] sm:h-[380px] md:w-[500px] md:h-[480px]'>
-            <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-4 border-white z-10'>
+            <div className='absolute top-0 left-0 w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] 2xl:w-[480px] 2xl:h-[480px] rounded-full overflow-hidden border-4 border-white z-10'>
               <Image
                 src={buildImage(primaryImage, 800)}
                 alt='Masih family at brick kiln'
@@ -51,7 +51,7 @@ export default function StorySection({
                 className='object-cover object-center'
               />
             </div>
-            <div className='absolute top-[160px] left-[120px] sm:top-[170px] sm:left-[130px] md:top-[250px] md:left-[230px] w-[160px] h-[160px] sm:w-[170px] sm:h-[170px] md:w-[210px] md:h-[210px] rounded-full overflow-hidden border-4 border-white shadow-xl z-20'>
+            <div className='absolute top-[160px] left-[120px] sm:top-[170px] sm:left-[130px] md:top-[250px] md:left-[230px] 2xl:top-[290px] 2xl:left-[240px] w-[160px] h-[160px] sm:w-[170px] sm:h-[170px] md:w-[210px] md:h-[210px] 2xl:w-[270px] 2xl:h-[270px] rounded-full overflow-hidden border-4 border-white   z-20'>
               <Image
                 src={buildImage(secondaryImage, 800)}
                 alt='Working at brick kiln'

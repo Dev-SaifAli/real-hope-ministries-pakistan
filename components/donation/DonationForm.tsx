@@ -25,7 +25,7 @@ const countryOptions = [
   'Australia'
 ]
 
-export default function DonationForm () {
+export default function DonationForm() {
   const [donationType, setDonationType] = useState<'one-time' | 'monthly'>(
     'one-time'
   )
@@ -90,22 +90,20 @@ export default function DonationForm () {
               <button
                 type='button'
                 onClick={() => setDonationType('one-time')}
-                className={`flex-1 py-3 text-sm font-semibold font-sans duration-200 transition-all rounded-lg ${
-                  donationType === 'one-time'
+                className={`flex-1 py-3 text-sm font-semibold font-sans duration-200 transition-all rounded-lg ${donationType === 'one-time'
                     ? 'bg-white shadow-md text-navy'
                     : 'text-gray-500 hover:text-navy'
-                }`}
+                  }`}
               >
                 One-time donation
               </button>
               <button
                 type='button'
                 onClick={() => setDonationType('monthly')}
-                className={`flex-1 py-3 text-sm font-semibold font-sans duration-200 transition-all rounded-lg ${
-                  donationType === 'monthly'
+                className={`flex-1 py-3 text-sm font-semibold font-sans duration-200 transition-all rounded-lg ${donationType === 'monthly'
                     ? 'bg-white shadow-md text-navy'
                     : 'text-gray-500 hover:text-navy'
-                }`}
+                  }`}
               >
                 Monthly support
               </button>
@@ -118,7 +116,7 @@ export default function DonationForm () {
               Select Amount
             </p>
             <AmountSelector value={selectedAmount} onChange={setSelectedAmount} />
-            
+
             {selectedAmount === 'Custom' && (
               <div className='relative mt-3'>
                 <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-sans font-semibold'>$</span>
@@ -203,11 +201,10 @@ export default function DonationForm () {
               <button
                 type='button'
                 onClick={() => setPaymentMethod('stripe')}
-                className={`flex flex-col items-center justify-center gap-3 p-5 rounded-xl border-2 transition-all ${
-                  paymentMethod === 'stripe'
+                className={`flex flex-col items-center justify-center gap-3 p-5 rounded-xl border-2 transition-all ${paymentMethod === 'stripe'
                     ? 'border-navy bg-navy/5 text-navy'
                     : 'border-gray-100 hover:border-gray-200 text-gray-500'
-                }`}
+                  }`}
               >
                 <CreditCard className='w-6 h-6' />
                 <span className='font-semibold text-sm text-center'>Credit Card / Stripe</span>
@@ -215,11 +212,10 @@ export default function DonationForm () {
               <button
                 type='button'
                 onClick={() => setPaymentMethod('paypal')}
-                className={`flex flex-col items-center justify-center gap-3 p-5 rounded-xl border-2 transition-all ${
-                  paymentMethod === 'paypal'
+                className={`flex flex-col items-center justify-center gap-3 p-5 rounded-xl border-2 transition-all ${paymentMethod === 'paypal'
                     ? 'border-[#003087] bg-[#003087]/5 text-[#003087]'
                     : 'border-gray-100 hover:border-gray-200 text-gray-500'
-                }`}
+                  }`}
               >
                 <Wallet className='w-6 h-6' />
                 <span className='font-semibold text-sm'>PayPal</span>
@@ -239,14 +235,13 @@ export default function DonationForm () {
             )}
             <button
               type='submit'
-              className={`w-full text-white text-[16px] font-bold font-sans py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-3 transform hover:-translate-y-0.5 active:translate-y-0 ${
-                paymentMethod === 'stripe'
+              className={`w-full text-white text-[16px] font-bold font-sans py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-3 transform hover:-translate-y-0.5 active:translate-y-0 ${paymentMethod === 'stripe'
                   ? 'bg-navy hover:bg-navy/90 shadow-navy/20'
                   : 'bg-[#003087] hover:bg-[#003087]/90 shadow-[#003087]/20'
-              }`}
+                }`}
             >
               <Lock className='w-5 h-5' />
-              {donationType === 'one-time' 
+              {donationType === 'one-time'
                 ? (paymentMethod === 'stripe' ? 'Donate with Stripe' : 'Donate with PayPal')
                 : (paymentMethod === 'stripe' ? 'Set up Monthly Stripe' : 'Set up Monthly PayPal')
               }

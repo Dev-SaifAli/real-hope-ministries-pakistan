@@ -41,8 +41,8 @@ const formFields = [
   }
 ]
 
-const OFFICE_LAT = 31.4504
-const OFFICE_LNG = 73.135
+const OFFICE_LAT = 31.416384318282596
+const OFFICE_LNG = 73.14111910817073
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
