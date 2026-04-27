@@ -9,7 +9,7 @@ const communityImages = [
 ]
 export default function CommunitySection () {
   return (
-    <section id='community' className='w-full bg-white py-14 sm:py-16 md:py-18 lg:py-20 overflow-hidden '>
+    <section id='community' className='w-full bg-white   overflow-hidden '>
       {/* ── Header — centered ── */}
       <div className='impact-section'>
         <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl  leading-tight mb-2 md:mb-6'>

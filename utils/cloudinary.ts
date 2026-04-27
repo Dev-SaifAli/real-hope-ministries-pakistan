@@ -12,10 +12,11 @@ export const buildImage = (src: string, width = 800): string => {
 };
 
  
-export const buildVideo = (src: string, width = 800): string => {
+export const buildVideo = (src: string, width = 1920): string => {
   if (!src) return '';
-  // Check if it's already a full URL
   if (src.startsWith('http')) return src;
 
-  return `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,f_auto,vc_auto,w_${width}/${src}`;
+  // Added vc_h265/vc_vp9 for better compression & quality
+  // Added br_5m to ensure a decent bitrate for hero backgrounds
+  return `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto:best,f_auto,vc_auto,w_${width},br_5m/${src}`;
 };
