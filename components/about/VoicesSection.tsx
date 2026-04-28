@@ -47,7 +47,7 @@ const ALL_PHOTOS = [
   },
   {
     id: 5,
-    src: 'c88d8ba9cc368e151485336b1073cdea69270d73_2_cgzaut',
+    src: '2c935d9d8598fb9b5264ff3413972374581caf98_i23etx',
     alt: 'Large community event'
   },
   // Add additional hidden photos here to increase the "+N" count

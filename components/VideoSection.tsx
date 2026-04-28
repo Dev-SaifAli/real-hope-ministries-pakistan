@@ -7,7 +7,7 @@ export const videos: Video[] = [
     thumbnail: 'video-1_caijjg',
     alt: 'Real Hope Ministry community gathering',
 
-    mediaSrc: 'food-project_supddx'
+    mediaSrc: 'WhatsApp_Video_2026-04-27_at_11.31.42_PM_jipxh2'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const videos: Video[] = [
     alt: 'Widows ministry - Christmas clothes',
     // ✅ 2 videos play inside this ONE card, back-to-back
     mediaSrc: [
-      'v1775908824/WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv.mp4',
+      // 'v1775908824/WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv.mp4',
       'VID_81990722_054044_870_leeqwa'
     ]
   },

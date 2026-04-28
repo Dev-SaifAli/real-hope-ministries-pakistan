@@ -153,7 +153,7 @@ export default function StatsSection() {
             </p>
 
             <div>
-              <Button href='/donation' text='Support Our Mission' variant='supportMission' />
+              <Button href='/contact' text='Contact Us' variant='supportMission' />
             </div>
           </div>
 

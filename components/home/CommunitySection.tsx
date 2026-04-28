@@ -1,11 +1,11 @@
 import CurvedCarousel from '../Curvedcarousel'
 
 const communityImages = [
-  'photo-1_fr8dcx',
-  'photo-2_qiipek',
-  'photo-3_qxsn4b',
-  'photo-4_racfz6',
-  'photo-5_lwvur4'
+  'IMG_0803_g9zy0s.jpg',
+  'c88d8ba9cc368e151485336b1073cdea69270d73_2_cgzaut',
+  'Mask_group_4_drqvat',
+  'IMG_0663_otmahe',
+  'DSC_7820_1_qda3pj'
 ]
 export default function CommunitySection () {
   return (
