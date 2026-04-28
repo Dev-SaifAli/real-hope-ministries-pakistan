@@ -12,20 +12,20 @@ interface FooterLink {
 
 const quickLinks: FooterLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Our Projects', href: '/projects' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Our Projects', href: '/#projects' },
   { label: 'Community in Action', href: '/#community' },
-  { label: 'Contact Us', href: '/contact' }
+  { label: 'Contact Us', href: '/#contact' }
 ]
 
 const ministries: FooterLink[] = [
-  { label: 'Orphanage', href: '/#orphanage-ministry' },
-  { label: 'Clean Water', href: '/#clean-water-ministry' },
-  { label: 'Widow Support', href: '/#free-people-ministry' },
-  { label: 'Freedom Slavery', href: '/#prayer-&-relief-ministry' },
-  { label: 'Persecution Support', href: '/#freedom-from-slavery' },
-  { label: 'Food Support', href: '/#food-ministry' },
-  { label: 'Youth Mission', href: '/#bibel-distribution-ministry' }
+  { label: 'Orphanage', href: '/home#orphanage-ministry' },
+  { label: 'Clean Water', href: '/home#clean-water-ministry' },
+  { label: 'Free People', href: '/home#free-people-ministry' },
+  { label: 'Prayer Center', href: '/home#prayer-center' },
+  { label: 'Freedom from Slavery', href: '/home#freedom-from-slavery' },
+  { label: 'Food Ministry', href: '/home#food-ministry' },
+  { label: 'Bibel Distribution', href: '/home#bibel-distribution-ministry' }
 ]
 
 const socialLinks = [

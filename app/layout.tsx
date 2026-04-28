@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
 import { Open_Sans, Poppins } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import HashScroll from '@/components/HashScroll'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -24,7 +26,7 @@ export const metadata = {
     'Real Hope Pakistan serves vulnerable communities through clean water, food, education, and compassion-driven outreach across Pakistan.'
 }
 
-export default function RootLayout ({
+export default function RootLayout({
   children
 }: {
   children: React.ReactNode
@@ -32,6 +34,9 @@ export default function RootLayout ({
   return (
     <html lang='en' className={`${openSans.variable} ${poppins.variable}`}>
       <body className='font-sans antialiased'>
+        <Suspense fallback={null}>
+          <HashScroll />
+        </Suspense>
         <Navbar />
         {children}
         <Footer />
@@ -39,3 +44,4 @@ export default function RootLayout ({
     </html>
   )
 }
+

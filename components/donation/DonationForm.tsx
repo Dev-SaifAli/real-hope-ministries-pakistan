@@ -52,7 +52,7 @@ export default function DonationForm() {
     <>
       {/* ── Section 2: Make a Difference + Donation Form ── */}
 
-      <div className='main-container grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 xl:gap-24 items-start'>
+      <div id='donation-form' className='main-container scroll-mt-28 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 xl:gap-24 items-start'>
         {/* ── Left: Description + Trust Points ── */}
         <div className='space-y-6 md:space-y-8 lg:sticky lg:top-24'>
           <div>

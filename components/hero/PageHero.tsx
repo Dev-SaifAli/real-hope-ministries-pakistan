@@ -9,6 +9,7 @@ type PageHeroProps = {
   showButton?: boolean
   primaryButtonText?: string
   secondaryButtonText?: string
+  primaryHref?: string
 }
 
 export default function PageHero({
@@ -18,7 +19,8 @@ export default function PageHero({
   href = '#',
   showButton = true,
   primaryButtonText = 'Support Us ',
-  secondaryButtonText = 'Learn More'
+  secondaryButtonText = 'Learn More',
+  primaryHref = '/donation'
 }: PageHeroProps) {
   const renderTitle = () => {
     return title
@@ -52,7 +54,7 @@ export default function PageHero({
         {showButton && (
           <div className='flex flex-col sm:flex-row gap-8 justify-center  items-center'>
             <Button
-              href='/donation'
+              href={primaryHref}
               text={primaryButtonText}
               variant='support'
               key='support'
