@@ -25,7 +25,7 @@ export default function ProjectCard ({
   return (
     <div
       id={projectSlug}
-      className='flex flex-col w-full max-w-102 mx-auto h-full scroll-mt-20
+      className='flex flex-col w-full max-w-102 mx-auto h-full scroll-mt-28
     group bg-white rounded-2xl overflow-hidden
     outline-none
     focus-visible:ring-2 focus-visible:ring-navy/80 focus-visible:ring-offset-4

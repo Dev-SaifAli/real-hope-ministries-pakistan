@@ -117,7 +117,7 @@ export default function AboutSection () {
   return (
     <section
       id='about'
-      className='w-full bg-white mt-11 md:mt-16 overflow-hidden'
+      className='w-full bg-white mt-11 md:mt-16 overflow-hidden scroll-mt-28'
     >
       {/* Section Header */}
       <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>

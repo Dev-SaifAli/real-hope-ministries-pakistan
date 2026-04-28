@@ -19,7 +19,7 @@ export default function CTASection () {
           <Button
             variant='supportMission'
             text='Support our mission'
-            href='/donation'
+            href='/donation#donation-form'
           />
           <Button
             variant='getInvolved'

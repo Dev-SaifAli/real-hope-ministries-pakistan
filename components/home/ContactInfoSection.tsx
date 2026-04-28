@@ -52,7 +52,7 @@ function ContactCardComponent ({ card }: { card: ContactCardData }) {
 
 export default function ContactInfoSection () {
   return (
-    <section className='w-full bg-[#EFEFEF] '>
+    <section id='contact' className='w-full bg-[#EFEFEF] scroll-mt-28'>
       <div className='main-container py-12 md:py-16   '>
         <div className='flex flex-col sm:flex-row gap-4 md:gap-6 lg:gap-10 justify-center items-stretch  *: mx-auto w-full'>
           {contactCards.map(card => (
