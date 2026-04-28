@@ -1,4 +1,4 @@
-import { buildImage, buildVideo } from '@/utils/cloudinary'
+import { buildImage  } from '@/utils/cloudinary'
 import Image from 'next/image'
 import Button from './ui/Button'
 

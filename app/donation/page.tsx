@@ -2,7 +2,6 @@ import PageHero from '@/components/hero/PageHero'
 import DonationProjects from '@/components/donation/DonationProjects'
 import DonationForm from '@/components/donation/DonationForm'
 import StatsSection from '@/components/home/StatsSection'
-import CTASection from '@/components/home/CTASection'
 export default function HomePage () {
   return (
     <>
@@ -31,7 +30,7 @@ export default function HomePage () {
         <DonationProjects />
         <DonationForm />
         <StatsSection />
-        <CTASection />
+        
       </main>
     </>
   )

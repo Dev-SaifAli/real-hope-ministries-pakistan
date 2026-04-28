@@ -131,7 +131,7 @@ export default function ContactUs() {
           </div>
 
           {/* ── Right Column — same as before ── */}
-          <div className='lg:mt-[14px]'>
+          <div className='lg:mt-[14px] scroll-mt-28' id='contactForm'>
             <h2 className='text-[24px] md:text-[32px] font-semibold font-display text-navy mb-6'>
               Send Us a Message
             </h2>

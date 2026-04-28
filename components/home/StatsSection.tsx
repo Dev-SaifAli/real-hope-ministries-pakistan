@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Users, Droplet, House, MapPin } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import Button from '../ui/Button'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -47,7 +48,7 @@ const stats: Stat[] = [
 
 // ─── useCountUp hook ──────────────────────────────────────────────────────────
 // Starts ONLY when element enters viewport — then counts 0 → target
-function useCountUp(target: number, duration: number = 2000) {
+function useCountUp (target: number, duration: number = 2000) {
   const [count, setCount] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -76,7 +77,7 @@ function useCountUp(target: number, duration: number = 2000) {
       if (!startTime) startTime = timestamp
       const elapsed = timestamp - startTime
       const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 4)  // easeOutQuart
+      const eased = 1 - Math.pow(1 - progress, 4) // easeOutQuart
       setCount(Math.floor(target * eased))
       if (progress < 1) requestAnimationFrame(animate)
       else setCount(target)
@@ -89,7 +90,7 @@ function useCountUp(target: number, duration: number = 2000) {
 }
 
 // ─── StatCard ─────────────────────────────────────────────────────────────────
-function StatCard({ stat }: { stat: Stat }) {
+function StatCard ({ stat }: { stat: Stat }) {
   const { count, ref } = useCountUp(stat.numeric)
 
   return (
@@ -98,13 +99,12 @@ function StatCard({ stat }: { stat: Stat }) {
       className='
         flex flex-col gap-3
         bg-white rounded-2xl
-        items-center w-full max-w-[180px] sm:max-w-[240px] justify-center mx-auto py-6 px-4
+        items-center w-full   justify-center mx-auto py-6 px-2
         shadow-[0_2px_16px_rgba(0,0,0,0.06)]
         border border-gray-100
         transition-shadow duration-300
         hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]
       '
-
     >
       {/* Icon */}
       <div className='w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center shrink-0'>
@@ -113,7 +113,8 @@ function StatCard({ stat }: { stat: Stat }) {
 
       {/* Animated number */}
       <p className='font-display font-bold text-navy text-2xl sm:text-3xl leading-none tracking-tight'>
-        {count.toLocaleString('en-US')}{stat.suffix}
+        {count.toLocaleString('en-US')}
+        {stat.suffix}
       </p>
 
       {/* Label */}
@@ -125,18 +126,23 @@ function StatCard({ stat }: { stat: Stat }) {
 }
 
 // ─── StatsSection ─────────────────────────────────────────────────────────────
-export default function StatsSection() {
+export default function StatsSection () {
+  const pathName = usePathname()
+
+  const buttonHref =
+    pathName === '/donation'
+      ? '/contact#contactForm'
+      : '/donation#donation-form'
+  const buttonText =
+    pathName === '/donation' ? 'Contact Us' : 'Support Our Mission'
   return (
     <section className='main-container bg-white   mt-12 mb-12 sm:mb-16 lg:mb-20 xl:mb-28 sm:mt-17.5  '>
       <div className='mx-auto flex justify-center'>
-
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
-
           {/* ── Left: Heading + Para + Button ── */}
           <div className='flex flex-col'>
-            <h2 className='font-display font-semibold text-navy impact-heading mb-5'>
-              Creating{' '}
-              <span className='text-green'>Lasting Impact</span>
+            <h2 className='font-display font-semibold text-navy impact-heading  mb-5'>
+              Creating <span className='text-green'>Lasting Impact</span>
               <br />
               Across Communities in <span className='text-green'>Pakistan</span>
             </h2>
@@ -153,17 +159,20 @@ export default function StatsSection() {
             </p>
 
             <div>
-              <Button href='/donation#donation-form' text='Support Our Mission' variant='supportMission' />
+              <Button
+                href={buttonHref}
+                text={buttonText}
+                variant='supportMission'
+              />
             </div>
           </div>
 
           {/* ── Right: 2x2 stat cards ── */}
-          <div className='grid grid-cols-2 gap-4 sm:gap-5'>
+          <div className='grid grid-cols-2 gap-4 sm:gap-5 max-w-[500px] w-full ml-auto'>
             {stats.map(stat => (
               <StatCard key={stat.id} stat={stat} />
             ))}
           </div>
-
         </div>
       </div>
     </section>

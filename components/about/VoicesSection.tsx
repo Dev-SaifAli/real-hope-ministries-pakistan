@@ -9,7 +9,7 @@ import { buildImage, buildVideo } from '@/utils/cloudinary'
 const newIds = [
   'IMG_0663_otmahe',
   '3b760bfd9fefac72fe9adec50e24c5ec8110c0c8_epgiig',
-  'Mask_group_4_drqvat',
+  'food_vzy14n',
   'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
   'IMG_0803_g9zy0s',
   'photo-4_racfz6',

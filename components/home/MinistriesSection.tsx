@@ -1,7 +1,11 @@
 import ProjectCard from '../ProjectCard'
 import { PROJECTS } from '@/utils/constants'
 
-export default function MinistriesSection () {
+interface MinisteriesSectionProps {
+  showDonateButton?: boolean
+}
+
+export default function MinistriesSection ({ showDonateButton = false }: MinisteriesSectionProps) {
   return (
     <section
       id='projects'
@@ -20,7 +24,7 @@ export default function MinistriesSection () {
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 md:gap-x-8 gap-y-6 sm:gap-y-8 md:gap-y-14 lg:gap-y-18  mb-6 sm:mb-8 md:mb-14 lg:mb-18 '>
 
           {PROJECTS.map(project => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} showDonateButton={showDonateButton} />
           ))}
         </div>
       </div>

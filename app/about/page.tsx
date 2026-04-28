@@ -19,7 +19,7 @@ export default function AboutPage () {
           imageSrc='Mask_group_3_w4iklc'
         />
         <AboutSection />
-        <MissionVisionSection />
+        <MissionVisionSection  />
         <FounderSection/>
         <StatsSection />
         <VoicesSection />

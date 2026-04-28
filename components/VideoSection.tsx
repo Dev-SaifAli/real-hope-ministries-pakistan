@@ -5,9 +5,14 @@ export const videos: Video[] = [
   {
     id: 1,
     thumbnail: 'video-1_caijjg',
-    alt: 'Real Hope Ministry community gathering',
+    alt: 'Real Hope Ministry community gathering - Food Project',
 
-    mediaSrc: 'WhatsApp_Video_2026-04-27_at_11.31.42_PM_jipxh2'
+    mediaSrc: [
+      'WhatsApp_Video_2026-04-27_at_11.31.42_PM_jipxh2',
+      'Untitled_design_pruii9',
+      'IDDV1562_mjwyyo',
+      'video_20220412_130325_edit_lshvfb'
+    ]
   },
   {
     id: 2,
@@ -15,8 +20,8 @@ export const videos: Video[] = [
     alt: 'Widows ministry - Christmas clothes',
     // ✅ 2 videos play inside this ONE card, back-to-back
     mediaSrc: [
-      // 'v1775908824/WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv.mp4',
-      'VID_81990722_054044_870_leeqwa'
+      'VID_81990722_054044_870_leeqwa',
+      'WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv'
     ]
   },
   {
@@ -25,17 +30,19 @@ export const videos: Video[] = [
     alt: 'Freedom from slavery project',
     mediaSrc: 'freedom-slavery_gi52se'
   },
+
   {
     id: 4,
     thumbnail: 'video-4_rtbnvm',
-    alt: 'Clean water project',
-    mediaSrc: '1._gathering_ay8fgz'
+    alt: 'Orphanage project',
+    mediaSrc: ['1._gathering_ay8fgz', 'orphange_zbprw0']
   },
+  
   {
     id: 5,
-    thumbnail: 'IMG_0674_rax0vi',
-    alt: 'Food distribution',
-    mediaSrc: 'IDDV1562_mjwyyo'
+    thumbnail: 'download_yxnfkh',
+    alt: 'Clean water project',
+    mediaSrc: ['clean-water_ixmfdk',]
   },
   {
     id: 6,
@@ -63,11 +70,7 @@ export default function VideoSection ({
   videosList?: Video[]
 }) {
   return (
-    <div
-      ref={trackRef}
-      id='video-track'
-      className='flex    '
-    >
+    <div ref={trackRef} id='video-track' className='flex    '>
       {videosList.map((video, index) => (
         <div
           key={`${video.id}-${index}`}
@@ -75,7 +78,7 @@ export default function VideoSection ({
           className={`
             shrink-0 snap-center transition-all duration-300 cursor-pointer
             ${
-              (activeSlide % videos.length) === (index % videos.length)
+              activeSlide % videos.length === index % videos.length
                 ? 'scale-100 opacity-100 z-10'
                 : 'scale-90 opacity-60'
             }
@@ -87,4 +90,3 @@ export default function VideoSection ({
     </div>
   )
 }
-

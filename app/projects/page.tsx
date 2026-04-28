@@ -13,7 +13,7 @@ export default function AboutPage () {
           imageSrc='Mask_group_1_qnvxbp'
         />
 
-        <MinistriesSection />
+        <MinistriesSection showDonateButton={true} />
         <CTASection />
       </main>
     </>

@@ -3,7 +3,7 @@ import { buildImage } from '@/utils/cloudinary'
 export default function FounderSection () {
   const founderImage = 'Gemini_Generated_Image_a92rp6a92rp6a92r1_1_1_jkozj5'
   return (
-    <section className='w-full bg-whit  lg:mt-19'>
+    <section className='w-full bg-white mt-16 lg:mt-20'>
       <div className='main-container'>
         {/* ── Two column layout ── */}
         <div className='flex flex-col lg:flex-row items-center gap-10 lg:gap-16'>
