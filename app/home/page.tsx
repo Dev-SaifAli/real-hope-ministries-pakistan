@@ -13,7 +13,7 @@ export default function HomePage () {
       <main>
         <HomeHero photoId='home-hero_hlzazt' />
         <AboutSection />
-        <MinistriesSection showDonateButton={false} />
+        <MinistriesSection  showDonateButton={true} />
         <StatsSection />
         <CommunitySection />
         <StorySection/>

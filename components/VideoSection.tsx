@@ -4,7 +4,7 @@ import VideoCard, { type Video } from '@/components/VideoCard'
 export const videos: Video[] = [
   {
     id: 1,
-    thumbnail: 'video-1_caijjg',
+    thumbnail: 'Screenshot_1083_jqkuqr',
     alt: 'Real Hope Ministry community gathering - Food Project',
 
     mediaSrc: [
@@ -16,13 +16,9 @@ export const videos: Video[] = [
   },
   {
     id: 2,
-    thumbnail: 'video-2_bxmu4l',
+    thumbnail: 'widows_rvnx1s',
     alt: 'Widows ministry - Christmas clothes',
-    // ✅ 2 videos play inside this ONE card, back-to-back
-    mediaSrc: [
-      'VID_81990722_054044_870_leeqwa',
-      'WhatsApp_Video_2026-02-26_at_12.53.21_PM_rsw8yv'
-    ]
+    mediaSrc: 'Untitled_design_4_zeklp0'
   },
   {
     id: 3,
@@ -37,24 +33,18 @@ export const videos: Video[] = [
     alt: 'Orphanage project',
     mediaSrc: ['1._gathering_ay8fgz', 'orphange_zbprw0']
   },
-  
+
   {
     id: 5,
-    thumbnail: 'download_yxnfkh',
+    thumbnail: 'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
     alt: 'Clean water project',
-    mediaSrc: ['clean-water_ixmfdk',]
+    mediaSrc: ['clean-water_ixmfdk', 'Untitled_design_3_ow5puk']
   },
   {
     id: 6,
-    thumbnail: 'IMG_20220302_145544_360_xmrirx',
-    alt: 'Youth mission',
-    mediaSrc: undefined
-  },
-  {
-    id: 7,
-    thumbnail: 'DSC_7676_1_mutgql',
-    alt: 'Orphanage project',
-    mediaSrc: 'Untitled_mrt8m2'
+    thumbnail: 'primary_d1yylj',
+    alt: 'Free people',
+    mediaSrc: 'Untitled_design_5_c2jt9c'
   }
 ]
 

@@ -1,11 +1,17 @@
 import CurvedCarousel from '../Curvedcarousel'
 
 const communityImages = [
-  'IMG_0803_g9zy0s.jpg',
-  'c88d8ba9cc368e151485336b1073cdea69270d73_2_cgzaut',
-  'Mask_group_4_drqvat',
-  'IMG_0663_otmahe',
-  'DSC_7820_1_qda3pj'
+  'food_vzy14n',
+  'orphanage_b3ciwu',
+  'photo-4_racfz6',
+  'photo-3_qxsn4b',
+  'photo-5_lwvur4',
+  '2c935d9d8598fb9b5264ff3413972374581caf98_i23etx',
+  'primary_d1yylj',
+  'widows_rvnx1s',
+  'DSC_7820_1_qda3pj',
+  'DSC_7679_1_hjzlhk',
+  'DSC_3082_1_lfvubr'
 ]
 export default function CommunitySection () {
   return (

@@ -33,7 +33,7 @@ function ComingSoonOverlay ({ onClose }: { onClose: () => void }) {
           e.stopPropagation() // ← parent div ka onClick rok do
           onClose()
         }}
-        className='mt-3 bg-white/20 hover:bg-navy/40 text-white rounded-full px-4 py-1 text-sm'
+        className='mt-3 bg-navy/80 hover:bg-navy text-white rounded-full px-4 py-1 text-sm'
       >
         ✕ Close
       </button>
@@ -98,7 +98,7 @@ function VideoPlayer ({
         playsInline
         controls
         preload='metadata'
-        poster={buildImage(poster, 800)}
+        poster={buildImage(poster, 1920)}
         onEnded={handleEnded}
       >
         <source src={currentSrc} type='video/mp4' />
@@ -109,7 +109,7 @@ function VideoPlayer ({
           e.stopPropagation() // ← parent div ka onClick rok do
           onClose()
         }}
-        className='absolute top-2 right-2 z-10 bg-white/20 hover:bg-white/40 text-white rounded-2xl  p-1'
+        className='absolute top-2 right-2 z-10 bg-navy/40 flex items-center justify-center hover:bg-green/80 text-white rounded-2xl w-6 h-6 p-1'
       >
         ✕
       </button>

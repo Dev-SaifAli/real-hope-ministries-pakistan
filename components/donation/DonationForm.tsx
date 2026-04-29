@@ -82,7 +82,7 @@ export default function DonationForm() {
         </div>
 
         {/* ── Right: Donation Form ── */}
-        <div className='bg-white border border-[#00000014] rounded-2xl p-4 sm:p-6 md:p-10 shadow-xl shadow-navy/5 space-y-8'>
+        <form className='bg-white border border-[#00000014] rounded-2xl p-4 sm:p-6 md:p-10 shadow-xl shadow-navy/5 space-y-8'>
           {/* Donation Type Toggle */}
           <div className='space-y-4'>
             <p className='text-[16px] font-semibold font-sans text-black'>
@@ -253,7 +253,7 @@ export default function DonationForm() {
               Your transaction is secure and encrypted.
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </>
   )

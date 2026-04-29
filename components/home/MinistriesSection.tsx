@@ -1,11 +1,11 @@
 import ProjectCard from '../ProjectCard'
 import { PROJECTS } from '@/utils/constants'
 
-interface MinisteriesSectionProps {
+interface MinistriesSectionProps {
   showDonateButton?: boolean
 }
 
-export default function MinistriesSection ({ showDonateButton = false }: MinisteriesSectionProps) {
+export default function MinistriesSection ({ showDonateButton = false }: MinistriesSectionProps) {
   return (
     <section
       id='projects'
@@ -14,7 +14,7 @@ export default function MinistriesSection ({ showDonateButton = false }: Ministe
       <div className='max-w-360 mx-auto px-4 sm:px-6 lg:px-10'>
         <div className='impact-section mb-7   sm:mb-8 md:mb-10 '>
           <h2 className='font-display font-semibold text-navy impact-heading mb-2 md:mb-3 lg:mb-5'>
-            Our Ministries and <span className='text-green'>Projects</span>
+            Our Missionary  and <span className='text-green'>Projects</span>
           </h2>
           <p className='font-sans text-black impact-para px-2 sm:px-4'>
             We operate multiple initiatives targeting critical needs across

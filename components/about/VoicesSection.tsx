@@ -8,7 +8,7 @@ import { buildImage, buildVideo } from '@/utils/cloudinary'
 
 const newIds = [
   'IMG_0663_otmahe',
-  '3b760bfd9fefac72fe9adec50e24c5ec8110c0c8_epgiig',
+  'DSC_3082_1_lfvubr',
   'food_vzy14n',
   'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
   'IMG_0803_g9zy0s',
@@ -17,7 +17,7 @@ const newIds = [
   'widows_rvnx1s',
   'orphanage_b3ciwu',
   'food_vzy14n',
-  'DSC_7676_1_mutgql',
+  'ChatGPT_Image_Apr_29_2026_11_23_01_AM_foyoec',
   '9f9b70fed6ee900561182ee105c7024993851773_x6idlb',
   'DSC_7679_1_hjzlhk',
   'DSC_7690_1_xbcdqr',
@@ -32,7 +32,7 @@ const ALL_PHOTOS = [
   },
   {
     id: 2,
-    src: '3b760bfd9fefac72fe9adec50e24c5ec8110c0c8_epgiig',
+    src: 'DSC_3082_1_lfvubr',
     alt: 'Community gathering'
   },
   {
@@ -58,8 +58,8 @@ const ALL_PHOTOS = [
 ]
 
 const VIDEO_DATA = {
-  src: 'f7d7478b9ced771bd3d34f972d525e83dc0e1917_kzzx6v',
-  videoUrl: 'food-project_supddx', // Replace with real ID
+  src: 'Screenshot_1083_jqkuqr',
+  videoUrl: 'WhatsApp_Video_2026-04-27_at_11.31.42_PM_jipxh2', // Replace with real ID
   alt: 'Real Hope Ministry video'
 }
 

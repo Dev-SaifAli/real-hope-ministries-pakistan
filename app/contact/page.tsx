@@ -65,7 +65,7 @@ export default function ContactUs() {
         showButton={false}
         title='Contact Us'
         subtitle='We’d love to hear from you. Reach out to us for inquiries, partnerships, or support. Your Small Step can change someone’s entire life .'
-        imageSrc='Mask_group_8_f9ldyb'
+        imageSrc='ChatGPT_Image_Apr_29_2026_10_46_51_AM_vnnp8q'
       />
 
       <div className='min-h-screen w-full bg-white   py-12 md:py-20'>

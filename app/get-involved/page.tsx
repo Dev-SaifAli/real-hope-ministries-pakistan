@@ -15,7 +15,7 @@ const involvementCards = [
     description:
       'Help in outreach programs, food distribution and community support directly on the ground.',
     image:
-      'Mask_group_4_drqvat'
+      'ChatGPT_Image_Apr_29_2026_09_47_01_AM_o4eoqa'
   },
   {
     icon: <Shield className='w-6 h-6 text-white' />,

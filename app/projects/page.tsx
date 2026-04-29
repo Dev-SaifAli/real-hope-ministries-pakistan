@@ -8,12 +8,12 @@ export default function AboutPage () {
         <PageHero
           href='#projects'
           secondaryButtonText='Get Involve'
-          title='Hope for Communities Across Pakistan'
+          title='Our Missionary Work Across Pakistan'
           subtitle='Serving people through care, support, and outreach.'
           imageSrc='Mask_group_1_qnvxbp'
         />
 
-        <MinistriesSection showDonateButton={true} />
+        <MinistriesSection showDonateButton={false} />
         <CTASection />
       </main>
     </>

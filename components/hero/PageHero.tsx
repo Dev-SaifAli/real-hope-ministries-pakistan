@@ -42,7 +42,7 @@ export default function PageHero({
           className='
             font-display max-w-5xl font-semibold text-white 
             impact-heading       
-            mb-4 drop-shadow-md mx-auto
+            mb-4 drop-shadow-md mx-auto 
           '
         >
           {renderTitle()}
