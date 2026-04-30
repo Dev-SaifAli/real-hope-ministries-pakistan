@@ -83,7 +83,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   //   'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none'
 
   donate:
-    'bg-[#F59E0B] text-white px-6 py-3 rounded-[15px] ' +
+    'bg-orange hover:from-orange-500 hover:to-orange-700 text-white px-6 py-3 rounded-[15px] ' +
     'transition-all duration-200 ' +
     'hover:bg-orange hover:shadow-md ' +
     'active:scale-95 active:bg-orange ' +

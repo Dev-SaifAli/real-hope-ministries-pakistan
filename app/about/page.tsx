@@ -7,12 +7,15 @@ import AboutSection from '@/components/home/AboutSection'
 import StatsSection from '@/components/home/StatsSection'
 import VoicesSection from '@/components/about/VoicesSection'
 
+export const metadata = { title: 'About Us' }
+
 export default function AboutPage () {
   return (
     <>
       <main>
         <PageHero
-          href='#about'
+          href='#real-hope-pakistan'
+          primaryHref='/support-us#donation-form'
           secondaryButtonText='Discover Our Work'
           title='Our Mission for Hope and Services'
           subtitle='Empowering Vulnerable communities across Pakistan through compassionate aid, Sustainable Development , and unwavering supports'

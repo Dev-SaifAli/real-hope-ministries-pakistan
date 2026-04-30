@@ -15,7 +15,7 @@ const quickLinks: FooterLink[] = [
   { label: 'About Us', href: '/#about' },
   { label: 'Our Projects', href: '/#projects' },
   { label: 'Community in Action', href: '/#community' },
-  { label: 'Contact Us', href: '/#contact' }
+  { label: 'Contact Us', href: '/contact#contact-form' }
 ]
 
 const ministries: FooterLink[] = [
@@ -164,10 +164,10 @@ export default function Footer() {
             reserved.
           </p>
           <div className='flex items-center gap-8 text-base'>
-            <Link href='/privacyandpolicy' className='hover:text-green  '>
+            <Link href='/privacy-policy' className='hover:text-green  '>
               Privacy Policy
             </Link>
-            <Link href='/termsandconditions' className='hover:text-green  '>
+            <Link href='/terms-and-conditions' className='hover:text-green  '>
               Term and Services
             </Link>
           </div>

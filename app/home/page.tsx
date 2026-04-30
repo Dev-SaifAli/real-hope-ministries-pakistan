@@ -7,6 +7,8 @@ import CommunitySection from '@/components/home/CommunitySection'
 import StorySection from '@/components/home/StorySection'
 import ContactInfoSection from '@/components/home/ContactInfoSection'
 
+export const metadata = { title: 'Home' }
+
 export default function HomePage () {
   return (
     <>

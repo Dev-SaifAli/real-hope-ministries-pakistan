@@ -78,7 +78,7 @@ export default function HomeHero({
     <section
       ref={sectionRef}
       aria-label='Homepage hero'
-      className='relative w-full min-h-screen overflow-hidden'
+      className='relative w-full min-h-[60vh] sm:min-h-[100dvh] overflow-hidden'
     >
       {/* ── LCP image fallback — gradient baked in via style ── */}
       <div className='absolute inset-0' style={{ zIndex: 0 }}>
@@ -142,10 +142,10 @@ export default function HomeHero({
         <div className='main-container'>
           <motion.p
             variants={itemVariants}
-            className='relative text-white italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3 font-display font-semibold leading-snug w-fit group sm:mx-0'
+            className='relative text-white shadow-black/50 italic text-sm sm:text-sm md:text-base lg:text-2xl mb-2 sm:mb-3 font-display font-semibold leading-snug w-fit group sm:mx-0'
           >
             Real Hope Ministries Pakistan
-            <span className='absolute left-0 -bottom-1 h-[3px] w-full bg-[linear-gradient(to_right,white_0%,white_50%,transparent_100%)]' />
+            <span className='absolute left-0 rounded-full -bottom-2 h-[4px] w-full bg-[linear-gradient(to_right,white_0%,white_50%,transparent_100%)]' />
           </motion.p>
 
 
@@ -162,8 +162,8 @@ export default function HomeHero({
             {subtitle}
           </motion.p>
           <motion.div variants={itemVariants} className='flex flex-wrap gap-3'>
-            <Button href='/donation' text='Support Us' variant='support' />
-            <Button href='#about' text='Learn More' variant='learnMore' />
+            <Button href='/support-us' text='Support Us' variant='support' />
+            <Button href='#real-hope-pakistan' text='Learn More' variant='learnMore' />
           </motion.div>
         </div>
       </motion.div>

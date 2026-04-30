@@ -1,4 +1,4 @@
-export default function MissionVisionSection () {
+export default function MissionVisionSection() {
   return (
     <section className='w-full bg-white mt-12 md:mt-20  lg:mt-28 '>
       <div className='main-container'>

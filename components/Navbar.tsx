@@ -16,7 +16,6 @@ const navLinks: NavLink[] = [
   { label: 'Home', href: '/home' },
   { label: 'About Us', href: '/about' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Donate', href: '/donation' },
   { label: 'Contact Us', href: '/contact' }
 ]
 
@@ -49,7 +48,7 @@ export default function Navbar() {
   const lastScrollY = useRef(0)
   const pathName = usePathname()
   const isLightPage =
-    pathName === '/termsandconditions' || pathName === '/privacyandpolicy'
+    pathName === '/terms-and-conditions' || pathName === '/privacy-policy'
   const isScrolled = !isAtTop
   const isLegalPage = isLightPage
 
@@ -193,7 +192,7 @@ transition-all duration-300
                   <Button
                     variant='supportNav'
                     text='Support Us'
-                    href='/donation#donation-form'
+                    href='/support-us'
                   />
                 </motion.div>
               </div>
@@ -309,7 +308,7 @@ transition-all duration-300
 
               <div className='mt-auto pt-5 border-t border-white/10 sm:hidden'>
                 <Link
-                  href='/donation#donation-form'
+                  href='/support-us'
                   onClick={closeMenu}
                   className='flex items-center justify-center h-11 w-full bg-navy text-white rounded-xl text-base font-semibold font-display hover:opacity-90 transition-opacity'
                 >

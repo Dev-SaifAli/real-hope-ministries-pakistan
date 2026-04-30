@@ -76,11 +76,12 @@ export default function GetInvolved () {
     <>
       <PageHero
         primaryButtonText='Become a Volunteer'
+        primaryHref='#involved'
         secondaryButtonText='Donate Now'
+        href='/support-us#donation-form'
         title='Be a part of the change and help bring hope to communities in need.'
         subtitle='Whether through volunteering, partnerships or advocacy, you can help transform lives in Pakistan.'
         imageSrc='Mask_group_1_qnvxbp'
-        href='#involved'
       />
       {/* // FIX: px-4 mobile → px-8 sm → px-16 md → px-24 lg — prevents content
       touching edges on 320px */}

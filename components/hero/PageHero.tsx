@@ -20,13 +20,13 @@ export default function PageHero({
   showButton = true,
   primaryButtonText = 'Support Us ',
   secondaryButtonText = 'Learn More',
-  primaryHref = '/donation'
+  primaryHref = '/support-us#donation-form'
 }: PageHeroProps) {
   const renderTitle = () => {
     return title
   }
   return (
-    <section className=' min-h-screen w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
+    <section className='min-h-[60vh] sm:min-h-[100dvh] w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
       <Image
         src={buildImage(imageSrc, 1920)}
         alt='Hero background'

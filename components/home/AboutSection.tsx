@@ -116,11 +116,11 @@ export default function AboutSection () {
 
   return (
     <section
-      id='about'
-      className='w-full bg-white mt-11 md:mt-16 overflow-hidden scroll-mt-28'
+      id='real-hope-pakistan'
+      className='w-full bg-white mt-11 md:mt-16 -mb-20 overflow-hidden scroll-mt-28'
     >
       {/* Section Header */}
-      <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
+      <div className='impact-section mb-10 md:mb-12  '>
         <p className='font-display font-semibold text-green text-[16px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-6'>
           About Real Hope Pakistan
         </p>
@@ -157,20 +157,29 @@ export default function AboutSection () {
       </div>
 
       {/* Dots */}
-      <div className='flex items-center justify-center gap-2 mt-6 md:mt-8'>
-        {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
-          <button
-            type='button'
-            key={index}
-            onClick={() => handleDotClick(index)}
-            aria-label={`Go to slide ${index + 1}`}
-            className={`rounded-full transition-all duration-200 ${
-              activeSlide % totalVideos === index
-                ? 'w-3 h-3 bg-navy'
-                : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-            }`}
-          />
-        ))}
+      <div className='flex items-center justify-center gap-4 mt-8 md:mt-12 pb-20'>
+        {Array.from({ length: SLIDE_COUNT }).map((_, index) => {
+          const isActive = activeSlide % totalVideos === index;
+          return (
+            <button
+              type='button'
+              key={index}
+              onClick={() => handleDotClick(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`rounded-full transition-all duration-300 w-4 h-4 ${
+                isActive ? 'bg-navy' : 'bg-[#C1C9D2] hover:bg-[#A8B2BD]'
+              }`}
+              style={{
+                boxShadow: `${
+                  isActive
+                    ? 'inset 0px 4px 6px rgba(255,255,255,0.1), inset 0px -4px 6px rgba(0,0,0,0.4)'
+                    : 'inset 0px 6px 8px rgba(255,255,255,1), inset 0px -4px 6px rgba(0,0,0,0.1)'
+                }, 0px 2px 4px 0px rgba(0,0,0,0.08), 0px 6px 8px 0px rgba(0,0,0,0.05), 0px 12px 12px 0px rgba(0,0,0,0.03), 0px 18px 16px 0px rgba(0,0,0,0.01)`,
+                backdropFilter: 'blur(15px)'
+              }}
+            />
+          );
+        })}
       </div>
     </section>
   )

@@ -40,6 +40,25 @@ export default function DonationForm() {
     message: ''
   })
 
+  // Read URL params to auto-fill amount from Project Cards
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const amountParam = params.get('amount')
+      if (amountParam) {
+        const standardAmounts = ['$500', '$1000', '$2000', '$5000']
+        const formatted = `$${amountParam}`
+        
+        if (standardAmounts.includes(formatted)) {
+          setSelectedAmount(formatted)
+        } else {
+          setSelectedAmount('Custom')
+          setCustomAmount(amountParam)
+        }
+      }
+    }
+  }, [])
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -124,9 +143,15 @@ export default function DonationForm() {
                 <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-sans font-semibold'>$</span>
                 <input
                   type='number'
+                  min='1'
                   placeholder='Enter custom amount'
                   value={customAmount}
-                  onChange={(e) => setCustomAmount(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    if (val === '' || Number(val) > 0) {
+                      setCustomAmount(val)
+                    }
+                  }}
                   className='w-full bg-white border border-[#D9E1EA] rounded-xl pl-8 pr-4 py-3 text-base font-sans text-gray-700 focus:outline-none focus:ring-2 focus:ring-green/20 focus:border-green transition-all'
                 />
               </div>

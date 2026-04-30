@@ -8,18 +8,26 @@
   /* Custom Brand Colors */
   --color-navy: #0b2545;
   --color-green: #2e9e6f;
-  --color-orange: #ffa500;
+  --color-orange: #f59e0b;
   --color-pearl: #fff5e6;
   --radius-5xl: 3rem;
+  --color-orange-100: #fef3c7;
+  --color-orange-200: #fde68a;
+  --color-orange-300: #fcd34d;
+  --color-orange-400: #fbbf24;
+  --color-orange-500: #f59e0b; /* original */
+  --color-orange-600: #d97706;
+  --color-orange-700: #b45309;
+  --color-orange-800: #92400e;
 }
 
 @layer components {
   .impact-section {
-    @apply text-center px-6 lg:px-10 w-full sm:max-w-[800px] md:max-w-[900px] mx-auto;
+    @apply text-center px-2 lg:px-10 w-full sm:max-w-[800px] md:max-w-[900px] mx-auto;
   }
 
   .impact-para {
-    @apply text-sm sm:text-[14px] md:text-[17px] leading-relaxed;
+    @apply text-sm  md:text-[17px] leading-relaxed;
   }
 
   .impact-heading {
@@ -33,7 +41,6 @@
 
 /* --- Base Resets & Global Styles --- */
 @layer base {
-
   *,
   *::before,
   *::after {

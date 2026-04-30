@@ -1,13 +1,15 @@
 import PageHero from '@/components/hero/PageHero'
 import MinistriesSection from '@/components/home/MinistriesSection'
 import CTASection from '@/components/home/CTASection'
-export default function AboutPage () {
+export const metadata = { title: 'Projects' }
+
+export default function ProjectsPage () {
   return (
     <>
       <main>
         <PageHero
           href='#projects'
-          secondaryButtonText='Get Involve'
+          secondaryButtonText='See Projects'
           title='Our Missionary Work Across Pakistan'
           subtitle='Serving people through care, support, and outreach.'
           imageSrc='Mask_group_1_qnvxbp'

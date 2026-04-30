@@ -130,17 +130,17 @@ export default function StatsSection () {
   const pathName = usePathname()
 
   const buttonHref =
-    pathName === '/donation'
-      ? '/contact#contactForm'
-      : '/donation#donation-form'
+    pathName === '/support-us'
+      ? '/contact#contact-form'
+      : '/support-us#donation-form'
   const buttonText =
-    pathName === '/donation' ? 'Contact Us' : 'Support Our Mission'
+    pathName === '/support-us' ? 'Contact Us' : 'Support Our Mission'
   return (
     <section className='main-container bg-white   mt-12 mb-12 sm:mb-16 lg:mb-20 xl:mb-28 sm:mt-17.5  '>
       <div className='mx-auto flex justify-center'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           {/* ── Left: Heading + Para + Button ── */}
-          <div className='flex flex-col'>
+          <div className='flex flex-col flex-1'>
             <h2 className='font-display font-semibold text-navy impact-heading  mb-5'>
               Creating <span className='text-green'>Lasting Impact</span>
               <br />
