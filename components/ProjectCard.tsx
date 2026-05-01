@@ -158,7 +158,7 @@ export default function ProjectCard({
                 <Link
                   key={amount}
                   href={`/support-us?amount=${amount}#donation-form`}
-                  className='py-2 text-center text-sm font-bold text-navy border-2 border-navy/10 rounded-xl hover:border-navy hover:bg-navy hover:text-white transition-all duration-200'
+                  className='py-2 px-1  text-center text-xs lg:text-sm font-bold text-navy border-2 border-navy/10 rounded-xl hover:border-navy hover:bg-navy hover:text-white transition-all duration-200'
                 >
                   ${amount}
                 </Link>

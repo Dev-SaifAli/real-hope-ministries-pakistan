@@ -48,7 +48,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
   // ── CTA Section buttons ───────────────────────────────────────
   supportMission:
-    'bg-navy text-white px-6 py-3 rounded-[15px] ' +
+    'bg-navy max-[769px]:px-20 text-white px-6 py-3 rounded-[15px] ' +
     'transition-all duration-200 ' +
     'hover:bg-[#071a33] hover:shadow-md ' +
     'active:scale-95 active:bg-[#050f1f] ' +
@@ -65,7 +65,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
   // ── Watch Story ───────────────────────────────────────────────
   watchStory:
-    'bg-[#F59E0B] text-white px-6 py-3 rounded-[15px] ' +
+    'bg-[#F59E0B] max-[769px]:px-20 text-white px-6 py-3 rounded-[15px] ' +
     'transition-all duration-200 ' +
     'hover:bg-orange hover:shadow-md ' +
     'active:scale-95 active:bg-orange ' +
@@ -99,7 +99,7 @@ const Button: React.FC<ButtonProps> = ({ variant, text, href = '' }) => {
       className={`
         inline-flex items-center justify-center
         whitespace-nowrap
-        text-sm sm:text-base xl:text-base  font-sans font-bold
+        text-sm lg:text-base xl:text-base  font-sans font-bold
         transition-all duration-200 active:scale-95
         ${variantStyles[variant]}
       `}

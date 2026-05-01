@@ -121,7 +121,7 @@ export default function AboutSection () {
     <section
       id='real-hope-pakistan'
       className={`w-full bg-white overflow-hidden scroll-mt-28 ${
-        isHomePage ? 'mt-11 md:mt-16 -mb-20' : 'py-12 md:py-20'
+        isHomePage ? 'mt-11 md:mt-16 -mb-20' : 'pt-12 md:pt-20'
       }`}
     >
       {/* Section Header */}

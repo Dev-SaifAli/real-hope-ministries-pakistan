@@ -21,28 +21,28 @@ const stats: Stat[] = [
     numeric: 50000,
     suffix: '+',
     label: 'People Helped Annually',
-    icon: <Users size={24} strokeWidth={1.5} className='text-slate-600' />
+    icon: <Users size={24} strokeWidth={2} className='text-navy' />
   },
   {
     id: 2,
     numeric: 350,
     suffix: '',
     label: 'Water Pumps Installed',
-    icon: <Droplet size={24} strokeWidth={1.5} className='text-slate-600' />
+    icon: <Droplet size={24} strokeWidth={2} className='text-navy' />
   },
   {
     id: 3,
     numeric: 800,
     suffix: '',
     label: 'Families Supported',
-    icon: <House size={24} strokeWidth={1.5} className='text-slate-600' />
+    icon: <House size={24} strokeWidth={2} className='text-navy' />
   },
   {
     id: 4,
     numeric: 450,
     suffix: '',
     label: 'Communities Reached',
-    icon: <MapPin size={24} strokeWidth={1.5} className='text-slate-600' />
+    icon: <MapPin size={24} strokeWidth={2} className='text-navy' />
   }
 ]
 
@@ -98,27 +98,29 @@ function StatCard ({ stat }: { stat: Stat }) {
       ref={ref}
       className='
         flex flex-col gap-3
-        bg-white rounded-2xl
-        items-center w-full   justify-center mx-auto py-6 px-2
-        shadow-[0_2px_16px_rgba(0,0,0,0.06)]
+        bg-white rounded-3xl
+        items-center w-full justify-center mx-auto
+        aspect-square p-4
+
+        shadow-[0_2px_16px_rgba(0,0,0,0.2)]
         border border-gray-100
         transition-shadow duration-300
         hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]
       '
     >
       {/* Icon */}
-      <div className='w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center shrink-0'>
+      <div className='2xl:w-16 2xl:h-16 md:w-12 md:h-12 w-10 h-10 rounded-full bg-[#0B254542] flex items-center justify-center shrink-0 mb-2'>
         {stat.icon}
       </div>
 
       {/* Animated number */}
-      <p className='font-display font-bold text-navy text-2xl sm:text-3xl leading-none tracking-tight'>
+      <p className='font-display font-extrabold text-navy text-3xl 2xl:text-4xl leading-none tracking-tight'>
         {count.toLocaleString('en-US')}
         {stat.suffix}
       </p>
 
       {/* Label */}
-      <p className='font-sans text-sm sm:text-[15px] text-center leading-snug'>
+      <p className='font-sans text-black text-xs xl:text-sm 2xl:text-base whitespace-nowrap text-center px-2'>
         {stat.label}
       </p>
     </div>
@@ -137,28 +139,26 @@ export default function StatsSection () {
     pathName === '/support-us' ? 'Contact Us' : 'Support Our Mission'
   return (
     <section className='main-container bg-white   mt-12 mb-12 sm:mb-16 lg:mb-20 xl:mb-28 sm:mt-17.5  '>
-      <div className='mx-auto flex justify-center'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
+      
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center'>
           {/* ── Left: Heading + Para + Button ── */}
-          <div className='flex flex-col flex-1'>
-            <h2 className='font-display font-semibold text-navy impact-heading  mb-5'>
-              Creating <span className='text-green'>Lasting Impact</span>
-              <br />
-              Across Communities in <span className='text-green'>Pakistan</span>
+          <div className='lg:col-span-7 col-span-12 flex flex-col'>
+            <h2 className='font-display font-semibold text-navy  max-[769px]:text-center impact-heading mb-3 xl:mb-5'>
+              Creating <span className='text-green'>Lasting Impact</span> <br />
+              <span className='lg:whitespace-nowrap'>
+                Across Communities in <br className='lg:block hidden' />
+                <span className='text-green'>Pakistan</span>
+              </span>
             </h2>
 
-            {/* ✅ max-w-md — para on lg won't stretch too wide */}
-            <p className='font-sans text-black impact-para  mb-8 md:mb-10 max-w-150 '>
-              Through our ongoing efforts across Pakistan, we have been able to
-              support vulnerable communities, provide essential resources, and
-              create opportunities for a better future. Our work is focused on
-              delivering real, measurable impact by addressing immediate needs
+            <p className='font-sans text-black impact-para max-[769px]:text-center mb-8 xl:mb-10 w-full whitespace-normal lg:max-w-[500px] xl:max-w-2xl'>
+              Through our ongoing efforts across Pakistan, we have been able to support vulnerable communities, provide essential resources, and create opportunities for a better future. Our work is focused on    delivering real, measurable impact by addressing immediate needs
               while also building long-term support systems. Every initiative we
               undertake is driven by compassion, transparency, and a commitment
               to meaningful change.
             </p>
 
-            <div>
+            <div className='pb-2 max-[769px]:text-center '>
               <Button
                 href={buttonHref}
                 text={buttonText}
@@ -168,13 +168,13 @@ export default function StatsSection () {
           </div>
 
           {/* ── Right: 2x2 stat cards ── */}
-          <div className='grid grid-cols-2 gap-4 sm:gap-5 max-w-[500px] w-full ml-auto'>
+          <div className='lg:col-span-5 col-span-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-4 xl:gap-8 lg:max-w-[400px] 2xl:max-w-[480px] w-full lg:ml-auto self-start'>
             {stats.map(stat => (
               <StatCard key={stat.id} stat={stat} />
             ))}
           </div>
         </div>
-      </div>
+       
     </section>
   )
 }

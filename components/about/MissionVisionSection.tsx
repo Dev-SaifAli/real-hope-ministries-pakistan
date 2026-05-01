@@ -1,6 +1,6 @@
 export default function MissionVisionSection() {
   return (
-    <section className='w-full bg-white mt-12 md:mt-20  lg:mt-28 '>
+    <section className='w-full bg-white  '>
       <div className='main-container'>
         <div className='grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-26 md:items-stretch'>
 

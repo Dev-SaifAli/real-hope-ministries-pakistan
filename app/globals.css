@@ -27,11 +27,11 @@
   }
 
   .impact-para {
-    @apply text-sm  md:text-[17px] leading-relaxed;
+    @apply text-sm sm:text-[14px] md:text-[16px] lg:text-[16px]   xl:text-[17px] leading-relaxed;
   }
 
   .impact-heading {
-    @apply text-2xl sm:text-3xl md:text-2xl xl:text-[40px] 2xl:text-[44px] leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl xl:text-[40px] 2xl:text-[44px] leading-tight;
   }
 
   .main-container {

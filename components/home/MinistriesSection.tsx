@@ -19,7 +19,7 @@ export default function MinistriesSection ({
   return (
     <section
       id='projects'
-      className={`w-full bg-white px-4 sm:px-6 md:px-10 scroll-mt-28 ${
+      className={`w-full bg-white main-container scroll-mt-28 ${
         isHomePage ? 'mt-7 md:mt-14 lg:mt-21' : 'py-12 md:py-20'
       }`}
     >
