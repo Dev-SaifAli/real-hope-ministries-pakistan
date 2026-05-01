@@ -16,7 +16,7 @@ export const videos: Video[] = [
   },
   {
     id: 2,
-    thumbnail: 'widows_rvnx1s',
+    thumbnail: 'Gemini_Generated_Image_ae8wsfae8wsfae8w_kwjkio',
     alt: 'Widows ministry - Christmas clothes',
     mediaSrc: 'Untitled_design_4_zeklp0'
   },
@@ -36,7 +36,7 @@ export const videos: Video[] = [
 
   {
     id: 5,
-    thumbnail: 'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
+    thumbnail: 'Gemini_Generated_Image_zckniczckniczckn_pacsn6',
     alt: 'Clean water project',
     mediaSrc: ['clean-water_ixmfdk', 'Untitled_design_3_ow5puk']
   },

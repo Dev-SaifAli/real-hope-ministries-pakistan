@@ -12,10 +12,14 @@ export default function ProjectsPage () {
           secondaryButtonText='See Projects'
           title='Our Missionary Work Across Pakistan'
           subtitle='Serving people through care, support, and outreach.'
-          imageSrc='Mask_group_1_qnvxbp'
+          imageSrc='Gemini_Generated_Image_zckniczckniczckn_pacsn6'
         />
 
-        <MinistriesSection showDonateButton={false} />
+        <MinistriesSection 
+          showDonateButton={false} 
+          showProgress={false} 
+          showUrgent={false} 
+        />
         <CTASection />
       </main>
     </>

@@ -11,10 +11,10 @@ interface FooterLink {
 // }
 
 const quickLinks: FooterLink[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/#about' },
-  { label: 'Our Projects', href: '/#projects' },
-  { label: 'Community in Action', href: '/#community' },
+  { label: 'Home', href: '/home' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Our Projects', href: '/home#projects' },
+  { label: 'Community in Action', href: '/home#community' },
   { label: 'Contact Us', href: '/contact#contact-form' }
 ]
 

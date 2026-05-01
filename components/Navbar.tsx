@@ -113,7 +113,7 @@ transition-all duration-300
         >
           {/* Logo */}
           <Link
-            href='/'
+            href='/home'
             className='flex flex-row items-center gap-3 xl:gap-4 shrink-0 min-w-0'
           >
             <Image

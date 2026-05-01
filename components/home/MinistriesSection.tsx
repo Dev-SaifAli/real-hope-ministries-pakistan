@@ -1,15 +1,27 @@
+'use client'
+import { usePathname } from 'next/navigation'
 import ProjectCard from '../ProjectCard'
 import { PROJECTS } from '@/utils/constants'
 
 interface MinistriesSectionProps {
   showDonateButton?: boolean
+  showProgress?: boolean
+  showUrgent?: boolean
 }
 
-export default function MinistriesSection ({ showDonateButton = false }: MinistriesSectionProps) {
+export default function MinistriesSection ({ 
+  showDonateButton = false,
+  showProgress = true,
+  showUrgent = true 
+}: MinistriesSectionProps) {
+  const pathname = usePathname()
+  const isHomePage = pathname === '/' || pathname === '/home'
   return (
     <section
       id='projects'
-      className='w-full bg-white mt-7 md:mt-14 lg:mt-21 px-4  sm:px-6 md:px-10 scroll-mt-28'
+      className={`w-full bg-white px-4 sm:px-6 md:px-10 scroll-mt-28 ${
+        isHomePage ? 'mt-7 md:mt-14 lg:mt-21' : 'py-12 md:py-20'
+      }`}
     >
       
         <div className='impact-section mb-7   sm:mb-8 md:mb-10 '>
@@ -31,7 +43,12 @@ export default function MinistriesSection ({ showDonateButton = false }: Ministr
 '>
   {PROJECTS.map(project => (
     <div key={project.id} className='snap-start flex-shrink-0 w-[80vw] sm:w-auto'>
-      <ProjectCard project={project} showDonateButton={showDonateButton} />
+      <ProjectCard 
+        project={project} 
+        showDonateButton={showDonateButton} 
+        showProgress={showProgress}
+        showUrgent={showUrgent}
+      />
     </div>
   ))}
 </div>

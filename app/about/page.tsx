@@ -19,7 +19,7 @@ export default function AboutPage () {
           secondaryButtonText='Discover Our Work'
           title='Our Mission for Hope and Services'
           subtitle='Empowering Vulnerable communities across Pakistan through compassionate aid, Sustainable Development , and unwavering supports'
-          imageSrc='Mask_group_3_w4iklc'
+          imageSrc='Gemini_Generated_Image_nfgij3nfgij3nfgi_hloy0d'
         />
         <AboutSection />
         <MissionVisionSection  />

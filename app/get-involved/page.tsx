@@ -1,12 +1,13 @@
 'use client'
 import PageHero from '@/components/hero/PageHero'
 
-import React, { useState } from 'react'
+import { useActionState, useRef, useEffect } from 'react'
 import { Users, Shield, Flame, Megaphone } from 'lucide-react'
 import FormInput from '@/components/ui/FormInput'
 import FormSelect from '@/components/ui/FormSelect'
 import Image from 'next/image'
 import { buildImage } from '@/utils/cloudinary'
+import { sendInvolvementForm, type InvolvementFormState } from './actions'
 
 const involvementCards = [
   {
@@ -51,27 +52,22 @@ const areaOptions = [
   'Other'
 ]
 
+const initialState: InvolvementFormState = {
+  success: false,
+  message: ''
+}
+
 export default function GetInvolved () {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    country: '',
-    areaOfInterest: '',
-    message: ''
-  })
+  const [state, formAction, pending] = useActionState(sendInvolvementForm, initialState)
+  const formRef = useRef<HTMLFormElement>(null)
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value })
-  }
+  // Reset form fields after successful submission
+  useEffect(() => {
+    if (state.success) {
+      formRef.current?.reset()
+    }
+  }, [state])
 
-  const handleSubmit = () => {
-    console.log('Application submitted:', formData)
-  }
   return (
     <>
       <PageHero
@@ -85,22 +81,21 @@ export default function GetInvolved () {
       />
       {/* // FIX: px-4 mobile → px-8 sm → px-16 md → px-24 lg — prevents content
       touching edges on 320px */}
-      <div className='min-h-screen w-full bg-white px-4 sm:px-8 md:px-16 lg:px-24 mt-20'>
-        {/* ── Section 1: Header ── */}
-        {/* FIX: mb-10 mobile, mb-32 md+ — too much gap on small screens */}
-        <div id='involved'
-         className='text-center px-4 sm:px-6 mb-10 md:mb-16 max-w-[900px] mx-auto'>
-          <h1 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 md:mb-6'>
-            Ways to <span className='text-green'>Get Involve</span>
+      <div className='min-h-screen w-full bg-white py-12 md:py-20'>
+        <div className='main-container'>
+          {/* ── Section 1: Header ── */}
+          <div id='involved' className='impact-section mb-10 md:mb-16'>
+          <h1 className='font-display font-semibold text-navy impact-heading mb-4 md:mb-6'>
+            Ways to <span className='text-green'>Get Involved</span>
           </h1>
-          <p className='font-sans text-black text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed'>
+          <p className='font-sans text-black impact-para leading-relaxed'>
             There are many ways you can contribute to our cause. Find the path
             that best fits your passion and resources.
           </p>
         </div>
 
         {/* ── Cards ── */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-16 items-stretch'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-20 items-stretch'>
           {involvementCards.map((card, i) => (
             <div
               key={i}
@@ -135,7 +130,7 @@ export default function GetInvolved () {
         </div>
 
         {/* ── Section 2: Start Your Journey ── */}
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start pb-16'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start pb-8'>
           {/* Left */}
           <div>
             <h2 className='text-[24px] md:text-[32px] font-semibold font-display text-navy mb-4'>
@@ -147,35 +142,34 @@ export default function GetInvolved () {
             </p>
           </div>
 
-          <div className=' border-1 border border-[#0000002B] shadow-[0px_5.38px_32.25px_0px_rgba(0,0,0,0.02)] rounded-2xl p-6 sm:p-10 md:py-10 max-w-[860px] mx-auto'>
-            <form className='space-y-5' onSubmit={handleSubmit}>
+          <div className='w-full border border-[#0000002B] shadow-[0px_5.38px_32.25px_0px_rgba(0,0,0,0.02)] rounded-2xl p-6 sm:p-10 md:py-10'>
+            <form ref={formRef} action={formAction} className='space-y-5'>
               {/* ── Full Name — full width ── */}
               <FormInput
                 id='fullName'
+                name='fullName'
                 label='Full Name'
                 type='text'
                 placeholder='e.g. Jane Doe'
-                value={formData.fullName}
-                onChange={handleChange}
+                required
               />
 
               {/* ── Email + Phone — 2 columns ── */}
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                 <FormInput
                   id='email'
+                  name='email'
                   label='Email Address'
                   type='email'
                   placeholder='jane@example.com'
-                  value={formData.email}
-                  onChange={handleChange}
+                  required
                 />
                 <FormInput
                   id='phone'
+                  name='phone'
                   label='Phone Number'
                   type='tel'
                   placeholder='+1 (555) 000-0000'
-                  value={formData.phone}
-                  onChange={handleChange}
                 />
               </div>
 
@@ -183,18 +177,18 @@ export default function GetInvolved () {
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                 <FormInput
                   id='country'
+                  name='country'
                   label='Country'
                   type='text'
                   placeholder='Where are you located?'
-                  value={formData.country}
-                  onChange={handleChange}
+                  required
                 />
                 <FormSelect
                   id='areaOfInterest'
+                  name='areaOfInterest'
                   label='Area of Interest'
                   options={areaOptions}
-                  value={formData.areaOfInterest}
-                  onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -202,31 +196,57 @@ export default function GetInvolved () {
               <div>
                 <label
                   htmlFor='message'
-                  className='block text-[16px] font-bold font-sans text-black mb-2'
+                  className='block text-[16px] font-bold font-sans text-black mb-1'
                 >
-                  Message
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id='message'
+                  name='message'
                   rows={5}
+                  required
                   placeholder='Tell us a bit about why you want to get involved...'
-                  value={formData.message}
-                  onChange={handleChange}
                   className='w-full bg-white border border-[#D9E1EA] rounded-md px-4 py-3 text-[16px] font-sans placeholder-black text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-navy'
                 />
               </div>
 
+              {/* Status Messages */}
+              {state.message && (
+                <div
+                  aria-live='polite'
+                  className={`p-4 rounded-md font-sans font-medium ${
+                    state.success
+                      ? 'bg-green/10 border border-green/30 text-green'
+                      : 'bg-red-50 border border-red-200 text-red-600'
+                  }`}
+                >
+                  {state.message}
+                </div>
+              )}
+
               {/* ── Submit ── */}
               <button
                 type='submit'
-                className='max-h-14 w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm'
+                disabled={pending}
+                className='max-h-14 w-full bg-navy text-white text-[16px] font-semibold font-sans py-4 rounded-md hover:bg-[#06162b] transition-all shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center'
               >
-                Submit Application
+                {pending ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit Application'
+                )}
               </button>
             </form>
           </div>
         </div>
       </div>
+    </div>
     </>
   )
 }

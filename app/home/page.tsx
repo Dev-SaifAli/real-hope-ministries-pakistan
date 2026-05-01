@@ -7,15 +7,19 @@ import CommunitySection from '@/components/home/CommunitySection'
 import StorySection from '@/components/home/StorySection'
 import ContactInfoSection from '@/components/home/ContactInfoSection'
 
-export const metadata = { title: 'Home' }
+export const metadata = { title: 'Home | Real Hope Pakistan' }
 
 export default function HomePage () {
   return (
     <>
       <main>
-        <HomeHero photoId='home-hero_hlzazt' />
+        <HomeHero photoId='Gemini_Generated_Image_zckniczckniczckn_pacsn6' />
         <AboutSection />
-        <MinistriesSection  showDonateButton={true} />
+        <MinistriesSection 
+          showDonateButton={true} 
+          showProgress={true} 
+          showUrgent={true} 
+        />
         <StatsSection />
         <CommunitySection />
         <StorySection/>

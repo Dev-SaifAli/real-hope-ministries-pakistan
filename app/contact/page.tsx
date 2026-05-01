@@ -71,7 +71,7 @@ export default function ContactUs() {
         imageSrc='ChatGPT_Image_Apr_29_2026_10_46_51_AM_vnnp8q'
       />
 
-      <div className='min-h-screen w-full bg-white   py-12 md:py-20'>
+      <div className='min-h-screen w-full bg-white   py-12 '>
         <div className='main-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24  '>
           {/* ── Left Column ── */}
           <div className='flex flex-col h-full'>

@@ -31,7 +31,7 @@ export default function HomeHero({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
   videoSrc = 'VID-20260425-WA0014_leuotp',
-  photoId = 'Mask_group_1_qnvxbp'
+  photoId = 'Gemini_Generated_Image_zckniczckniczckn_pacsn6'
 }: HeroProps) {
   const [videoReady, setVideoReady] = useState(false)
   const [showVideo, setShowVideo] = useState(false)

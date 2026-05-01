@@ -26,7 +26,7 @@ export default function PageHero({
     return title
   }
   return (
-    <section className='min-h-[60vh] sm:min-h-[100dvh] w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
+    <section className='min-h-[60vh] sm:min-h-[80dvh] w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
       <Image
         src={buildImage(imageSrc, 1920)}
         alt='Hero background'
@@ -34,7 +34,7 @@ export default function PageHero({
         className='object-cover object-center -z-20'
         loading='lazy'
       />
-      {/* <div className='absolute inset-0 bg-black/20 -z-10' /> */}
+      <div className='absolute inset-0 bg-black/40 -z-10' />
 
       <div className='relative z-10 text-center  mx-auto px-6'>
         {/* Title — Responsive Font and Leading */}

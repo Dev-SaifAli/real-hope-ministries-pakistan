@@ -11,11 +11,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 interface ProjectCardProps {
   project: Project
   showDonateButton?: boolean
+  showProgress?: boolean
+  showUrgent?: boolean
 }
 
 export default function ProjectCard({
   project,
-  showDonateButton = false
+  showDonateButton = false,
+  showProgress = true,
+  showUrgent = true
 }: ProjectCardProps) {
   const projectSlug = project.title.toLowerCase().replace(/\s+/g, '-')
   
@@ -35,7 +39,7 @@ export default function ProjectCard({
     setCurrentIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1))
   }
 
-  const hasProgress = project.goal !== undefined && project.raised !== undefined
+  const hasProgress = !project.isOngoing && project.goal !== undefined && project.raised !== undefined
   const progressPercent = hasProgress
     ? Math.min((project.raised! / project.goal!) * 100, 100)
     : 0
@@ -53,7 +57,7 @@ export default function ProjectCard({
       {/* ── Image Carousel ── */}
       <div className='relative w-full h-60 sm:h-64 flex-shrink-0 bg-gray-100 overflow-hidden'>
         {/* Urgent Badge */}
-        {project.isUrgent && (
+        {showUrgent && project.isUrgent && (
           <div className='absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md z-20'>
             <span className='w-2 h-2 bg-white rounded-full animate-pulse'></span>
             Urgent Need
@@ -129,7 +133,7 @@ export default function ProjectCard({
           {project.description}
         </p>
  {/* ── Progress Bar ── */}
-{hasProgress && (
+{showProgress && hasProgress && (
   <div className='mt-2'>
     <div className='flex justify-between text-[13px] font-semibold mb-1.5'>
       <span className='text-navy font-sans'>Raised: ${project.raised!.toLocaleString()}</span>

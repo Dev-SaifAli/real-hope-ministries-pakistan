@@ -52,8 +52,7 @@ export default function HashScroll() {
         // Note: handles both '/' and '/home' as root
         const isSamePage = url === '' || 
                            url === '/' || 
-                           url === pathname || 
-                           (url === '/home' && (pathname === '/' || pathname === '/home'))
+                           url === pathname 
         
         if (isSamePage) {
           handleHashScroll('#' + hash)

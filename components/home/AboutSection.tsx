@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, useCallback, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import VideoSection, { videos } from '@/components/VideoSection'
 
 const SLIDE_COUNT = videos.length
@@ -14,6 +15,8 @@ export default function AboutSection () {
   const trackRef = useRef<HTMLDivElement>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
   const isAutoScrolling = useRef(false)
+  const pathname = usePathname()
+  const isHomePage = pathname === '/' || pathname === '/home'
 
   // ── Initial Scroll ──────────────────────────────────────────
   useEffect(() => {
@@ -117,7 +120,9 @@ export default function AboutSection () {
   return (
     <section
       id='real-hope-pakistan'
-      className='w-full bg-white mt-11 md:mt-16 -mb-20 overflow-hidden scroll-mt-28'
+      className={`w-full bg-white overflow-hidden scroll-mt-28 ${
+        isHomePage ? 'mt-11 md:mt-16 -mb-20' : 'py-12 md:py-20'
+      }`}
     >
       {/* Section Header */}
       <div className='impact-section mb-10 md:mb-12  '>
