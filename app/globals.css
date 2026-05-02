@@ -23,7 +23,7 @@
 
 @layer components {
   .impact-section {
-    @apply text-center px-2 lg:px-10 w-full sm:max-w-[800px] md:max-w-[900px] mx-auto;
+    @apply text-center px-4 lg:px-10 w-full sm:max-w-[800px] md:max-w-[900px] mx-auto;
   }
 
   .impact-para {
@@ -98,3 +98,14 @@
     height: auto;
   }
 }
+
+/* Custom Animation for Swipe Hint */
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.animate-bounce-x {
+  animation: bounce-x 1s infinite ease-in-out;
+}
+

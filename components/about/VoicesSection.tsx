@@ -7,8 +7,12 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { buildImage, buildVideo } from '@/utils/cloudinary'
 
 const newIds = [
+  'attachment_6_ae47de',
+  'photo-3_qxsn4b',
   'IMG_0663_otmahe',
   'DSC_3082_1_lfvubr',
+  'df169b1eb39ad8633a7854fa8187ce67bd8bbaa0_vdzfwc',
+  '3a4e13c06ca105ec79e46d16ff35adbb764906c4_qk5dhc',
   'food_vzy14n',
   'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
   'IMG_0803_g9zy0s',
@@ -27,23 +31,23 @@ const newIds = [
 const ALL_PHOTOS = [
   {
     id: 1,
-    src: 'photo-3_qxsn4b',
+    src: 'attachment_2_oqex6k',
     alt: 'Blanket distribution to community'
   },
   {
     id: 2,
-    src: 'DSC_3082_1_lfvubr',
+    src: 'attachment_3_tmiulm',
     alt: 'Community gathering'
   },
   {
     id: 3,
-    src: 'df169b1eb39ad8633a7854fa8187ce67bd8bbaa0_vdzfwc',
-    alt: 'Child eating food'
+    src: 'attachment_1_gj34mr',
+    alt: 'Child holding book'
   },
   {
     id: 4,
-    src: '3a4e13c06ca105ec79e46d16ff35adbb764906c4_qk5dhc',
-    alt: 'Children eating together'
+    src: 'attachment_b2gu54',
+    alt: 'Child holding book'
   },
   {
     id: 5,
@@ -102,7 +106,7 @@ export default function VoicesSection () {
           <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4'>
             Voices from the <span className='text-green'>Field</span>
           </h2>
-          <p className='text-black impact-para'>
+          <p className='text-black impact-para px-2 sm:px-4 xl:px-0'>
             See the real impact of your support. Through these stories and
             moments, we witness the incredible strength of the communities we
             serve.
@@ -129,11 +133,11 @@ export default function VoicesSection () {
                   <div className='absolute inset-0 flex items-center justify-center'>
                     <PlayButton />
                   </div>
-                  {/* <div className='absolute bottom-0 left-0 right-0 bg-red-600 py-3 px-6'>
+                  <div className='absolute bottom-0 left-0 right-0 bg-red-600 py-3 px-6'>
                     <p className='text-white font-bold text-lg md:text-xl italic uppercase tracking-wider'>
                       Please watch this video
                     </p>
-                  </div> */}
+                  </div>
                 </>
               ) : (
                 <video

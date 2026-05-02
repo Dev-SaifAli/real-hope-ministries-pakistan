@@ -16,6 +16,7 @@ interface ButtonProps {
   variant: ButtonVariant
   text?: string
   href?: string
+  onClick?: () => void
 }
 
 // components/ui/Button.tsx
@@ -23,7 +24,7 @@ interface ButtonProps {
 const variantStyles: Record<ButtonVariant, string> = {
   // ── Hero buttons ─────────────────────────────────────────────
   support:
-    'bg-navy text-white px-12 py-3   rounded-[15px]   sm:rounded-[14px] ' +
+    'bg-navy text-white px-6 py-3   rounded-[15px]   sm:rounded-[14px] ' +
     'transition-all duration-200 ' +
     'hover:opacity-90 hover:shadow-md ' +
     'active:scale-95 active:opacity-80 ' +
@@ -31,7 +32,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   supportNav:
-    'bg-navy text-white  px-6 py-2   rounded-[15px] shadow-lg ' +
+    'bg-navy text-white px-6 py-2 rounded-[4px] sm:rounded-[15px] max-sm:px-20 max-sm:py-2 shadow-lg ' +
     'transition-all duration-200 ease-out ' +
     'hover:brightness-110 hover:shadow-xl ' +
     'active:scale-95 active:brightness-95 ' +
@@ -65,7 +66,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 
   // ── Watch Story ───────────────────────────────────────────────
   watchStory:
-    'bg-[#F59E0B] max-[769px]:px-20 text-white px-6 py-3 rounded-[15px] ' +
+    'bg-[#F59E0B] max-[769px]:px-24 text-white px-6 py-3 rounded-[15px] ' +
     'transition-all duration-200 ' +
     'hover:bg-orange hover:shadow-md ' +
     'active:scale-95 active:bg-orange ' +
@@ -92,10 +93,11 @@ const variantStyles: Record<ButtonVariant, string> = {
 
 }
 
-const Button: React.FC<ButtonProps> = ({ variant, text, href = '' }) => {
+const Button: React.FC<ButtonProps> = ({ variant, text, href = '', onClick }) => {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={`
         inline-flex items-center justify-center
         whitespace-nowrap

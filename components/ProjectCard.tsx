@@ -124,7 +124,7 @@ export default function ProjectCard({
         )}
 
         {/* Title */}
-        <h3 className='text-navy font-display font-semibold text-[20px] md:text-[22px]  leading-tight'>
+        <h3 className='text-navy font-display font-semibold text-[18px] sm:text-[19px] lg:text-[21px] leading-tight'>
           {project.title}
         </h3>
 

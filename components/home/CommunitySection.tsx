@@ -15,14 +15,14 @@ const communityImages = [
 ]
 export default function CommunitySection () {
   return (
-    <section id='community' className='w-full bg-white   overflow-hidden scroll-mt-28'>
+    <section id='community' className='w-full bg-white   overflow-hidden scroll-mt-28 pt-4'>
       {/* ── Header — centered ── */}
       <div className='impact-section'>
-        <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl  leading-tight mb-2 md:mb-6'>
+        <h2 className='font-display font-semibold text-navy impact-heading leading-tight mb-2 md:mb-3 lg:mb-5'>
           Community In <span className='text-green'>Action</span>
         </h2>
 
-        <p className='font-sans text-black impact-para'>
+        <p className='font-sans text-black impact-para px-2 sm:px-4 '>
           Real stories and meaningful moments captured during our fieldwork
           across Pakistan, highlighting the communities we serve and the impact
           of compassion, support, and hope in everyday lives.

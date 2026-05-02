@@ -83,19 +83,11 @@ export default function GetInvolved () {
       touching edges on 320px */}
       <div className='min-h-screen w-full bg-white py-12 md:py-20'>
         <div className='main-container'>
-          {/* ── Section 1: Header ── */}
-          <div id='involved' className='impact-section mb-10 md:mb-16'>
-          <h1 className='font-display font-semibold text-navy impact-heading mb-4 md:mb-6'>
-            Ways to <span className='text-green'>Get Involved</span>
-          </h1>
-          <p className='font-sans text-black impact-para leading-relaxed'>
-            There are many ways you can contribute to our cause. Find the path
-            that best fits your passion and resources.
-          </p>
-        </div>
-
         {/* ── Cards ── */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-20 items-stretch'>
+        <div
+          id='involved'
+          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-20 items-stretch'
+        >
           {involvementCards.map((card, i) => (
             <div
               key={i}
@@ -105,7 +97,7 @@ export default function GetInvolved () {
                 <Image
                   src={buildImage(card.image,800)}
                   alt={card.title}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
                   fill
                   className='object-cover w-full h-full transition-transform duration-300 group-hover:scale-110'
                 />

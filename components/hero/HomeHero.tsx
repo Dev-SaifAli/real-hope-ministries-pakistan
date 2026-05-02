@@ -26,7 +26,7 @@ const itemVariants: Variants = {
     transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }
   }
 }
-
+// videosrc 'VID-20260425-WA0014_leuotp'
 export default function HomeHero({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
@@ -70,9 +70,9 @@ export default function HomeHero({
     videoRef.current?.play().catch(() => {})
   }, [])
 
-  // Shared gradient applied via a CSS class — always rendered, never toggled
-  const gradientStyle =
-    'radial-gradient(circle at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 87.02%)'
+
+  // Restore the radial gradient as requested
+  const gradientStyle = 'radial-gradient(circle at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 60.02%)'
 
   return (
     <section
@@ -80,7 +80,7 @@ export default function HomeHero({
       aria-label='Homepage hero'
       className='relative w-full min-h-[60vh] sm:min-h-[100dvh] overflow-hidden'
     >
-      {/* ── LCP image fallback — gradient baked in via style ── */}
+      {/* ── LCP image fallback ── */}
       <div className='absolute inset-0' style={{ zIndex: 0 }}>
         <Image
           src={buildImage(photoId, 1920)}
@@ -93,17 +93,16 @@ export default function HomeHero({
             videoReady ? 'opacity-0' : 'opacity-100'
           }`}
         />
-        {/* Gradient always present on the image layer */}
+        {/* Radial Overlay for image - Fades in with the hero content to avoid "flash" */}
         <div
-          className='absolute inset-0 transition-opacity duration-700'
-          style={{
-            background: gradientStyle,
-            opacity: videoReady ? 0 : 1
-          }}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            animateHero && !videoReady ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ background: gradientStyle }}
         />
       </div>
 
-      {/* ── Lazy autoplay video — gradient baked in via style ── */}
+      {/* ── Lazy autoplay video ── */}
       {showVideo && (
         <div className='absolute inset-0' style={{ zIndex: 1 }}>
           <video
@@ -120,20 +119,19 @@ export default function HomeHero({
             }`}
           />
 
-          {/* Gradient always present on the video layer */}
+          {/* Radial Overlay for video - Fades in with video and hero content */}
           <div
-            className='absolute inset-0 transition-opacity duration-700'
-            style={{
-              background: gradientStyle,
-              opacity: videoReady ? 1 : 0
-            }}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              animateHero && videoReady ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ background: gradientStyle }}
           />
         </div>
       )}
 
       {/* ── Text content ── */}
       <motion.div
-        className='absolute inset-0 flex items-center'
+        className='absolute inset-0 flex items-start mt-52 2xl:mt-40 lg:mt-52'
         style={{ zIndex: 10 }}
         variants={containerVariants}
         initial='hidden'

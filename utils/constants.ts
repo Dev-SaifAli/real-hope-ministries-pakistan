@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
   {
     id: 4,
     title: 'Orphanage Ministry',
-    description: `70 orphan children in brick areas need support. Orphanage fund: $500,000.\n$100 per child for food and essentials.`,
+    description: `70 orphan children in brick areas need support. Orphanage fund: $500,000.$100 per child for food and essentials.`,
     image: 'orphanage_b3ciwu',
     images: ['orphanage_b3ciwu' , 'DSC_7679_1_hjzlhk', 'DSC_7820_1_qda3pj'],
     alt: 'Young man holding toys for children',
@@ -116,6 +116,30 @@ export const PROJECTS: Project[] = [
     alt: 'Hands joined in prayer',
     suggestedAmounts: [50, 100, 250, 500],
     goal: 70000,
+    raised: 0,
+    isOngoing: true
+  },
+  {
+    id: 9,
+    title: 'Old Age Home',
+    description: 'Providing a safe, comfortable, and loving environment for our elderly community members who need care and support.',
+    image: 'DSC_3082_1_lfvubr',
+    images: ['DSC_3082_1_lfvubr'],
+    alt: 'Elderly care support',
+    suggestedAmounts: [100, 250, 500, 1000],
+    goal: 150000,
+    raised: 0,
+    isOngoing: true
+  },
+  {
+    id: 10,
+    title: 'Medical Center',
+    description: 'Establishing a community medical center to provide essential healthcare services and medicines to those in need.',
+    image: 'primary_d1yylj',
+    images: ['primary_d1yylj'],
+    alt: 'Medical healthcare services',
+    suggestedAmounts: [50, 150, 500, 1000],
+    goal: 300000,
     raised: 0,
     isOngoing: true
   }

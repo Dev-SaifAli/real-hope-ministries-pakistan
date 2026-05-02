@@ -114,13 +114,13 @@ function StatCard ({ stat }: { stat: Stat }) {
       </div>
 
       {/* Animated number */}
-      <p className='font-display font-extrabold text-navy text-3xl 2xl:text-4xl leading-none tracking-tight'>
+      <p className='font-display font-extrabold text-navy text-2xl lg:text-3xl 2xl:text-4xl leading-none tracking-tight'>
         {count.toLocaleString('en-US')}
         {stat.suffix}
       </p>
 
       {/* Label */}
-      <p className='font-sans text-black text-xs xl:text-sm 2xl:text-base whitespace-nowrap text-center px-2'>
+      <p className='font-sans text-black text-xs xl:text-sm 2xl:text-base whitespace-nowrap text-center  '>
         {stat.label}
       </p>
     </div>
@@ -151,7 +151,7 @@ export default function StatsSection () {
               </span>
             </h2>
 
-            <p className='font-sans text-black impact-para max-[769px]:text-center mb-8 xl:mb-10 w-full whitespace-normal lg:max-w-[500px] xl:max-w-2xl'>
+            <p className='font-sans text-black impact-para max-[769px]:text-center px-2 sm:px-4 mb-8 xl:mb-10 w-full whitespace-normal lg:max-w-[500px] xl:max-w-2xl'>
               Through our ongoing efforts across Pakistan, we have been able to support vulnerable communities, provide essential resources, and create opportunities for a better future. Our work is focused on    delivering real, measurable impact by addressing immediate needs
               while also building long-term support systems. Every initiative we
               undertake is driven by compassion, transparency, and a commitment

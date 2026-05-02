@@ -26,33 +26,35 @@ export default function PageHero({
     return title
   }
   return (
-    <section className='min-h-[60vh] sm:min-h-[80dvh] w-full overflow-hidden rounded-2xl md:rounded-3xl flex items-center justify-center'>
+    <section className='min-h-[450px] sm:min-h-[550px] lg:min-h-[600px] w-full overflow-hidden flex items-center justify-center relative'>
       <Image
         src={buildImage(imageSrc, 1920)}
         alt='Hero background'
         fill
         className='object-cover object-center -z-20'
-        loading='lazy'
+        priority
       />
-      <div className='absolute inset-0 bg-black/40 -z-10' />
+      
+      {/* Professional Dark Overlay for Text Readability */}
+      <div className='absolute inset-0 bg-black/40 z-0' />
 
-      <div className='relative z-10 text-center  mx-auto px-6'>
+      <div className='relative z-10 text-center mx-auto px-6 flex items-center justify-center flex-col max-sm:pt-24 pt-16'>
         {/* Title — Responsive Font and Leading */}
         <h1
           className='
-            font-display max-w-5xl font-semibold text-white 
-            impact-heading       
-            mb-4 drop-shadow-md mx-auto 
+            font-display w-full max-sm:max-w-4xl sm:max-w-5xl impact-heading font-semibold text-white 
+          
+            mb-4 lg:mb-3 drop-shadow-md mx-auto leading-[1.5] sm:leading-[1.1]
           '
         >
           {renderTitle()}
         </h1>
 
-        <p className='font-sans max-w-2xl impact-para font-semibold text-white mb-7  mx-auto leading-relaxed'>
+        <p className='font-sans max-w-[316px] sm:max-w-md md:max-w-xl lg:max-w-2xl impact-para font-semibold text-white/90 mb-8 sm:mb-10 mx-auto leading-relaxed'>
           {subtitle}
         </p>
         {showButton && (
-          <div className='flex flex-col sm:flex-row gap-8 justify-center  items-center'>
+          <div className='flex flex-row sm:flex-row gap-4 sm:gap-8 justify-center items-center'>
             <Button
               href={primaryHref}
               text={primaryButtonText}

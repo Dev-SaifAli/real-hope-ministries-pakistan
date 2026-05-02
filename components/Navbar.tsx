@@ -47,10 +47,16 @@ export default function Navbar() {
   // const scrolledRef = useRef(false)
   const lastScrollY = useRef(0)
   const pathName = usePathname()
-  const isLightPage =
-    pathName === '/terms-and-conditions' || pathName === '/privacy-policy'
+  
+  // Pages that HAVE a hero section and need a transparent Navbar
+  const heroPages = ['/', '/home', '/about', '/contact', '/projects', '/get-involved', '/support-us']
+  
+  // Navbar should be white ONLY on legal pages or 404 pages (any page not in heroPages)
+  const isLightPage = !heroPages.includes(pathName)
+  
   const isScrolled = !isAtTop
   const isLegalPage = isLightPage
+  const isNotFound = isLightPage && pathName !== '/terms-and-conditions' && pathName !== '/privacy-policy'
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY
@@ -76,13 +82,11 @@ export default function Navbar() {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
-
   const closeMenu = useCallback(() => setMenuOpen(false), [])
   const openMenu = useCallback(() => setMenuOpen(true), [])
-
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 `}>
+      <nav className={`fixed top-1 left-0 right-0 z-50 `}>
         <motion.div
           className={`
     flex items-center justify-between
@@ -153,8 +157,7 @@ transition-all duration-300
                       href={link.href}
                       className={`
                       relative z-10 px-3 md:px-4 xl:px-6 py-1.5 rounded-full
-                      text-base
-                      transition-colors duration-200 whitespace-nowrap block font-sans font-semibold
+                      transition-colors duration-200 whitespace-nowrap block  text-base  font-sans font-semibold
                       ${isActive
                           ? 'text-white'
                           : isScrolled || isLegalPage
@@ -182,7 +185,7 @@ transition-all duration-300
             </ul>
 
             {/* Right cluster */}
-            <div className='flex flex-row items-center gap-2 shrink-0'>
+            <div className='flex flex-row items-center gap-3 shrink-0'>
               <div className='hidden sm:block lg:block'>
                 <motion.div
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -237,83 +240,85 @@ transition-all duration-300
               role='dialog'
               aria-modal='true'
               aria-label='Navigation menu'
-              className='fixed top-0 left-0 bottom-0 z-[70] w-[320px] min-w-[320px] bg-navy/50 backdrop-blur-xl flex flex-col px-5 py-10'
+              className='fixed inset-0 z-[70] w-full h-dvh bg-gradient-to-br from-navy via-navy/95 to-green flex flex-col px-6 py-8'
               variants={sidebarVariants}
               initial='hidden'
               animate='visible'
               exit='exit'
             >
-              <button
-                onClick={closeMenu}
-                aria-label='Close menu'
-                className='absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors'
-              >
-                <svg
-                  width='12'
-                  height='12'
-                  viewBox='0 0 16 16'
-                  fill='none'
-                  aria-hidden='true'
-                >
-                  <path
-                    d='M1 1L15 15M15 1L1 15'
-                    stroke='white'
-                    strokeWidth='2'
-                    strokeLinecap='round'
+              {/* Header: Branding (Left) & Close (Right) */}
+              <div className="flex items-center justify-between mb-12">
+                <div className='flex items-center gap-3'>
+                  <Image
+                    src='/nav-logo.png'
+                    alt='RHM Pakistan'
+                    width={50}
+                    height={50}
+                    unoptimized
+                     
+                    className='rounded-full border border-white/20'
                   />
-                </svg>
-              </button>
+                  <span className='text-white font-semibold font-display text-lg whitespace-nowrap'>
+                    RHM Pakistan
+                  </span>
+                </div>
 
-              <div className='flex flex-col sm:flex-row items-center gap-3 mt-6 mb-10'>
-                <Image
-                  src='/nav-logo.png'
-                  alt='RHM Pakistan'
-                  width={45}
-                  height={45}
-                  className='rounded-full shrink-0 w-14 h-14 sm:w-12 sm:h-12'
-                />
-                <span className='text-white font-semibold font-display text-xl sm:text-lg'>
-                  RHM Pakistan
-                </span>
+                <button
+                  onClick={closeMenu}
+                  aria-label='Close menu'
+                  className='w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all active:scale-90'
+                >
+                  <svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+                    <path d='M1 1L15 15M15 1L1 15' stroke='white' strokeWidth='2.5' strokeLinecap='round'/>
+                  </svg>
+                </button>
               </div>
 
-              <ul className='flex flex-col gap-0.5 font-display flex-1'>
+              {/* Navigation Links - Left Aligned */}
+              <ul className='flex flex-col flex-1 overflow-y-auto'>
                 {navLinks.map((link, i) => {
                   const isActive = activePath === link.href
                   return (
                     <motion.li
                       key={link.href}
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.05 * i + 0.08, duration: 0.3 }}
+                      transition={{ delay: 0.1 + (i * 0.05) }}
+                      className="group border-b border-white/10 hover:border-green/50 transition-colors duration-300"
                     >
                       <Link
                         href={link.href}
                         onClick={closeMenu}
                         className={`
-                          flex items-center w-full px-4 py-3 rounded-xl
-                          text-base font-semibold font-sans transition-colors duration-200 min-h-[44px]
-                          ${isActive
-                            ? 'bg-green text-white'
-                            : 'text-white/80 hover:text-white hover:bg-white/10'
-                          }
+                          flex items-center w-full py-3
+                          text-xl font-medium font-sans transition-all duration-300
+                          ${isActive ? 'text-green' : 'text-white/70 hover:text-white'}
                         `}
                       >
-                        {link.label}
+                        <span className="tracking-wide  text-base">{link.label}</span>
                       </Link>
                     </motion.li>
                   )
                 })}
               </ul>
 
-              <div className='mt-auto pt-5 border-t border-white/10 sm:hidden'>
-                <Link
-                  href='/support-us'
-                  onClick={closeMenu}
-                  className='flex items-center justify-center h-11 w-full bg-navy text-white rounded-xl text-base font-semibold font-display hover:opacity-90 transition-opacity'
+              {/* Bottom Section - Centered Button */}
+              <div className='mt-auto pt-8 flex justify-center sm:hidden'>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="w-full"
                 >
-                  Support Us
-                </Link>
+                  <div className="flex justify-center">
+                    <Button
+                      variant='supportNav'
+                      text='Support Us'
+                      href='/support-us'
+                      onClick={closeMenu}
+                    />
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </>

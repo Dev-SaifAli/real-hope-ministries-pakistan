@@ -129,11 +129,11 @@ export default function AboutSection () {
         <p className='font-display font-semibold text-green text-[16px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-6'>
           About Real Hope Pakistan
         </p>
-        <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4 md:mb-6'>
+        <h2 className='font-display font-semibold text-navy impact-heading   mb-2 sm:mb-4 md:mb-6'>
           A Mission of <span className='text-green'>Compassion</span>,
           <br className='hidden md:block' /> Faith and Action
         </h2>
-        <p className='font-sans text-black impact-para  '>
+        <p className='font-sans text-black impact-para px-2 sm:px-4 xl:px-0 '>
           Real Hope Pakistan is committed to serving the most vulnerable
           communities across the nation. Guided by a spirit of humanitarianism,
           we work tirelessly to address immediate needs while fostering
