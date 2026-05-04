@@ -139,16 +139,16 @@ export default function VideoCard ({ video }: { video: Video }) {
 
   return (
     <div
-      className='shrink-0 rounded-2xl relative snap-center w-[92vw] sm:w-90 md:w-95 lg:w-105 h-55 sm:h-65 lg:h-70 overflow-hidden cursor-pointer group'
+      className='shrink-0 rounded-2xl relative snap-center w-[92vw] sm:w-90 md:w-95 lg:w-105 h-55 sm:h-65 lg:h-70 overflow-hidden cursor-pointer group will-change-transform transform-gpu'
       onClick={handleClick}
     >
       {/* Thumbnail */}
       <img
         src={buildImage(video.thumbnail, 800)}
         alt={video.alt}
-        loading='lazy'
+        loading='eager'
         decoding='async'
-        className='w-full h-full object-cover'
+        className='w-full h-full object-cover transform-gpu'
       />
 
       {/* Overlay */}

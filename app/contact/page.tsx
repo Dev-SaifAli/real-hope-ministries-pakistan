@@ -16,11 +16,12 @@ const MapComponent = dynamic(() => import('@/components/ui/MapComponent'), {
 })
 
 const contactDetails = [
-  { icon: <Mail className='w-5 h-5' />, value: 'zashan789789@gmail.com' },
-  { icon: <Phone className='w-5 h-5' />, value: '+92 300 9823626' },
+  { icon: <Mail className='w-5 h-5' />, value: 'zashan789789@gmail.com', href: 'mailto:zashan789789@gmail.com' },
+  { icon: <Phone className='w-5 h-5' />, value: '+92 300 9823626', href: 'tel:+923009823626' },
   {
     icon: <MapPin className='w-5 h-5' />,
-    value: 'Madina Green Valley, Faisalabad'
+    value: 'Madina Green Valley, Faisalabad',
+    href: 'https://maps.google.com/?q=Madina+Green+Valley,+Faisalabad,+Pakistan'
   }
 ]
 
@@ -92,9 +93,20 @@ export default function ContactUs() {
                 {contactDetails.map((item, i) => (
                   <div key={i} className='flex items-center gap-4'>
                     <div className='shrink-0 text-navy'>{item.icon}</div>
-                    <span className='text-black text-[15px] md:text-[16px] font-sans'>
-                      {item.value}
-                    </span>
+                    {item.href ? (
+                      <a 
+                        href={item.href} 
+                        target={item.href.startsWith('http') ? '_blank' : '_self'} 
+                        rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} 
+                        className='text-black text-[15px] md:text-[16px] font-sans hover:text-green transition-colors'
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className='text-black text-[15px] md:text-[16px] font-sans'>
+                        {item.value}
+                      </span>
+                    )}
                   </div>
                 ))}
               </div>
@@ -127,7 +139,7 @@ export default function ContactUs() {
               </div>
 
               {/* Leaflet Map */}
-              <div className='w-full grow min-h-[300px] rounded-2xl overflow-hidden '>
+              <div className='w-full grow min-h-[300px] rounded-2xl overflow-hidden' style={{ zIndex: 0 }}>
                 <MapComponent lat={OFFICE_LAT} lng={OFFICE_LNG} />
               </div>
             </div>

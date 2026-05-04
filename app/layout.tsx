@@ -69,6 +69,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={`${openSans.variable} ${poppins.variable}`}>
+      <head>
+         <link rel='preconnect' href='https://res.cloudinary.com' />
+  <link rel='dns-prefetch' href='https://res.cloudinary.com' />
+      </head>
       <body className='font-sans antialiased'>
         <ProgressBarProvider>
           <LoadingScreen />

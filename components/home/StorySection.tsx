@@ -62,7 +62,7 @@ export default function StorySection({
           </div>
           {/* Text Block */}
           <div className='flex flex-col max-[1030px]:main-container gap-2 sm:gap-4 md:gap-6 xl:max-w-[560px] 2xl:max-w-[760px]  text-center xl:text-left'>
-            <h2 className='font-display font-semibold text-navy impact-heading leading-tight'>
+            <h2 className='font-display font-semibold text-navy impact-heading leading-tight '>
               From <span className='text-green'>{titleHighlight}</span>
               <span className='text-navy'>:</span>
               <br />

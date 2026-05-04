@@ -25,7 +25,10 @@ export default function MapComponent ({ lat, lng }: MapComponentProps) {
       center={[lat, lng]}
       zoom={15}
       scrollWheelZoom={false}
-      style={{ height: '100%', width: '100%' }}
+      dragging={false}
+      touchZoom={false}
+      doubleClickZoom={false}
+      style={{ height: '100%', width: '100%', zIndex: 0 }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

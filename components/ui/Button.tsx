@@ -58,7 +58,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   getInvolved:
-    'bg-transparent text-navy  py-3 px-12  rounded-[15px] ring-2 ring-inset ring-navy ' +
+    'bg-transparent text-navy  py-3 px-16  rounded-[15px] ring-2 ring-inset ring-navy ' +
     'transition-all  duration-200 ' +
     'hover:bg-navy hover:text-white hover:shadow-md ' +
     'active:scale-95 active:bg-[#071a33] ' +

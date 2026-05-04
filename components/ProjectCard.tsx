@@ -71,12 +71,15 @@ export default function ProjectCard({
         >
           {images.map((img, idx) => (
             <div key={idx} className='relative w-full h-full flex-shrink-0'>
-              <Image
-                src={buildImage(img, 800)}
+             <Image
+                src={buildImage(img, 700)}
                 alt={`${project.alt} - image ${idx + 1}`}
                 fill
+                sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px'
                 className='object-cover'
-              />
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                priority={idx === 0}
+/>
             </div>
           ))}
         </div>

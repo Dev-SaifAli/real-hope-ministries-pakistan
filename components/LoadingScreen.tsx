@@ -10,7 +10,7 @@ export default function LoadingScreen() {
   useEffect(() => {
 
     const hasVisited = sessionStorage.getItem('hasVisited')
-    
+
     if(hasVisited==='true'){
       setIsLoading(false)
       return
@@ -97,9 +97,9 @@ export default function LoadingScreen() {
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-white font-display font-semibold text-2xl tracking-[0.2em] uppercase"
+              className="text-white text-center font-display font-semibold text-2xl tracking-[0.2em] uppercase"
             >
-              Real Hope <span className="text-green">Pakistan</span>
+              Real Hope Ministries <span className="text-green">Pakistan</span>
             </motion.h2>
           </div>
           

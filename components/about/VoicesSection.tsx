@@ -79,6 +79,7 @@ function PlayButton () {
 export default function VoicesSection () {
   const [playing, setPlaying] = useState(false)
   const [photoIndex, setPhotoIndex] = useState<number | null>(null)
+  const [showGridModal, setShowGridModal] = useState(false)
 
   // Keyboard controls for Lightbox
   useEffect(() => {
@@ -96,10 +97,16 @@ export default function VoicesSection () {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [photoIndex])
 
-  const openLightbox = (index: number) => setPhotoIndex(index)
+  const handlePhotoClick = (index: number) => {
+    if (index === 4 && ALL_PHOTOS.length > 5) {
+      setShowGridModal(true)
+    } else {
+      setPhotoIndex(index)
+    }
+  }
 
   return (
-    <section className='w-full bg-white mt-12 mb-20 md:mt-16 md:mb-24 px-4 sm:px-6 md:px-10'>
+    <section className='w-full bg-white mt-20 mb-20 md:mt-16 md:mb-20 px-4 sm:px-6 md:px-10'>
       <div className='max-w-480 mx-auto'>
         {/* ── Header ── */}
         <div className='text-center mb-8 md:mb-12 max-w-225 mx-auto'>
@@ -114,10 +121,11 @@ export default function VoicesSection () {
         </div>
         <div className=''>
           {/* ── Main Grid ── */}
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6'>
-            {/* VIDEO CARD - Desktop pe 2 columns leta hai */}
+          {/* Mobile: 2-col mosaic. Desktop: 3-col layout */}
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-3 sm:mb-4 md:mb-6'>
+            {/* VIDEO CARD — spans both cols on mobile, 2-of-3 on desktop */}
             <div
-              className='md:col-span-2 relative aspect-[1075/799]  max-sm:rounded-[20px]     rounded-[30px] overflow-hidden cursor-pointer group bg-gray-100'
+              className='col-span-2 md:col-span-2 relative aspect-[16/10] rounded-[16px] sm:rounded-[20px] md:rounded-[30px] overflow-hidden cursor-pointer group bg-gray-100'
               onClick={() => setPlaying(true)}
             >
               {!playing ? (
@@ -133,8 +141,8 @@ export default function VoicesSection () {
                   <div className='absolute inset-0 flex items-center justify-center'>
                     <PlayButton />
                   </div>
-                  <div className='absolute bottom-0 left-0 right-0 bg-red-600 py-3 px-6'>
-                    <p className='text-white font-bold text-lg md:text-xl italic uppercase tracking-wider'>
+                  <div className='absolute bottom-0 left-0 right-0 bg-red-600 py-2 md:py-3 px-4 md:px-6'>
+                    <p className='text-white font-bold text-sm md:text-xl italic uppercase tracking-wider'>
                       Please watch this video
                     </p>
                   </div>
@@ -150,12 +158,14 @@ export default function VoicesSection () {
               )}
             </div>
 
-            <div className='flex flex-col gap-4 md:gap-6 h-full'>
+            {/* Photos 0 & 1 — side-by-side on mobile (each col-span-1),
+                              stacked in one column on desktop (col-span-1, flex-col) */}
+            <div className='col-span-2 md:col-span-1 grid grid-cols-2 md:flex md:flex-col gap-3 sm:gap-4 md:gap-6'>
               {[0, 1].map(idx => (
                 <div
                   key={idx}
-                  onClick={() => openLightbox(idx)}
-                  className='relative flex-1 aspect-[524/374]   max-sm:rounded-[20px]  rounded-[30px] overflow-hidden cursor-pointer group'
+                  onClick={() => handlePhotoClick(idx)}
+                  className='relative aspect-[4/3] rounded-[16px] sm:rounded-[20px] md:rounded-[30px] md:flex-1 overflow-hidden cursor-pointer group'
                 >
                   <Image
                     src={buildImage(ALL_PHOTOS[idx].src, 800)}
@@ -168,13 +178,17 @@ export default function VoicesSection () {
             </div>
           </div>
 
-          {/* ── BOTTOM ROW (3 Photos) ── */}
-          <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6'>
+          {/* ── BOTTOM ROW ── */}
+          {/* Mobile: photos 2 & 3 side-by-side, photo 4 (+20) full-width */}
+          {/* sm+: all 3 in a row */}
+          <div className='grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6'>
             {[2, 3, 4].map(idx => (
               <div
                 key={idx}
-                onClick={() => openLightbox(idx)}
-                className='relative aspect-[524/374]   max-sm:rounded-[20px]   rounded-[30px] overflow-hidden cursor-pointer group'
+                onClick={() => handlePhotoClick(idx)}
+                className={`relative aspect-[4/3] rounded-[16px] sm:rounded-[20px] md:rounded-[30px] overflow-hidden cursor-pointer group ${
+                  idx === 4 ? 'col-span-2 sm:col-span-1' : ''
+                }`}
               >
                 <Image
                   src={buildImage(ALL_PHOTOS[idx].src, 800)}
@@ -194,6 +208,32 @@ export default function VoicesSection () {
           </div>
         </div>
       </div>
+
+      {/* ── ALL PHOTOS GRID MODAL ── */}
+      <AnimatePresence>
+        {showGridModal && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className='fixed inset-0 z-[80] bg-white overflow-y-auto p-4 md:p-8 flex flex-col'
+          >
+            <div className='flex justify-between items-center mb-6 max-w-7xl mx-auto w-full sticky top-0 bg-white/90 backdrop-blur-sm z-10 py-4'>
+              <h2 className='text-2xl md:text-3xl font-display font-semibold text-navy'>All Photos</h2>
+              <button onClick={() => setShowGridModal(false)} className='p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors text-black'>
+                <X size={24} />
+              </button>
+            </div>
+            <div className='max-w-7xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 pb-20'>
+              {ALL_PHOTOS.map((photo, i) => (
+                <div key={i} className='relative aspect-square md:aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group' onClick={() => setPhotoIndex(i)}>
+                  <Image src={buildImage(photo.src, 800)} alt={photo.alt} fill className='object-cover group-hover:scale-105 transition-transform duration-300' />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── LIGHTBOX MODAL ── */}
       <AnimatePresence>

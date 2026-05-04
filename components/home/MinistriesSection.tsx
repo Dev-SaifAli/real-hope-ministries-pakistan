@@ -49,11 +49,11 @@ export default function MinistriesSection ({
     <section
       id='projects'
       className={`w-full bg-white main-container scroll-mt-28 ${
-        isHomePage ? 'mt-7 md:mt-14 lg:mt-21' : 'py-12 md:py-20'
+        isHomePage ? 'mt-8 md:mt-14 lg:mt-21' : 'py-12 md:py-20'
       }`}
     >
       
-        <div className='impact-section mb-7   sm:mb-8 md:mb-10 '>
+        <div className='impact-section   mb-6 md:mb-8  '>
           <h2 className='font-display font-semibold text-navy text-[22px] sm:text-2xl md:text-3xl lg:text-4xl impact-heading mb-2 md:mb-3 lg:mb-5'>
             Our Missionary and <span className='text-green'>Projects</span>
           </h2>

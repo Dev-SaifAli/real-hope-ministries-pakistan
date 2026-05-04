@@ -15,7 +15,8 @@ const contactCards: ContactCardData[] = [
     id: 1,
     title: 'Headquarters',
     value: 'Madina Green Valley, Faisalabad',
-    icon: MapPin
+    icon: MapPin,
+    href: 'https://maps.google.com/?q=Madina+Green+Valley,+Faisalabad,+Pakistan'
   },
   {
     id: 2,
@@ -38,7 +39,7 @@ function ContactCardComponent ({ card }: { card: ContactCardData }) {
 
   return (
     <div className='flex flex-col items-center justify-items-start flex-1 min-w-0 bg-white rounded-2xl shadow-sm px-6 py-4 md:px-6 lg:px-10 md:py-6 lg:py-10 gap-3 md:gap-4 lg:gap-5 transition-transform hover:scale-[1.02]'>
-      <div className='2xl:w-16 2xl:h-16 md:w-12 md:h-12 w-10 h-10 rounded-full bg-[#0B254542] flex items-center justify-center'>
+      <div className='2xl:w-16 2xl:h-16 md:w-12 md:h-12 w-10 h-10 rounded-full bg-[#0B25450D] flex items-center justify-center'>
         <Icon   className='text-navy' strokeWidth={2} />
       </div>
 
@@ -46,7 +47,7 @@ function ContactCardComponent ({ card }: { card: ContactCardData }) {
         {card.title}
       </h3>
 
-      { card.href ? <a href={card.href}>
+      { card.href ? <a href={card.href} target='_blank' rel='noopener noreferrer'>
         <p className='font-sans text-black impact-para text-base sm:text-xs md:text-base text-center  wrap-normal lg:whitespace-nowrap'>
         {card.value}
       </p>

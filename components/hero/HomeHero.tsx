@@ -84,16 +84,16 @@ export default function HomeHero({
       {/* ── LCP image fallback ── */}
       <div className='absolute inset-0' style={{ zIndex: 0 }}>
         <Image
-          src={buildImage(photoId, 1920)}
-          alt='Real Hope Ministries Pakistan'
-          fill
-          priority
-          fetchPriority='high'
-          sizes='100vw'
-          className={`object-cover transition-opacity duration-700 ${
-            videoReady ? 'opacity-0' : 'opacity-100'
-          }`}
-        />
+  src={buildImage(photoId, 1920)}
+  alt='Real Hope Ministries Pakistan'
+  fill
+  priority
+  fetchPriority='high'
+  sizes='(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px'
+  className={`object-cover transition-opacity duration-700 ${
+    videoReady ? 'opacity-0' : 'opacity-100'
+  }`}
+/>
         {/* Radial Overlay for image - Fades in with the hero content to avoid "flash" */}
         <div
           className={`absolute inset-0 transition-opacity duration-1000 ${

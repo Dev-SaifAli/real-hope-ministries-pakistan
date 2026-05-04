@@ -105,27 +105,22 @@ const handleScroll = useCallback(() => {
 
     isJumping.current = true
 
-    // KEY FIX: disable snap synchronously, BEFORE any rAF,
-    // so no snap frame is ever committed
+    // KEY FIX: disable snap and smooth scroll synchronously
     slider.style.scrollSnapType = 'none'
+    slider.style.scrollBehavior = 'auto' 
     slider.scrollLeft = scrollTo
     setActiveSlide(jumpTo)
 
-    // Re-enable snap after the browser has painted the new position.
-    // One rAF schedules *before* paint; setTimeout 0 fires *after*.
-    // Using rAF + setTimeout ensures we're past the paint boundary.
+    // Re-enable snap in the next frame to avoid conflict with the manual scroll
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        slider.style.scrollSnapType = 'x mandatory'
-        isJumping.current = false
-      }, 0)
+      slider.style.scrollSnapType = 'x mandatory'
+      slider.style.scrollBehavior = ''
+      isJumping.current = false
     })
   } else {
-    if (activeSlide !== closestIndex) {
-      setActiveSlide(closestIndex)
-    }
+    setActiveSlide(prev => prev !== closestIndex ? closestIndex : prev)
   }
-}, [totalVideos, activeSlide])
+}, [totalVideos])
 
 
   return (
@@ -157,10 +152,11 @@ const handleScroll = useCallback(() => {
       </div>
 
       {/* Video Slider */}
-      <div className=' main-container'>
+      <div className='main-container'>
         <div
           ref={sliderRef}
-          className='flex overflow-x-auto snap-x snap-mandatory no-scrollbar'
+          className='flex overflow-x-auto snap-x snap-mandatory no-scrollbar will-change-transform'
+          style={{ WebkitOverflowScrolling: 'touch' }}
           onScroll={handleScroll}
         >
           <VideoSection

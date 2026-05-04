@@ -31,6 +31,8 @@ export default function PageHero({
         src={buildImage(imageSrc, 1920)}
         alt='Hero background'
         fill
+        fetchPriority='high'
+  sizes='(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px'
         className='object-cover object-center -z-20'
         priority
       />

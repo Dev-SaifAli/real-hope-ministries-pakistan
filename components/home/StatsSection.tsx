@@ -102,14 +102,14 @@ function StatCard ({ stat }: { stat: Stat }) {
         items-center w-full justify-center mx-auto
         aspect-square p-4
 
-        shadow-[0_2px_16px_rgba(0,0,0,0.2)]
+        shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1)]
         border border-gray-100
         transition-shadow duration-300
         hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]
       '
     >
       {/* Icon */}
-      <div className='2xl:w-16 2xl:h-16 md:w-12 md:h-12 w-10 h-10 rounded-full bg-[#0B254542] flex items-center justify-center shrink-0 mb-2'>
+      <div className='2xl:w-16 2xl:h-16 md:w-12 md:h-12 w-10 h-10 rounded-full bg-[#0B25450D] flex items-center justify-center shrink-0 mb-2'>
         {stat.icon}
       </div>
 
@@ -138,7 +138,7 @@ export default function StatsSection () {
   const buttonText =
     pathName === '/support-us' ? 'Contact Us' : 'Support Our Mission'
   return (
-    <section className='main-container bg-white   mt-12 mb-12 sm:mb-16 lg:mb-20 xl:mb-28 sm:mt-17.5  '>
+    <section className='main-container bg-white   mt-8 mb-8 sm:mb-16 lg:mb-20 xl:mb-28 sm:mt-17.5  '>
       
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center'>
           {/* ── Left: Heading + Para + Button ── */}
@@ -168,7 +168,7 @@ export default function StatsSection () {
           </div>
 
           {/* ── Right: 2x2 stat cards ── */}
-          <div className='lg:col-span-5 col-span-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-4 xl:gap-8 lg:max-w-[400px] 2xl:max-w-[480px] w-full lg:ml-auto self-start px-4  '>
+          <div className='lg:col-span-5 col-span-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-4 xl:gap-8 max-w-[480px] sm:max-w-full lg:max-w-[400px] 2xl:max-w-[480px] w-full mx-auto lg:ml-auto self-start py-4'>
             {stats.map(stat => (
               <StatCard key={stat.id} stat={stat} />
             ))}

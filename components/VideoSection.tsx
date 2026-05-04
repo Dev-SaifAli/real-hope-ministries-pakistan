@@ -66,7 +66,7 @@ export default function VideoSection ({
           key={`${video.id}-${index}`}
           onClick={() => setActiveSlide(index)}
           className={`
-            shrink-0 snap-center transition-all duration-300 cursor-pointer
+            shrink-0 snap-center transition-all duration-300 cursor-pointer transform-gpu [backface-visibility:hidden]
             ${
               activeSlide % videos.length === index % videos.length
                 ? 'scale-100 opacity-100 z-10'
