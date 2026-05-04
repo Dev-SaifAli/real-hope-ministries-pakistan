@@ -8,9 +8,20 @@ export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+
+    const hasVisited = sessionStorage.getItem('hasVisited')
+    
+    if(hasVisited==='true'){
+      setIsLoading(false)
+      return
+    }
+    
     // Simulate initial loading time or wait for window load
     const handleLoad = () => {
-      setTimeout(() => setIsLoading(false), 1500)
+      setTimeout(() => {
+        setIsLoading(false)
+        sessionStorage.setItem('hasVisited','true')
+        }, 1500)
     }
 
     if (document.readyState === 'complete') {

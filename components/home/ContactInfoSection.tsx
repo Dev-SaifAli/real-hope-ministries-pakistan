@@ -7,6 +7,7 @@ interface ContactCardData {
   title: string
   value: string
   icon: LucideIcon
+  href?:string
 }
 
 const contactCards: ContactCardData[] = [
@@ -20,13 +21,15 @@ const contactCards: ContactCardData[] = [
     id: 2,
     title: 'Email Us',
     value: 'zashan789789@gmail.com',
-    icon: Mail
+    icon: Mail,
+    href: 'mailto:zashan789789@gmail.com'
   },
   {
     id: 3,
     title: 'Call Us',
     value: '+923009823626',
-    icon: Phone
+    icon: Phone,
+    href:'tel:+923009823626'
   }
 ]
 
@@ -43,9 +46,15 @@ function ContactCardComponent ({ card }: { card: ContactCardData }) {
         {card.title}
       </h3>
 
-      <p className='font-sans text-black impact-para text-base sm:text-xs md:text-base text-center  wrap-normal lg:whitespace-nowrap'>
+      { card.href ? <a href={card.href}>
+        <p className='font-sans text-black impact-para text-base sm:text-xs md:text-base text-center  wrap-normal lg:whitespace-nowrap'>
         {card.value}
       </p>
+      </a> 
+        : 
+        <p className='font-sans text-black impact-para text-base sm:text-xs md:text-base text-center  wrap-normal lg:whitespace-nowrap'>
+        {card.value}
+      </p>}
     </div>
   )
 }

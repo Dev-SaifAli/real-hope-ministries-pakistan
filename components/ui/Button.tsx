@@ -32,7 +32,8 @@ const variantStyles: Record<ButtonVariant, string> = {
     'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 
   supportNav:
-    'bg-navy text-white px-6 py-2 rounded-[4px] sm:rounded-[15px] max-sm:px-20 max-sm:py-2 shadow-lg ' +
+    'bg-navy text-white px-6 py-2 rounded-[16px] sm:rounded-[15px] max-sm:px-20 max-sm:py-3 shadow-lg ' +
+    'max-sm:bg-white  max-sm:text-green max-sm:font-extrabold max-sm:text-lg max-sm:shadow-[0_0_20px_rgba(255,255,255,0.2)] ' +
     'transition-all duration-200 ease-out ' +
     'hover:brightness-110 hover:shadow-xl ' +
     'active:scale-95 active:brightness-95 ' +

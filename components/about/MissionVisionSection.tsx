@@ -2,7 +2,7 @@ export default function MissionVisionSection() {
   return (
     <section className='w-full bg-white  '>
       <div className='main-container'>
-        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-26 md:items-stretch'>
+        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-12 lg:gap-26 md:items-stretch'>
 
           {/* ── Mission Card ── */}
           <div className='flex flex-col items-center mb-8 md:mb-0'>
@@ -11,7 +11,7 @@ export default function MissionVisionSection() {
               <h2 className='font-display font-semibold text-black impact-heading'>
                 Our Mission
               </h2>
-              <p className='font-sans text-black impact-para h-auto md:h-48  overflow-hidden'>
+              <p className='font-sans text-black impact-para h-auto md:h-52 lg:h-48  overflow-hidden'>
                 To uplift marginalized communities by providing essential
                 resources, quality education, and accessible healthcare. We
                 believe in creating sustainable solutions that address the root
@@ -28,7 +28,7 @@ export default function MissionVisionSection() {
               <h2 className='font-display font-semibold text-black impact-heading'>
                 Our Vision
               </h2>
-              <p className='font-sans text-black impact-para h-auto md:h-48 overflow-hidden'>
+              <p className='font-sans text-black impact-para h-auto md:h-52 lg:h-48 overflow-hidden'>
                 A Pakistan where every individual has the opportunity to thrive,
                 free from the burdens of poverty and inequality. We envision
                 communities that are self-reliant, educated, and resilient,

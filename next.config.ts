@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' }
     ],
   },
-  allowedDevOrigins: ['192.168.10.7'],
+  allowedDevOrigins: ['192.168.10.7', '192.168.18.141'],
   async redirects() {
     return [
       {

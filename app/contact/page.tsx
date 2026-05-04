@@ -74,12 +74,12 @@ export default function ContactUs() {
       <div className='min-h-screen w-full bg-white   py-12 '>
         <div className='main-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24  '>
           {/* ── Left Column ── */}
-          <div className='flex flex-col h-full max-lg:text-center max-lg:items-center'>
+          <div className='flex flex-col h-full '>
             <h1 className=' font-semibold text-navy mb-4 impact-heading'>
               Get in <span className='text-green'>Touch</span>
             </h1>
 
-            <p className='font-sans text-black impact-para mb-10 max-w-lg max-lg:mx-auto'>
+            <p className='font-sans text-black impact-para mb-10 max-w-lg  '>
               If you have any questions about our work or would like to support
               our mission, feel free to contact us.
             </p>
@@ -88,7 +88,7 @@ export default function ContactUs() {
               <h2 className='text-[20px] md:text-[24px] font-semibold font-display text-navy mb-4'>
                 Contact details
               </h2>
-              <div className='bg-[#f3f4f6]/90 rounded-2xl px-6 py-8 space-y-6 w-full max-w-sm max-lg:mx-auto'>
+              <div className='bg-[#f3f4f6]/90 rounded-2xl px-6 py-8 space-y-6 w-full max-w-sm  '>
                 {contactDetails.map((item, i) => (
                   <div key={i} className='flex items-center gap-4'>
                     <div className='shrink-0 text-navy'>{item.icon}</div>
@@ -104,7 +104,7 @@ export default function ContactUs() {
             <div className='mt-auto w-full flex flex-col grow'>
               {/* Visit Our Office */}
 
-              <div className='my-4 max-lg:text-center'>
+              <div className='my-4  '>
                 <h3 className='font-display font-semibold text-navy text-[16px] mb-1'>
                   Visit Our Office
                 </h3>

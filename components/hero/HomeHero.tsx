@@ -43,13 +43,14 @@ export default function HomeHero({
   useEffect(() => {
     const section = sectionRef.current
     if (!section || typeof IntersectionObserver === 'undefined') {
-      setShowVideo(true)
-      return
+      const timer = setTimeout(() => setShowVideo(true), 2000)
+      return () => clearTimeout(timer)
     }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShowVideo(true)
+          // Delay video loading to allow gradient focus to settle first
+          setTimeout(() => setShowVideo(true), 2000)
           observer.disconnect()
         }
       },
@@ -61,7 +62,7 @@ export default function HomeHero({
 
   // Animate hero text immediately — don't wait for video
   useEffect(() => {
-    const timer = setTimeout(() => setAnimateHero(true), 100)
+    const timer = setTimeout(() => setAnimateHero(true), 800)
     return () => clearTimeout(timer)
   }, [])
 
@@ -72,7 +73,7 @@ export default function HomeHero({
 
 
   // Restore the radial gradient as requested
-  const gradientStyle = 'radial-gradient(circle at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 60.02%)'
+  const gradientStyle = 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,0.95) 100%)'
 
   return (
     <section

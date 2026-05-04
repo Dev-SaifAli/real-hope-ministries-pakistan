@@ -64,58 +64,69 @@ export default function AboutSection () {
   )
 
   // ── Manual scroll ─────────────────────────────────────────────
-  const handleScroll = useCallback(() => {
-    if (isAutoScrolling.current) return
+  const isJumping = useRef(false)
 
-    const track = trackRef.current
-    const slider = sliderRef.current
-    if (!track || !slider) return
+ // Replace your handleScroll + jump logic with this approach:
 
-    const sliderCenter = slider.scrollLeft + slider.offsetWidth / 2
+const handleScroll = useCallback(() => {
+  if (isAutoScrolling.current || isJumping.current) return
+  const track = trackRef.current
+  const slider = sliderRef.current
+  if (!track || !slider) return
 
-    let closestIndex = totalVideos
-    let closestDistance = Infinity
+  const sliderCenter = slider.scrollLeft + slider.offsetWidth / 2
+  let closestIndex = totalVideos
+  let closestDistance = Infinity
 
-    Array.from(track.children).forEach((child, index) => {
-      const el = child as HTMLElement
-      const childCenter = el.offsetLeft + el.offsetWidth / 2
-      const distance = Math.abs(sliderCenter - childCenter)
-      if (distance < closestDistance) {
-        closestDistance = distance
-        closestIndex = index
-      }
-    })
-
-    // Infinite Jump Logic
-    // If we are in Set A (index < totalVideos)
-    if (closestIndex < totalVideos) {
-      const jumpTo = closestIndex + totalVideos
-      const targetChild = track.children[jumpTo] as HTMLElement
-      const scrollTo =
-        targetChild.offsetLeft -
-        slider.offsetWidth / 2 +
-        targetChild.offsetWidth / 2
-
-      // Instant jump
-      slider.scrollTo({ left: scrollTo, behavior: 'auto' })
-      setActiveSlide(jumpTo)
+  for (let i = 0; i < track.children.length; i++) {
+    const child = track.children[i] as HTMLElement
+    const childCenter = child.offsetLeft + child.offsetWidth / 2
+    const distance = Math.abs(sliderCenter - childCenter)
+    if (distance < closestDistance) {
+      closestDistance = distance
+      closestIndex = i
     }
-    // If we are in Set C (index >= 2 * totalVideos)
-    else if (closestIndex >= 2 * totalVideos) {
-      const jumpTo = closestIndex - totalVideos
-      const targetChild = track.children[jumpTo] as HTMLElement
-      const scrollTo =
-        targetChild.offsetLeft -
-        slider.offsetWidth / 2 +
-        targetChild.offsetWidth / 2
+  }
 
-      // Instant jump
-      slider.scrollTo({ left: scrollTo, behavior: 'auto' })
-      setActiveSlide(jumpTo)
-    } else {
+  const needsJump =
+    closestIndex < totalVideos || closestIndex >= 2 * totalVideos
+
+  if (needsJump) {
+    const jumpTo =
+      closestIndex < totalVideos
+        ? closestIndex + totalVideos
+        : closestIndex - totalVideos
+
+    const targetChild = track.children[jumpTo] as HTMLElement
+    const scrollTo =
+      targetChild.offsetLeft -
+      slider.offsetWidth / 2 +
+      targetChild.offsetWidth / 2
+
+    isJumping.current = true
+
+    // KEY FIX: disable snap synchronously, BEFORE any rAF,
+    // so no snap frame is ever committed
+    slider.style.scrollSnapType = 'none'
+    slider.scrollLeft = scrollTo
+    setActiveSlide(jumpTo)
+
+    // Re-enable snap after the browser has painted the new position.
+    // One rAF schedules *before* paint; setTimeout 0 fires *after*.
+    // Using rAF + setTimeout ensures we're past the paint boundary.
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        slider.style.scrollSnapType = 'x mandatory'
+        isJumping.current = false
+      }, 0)
+    })
+  } else {
+    if (activeSlide !== closestIndex) {
       setActiveSlide(closestIndex)
     }
-  }, [totalVideos])
+  }
+}, [totalVideos, activeSlide])
+
 
   return (
     <section

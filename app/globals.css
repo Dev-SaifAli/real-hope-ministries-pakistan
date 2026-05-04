@@ -109,3 +109,17 @@
   animation: bounce-x 1s infinite ease-in-out;
 }
 
+/* --- Navigation Progress Bar Styles --- */
+#nprogress .bar {
+  background: linear-gradient(to right, #0b2545, #2e9e6f) !important;
+  height: 3px !important;
+  z-index: 100000 !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #2e9e6f, 0 0 5px #2e9e6f !important;
+}
+
+
+
+

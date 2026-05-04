@@ -77,8 +77,8 @@ export default function MinistriesSection ({
       <ProjectCard 
         project={project} 
         showDonateButton={showDonateButton} 
-        showProgress={showProgress}
-        showUrgent={showUrgent}
+        // showProgress={showProgress}
+        // showUrgent={showUrgent}
       />
     </div>
   ))}

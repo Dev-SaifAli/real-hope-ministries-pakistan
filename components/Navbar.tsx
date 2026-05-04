@@ -240,7 +240,8 @@ transition-all duration-300
               role='dialog'
               aria-modal='true'
               aria-label='Navigation menu'
-              className='fixed inset-0 z-[70] w-full h-dvh bg-gradient-to-br from-navy via-navy/95 to-green flex flex-col px-6 py-8'
+              className='fixed inset-0 z-[70] w-full h-dvh bg-gradient-to-b from-navy via-green/80  
+               to-navy flex flex-col px-6 py-8'
               variants={sidebarVariants}
               initial='hidden'
               animate='visible'
@@ -284,18 +285,18 @@ transition-all duration-300
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + (i * 0.05) }}
-                      className="group border-b border-white/10 hover:border-green/50 transition-colors duration-300"
+                      className="group border-b border-white/50 hover:border-green/80 transition-colors duration-300"
                     >
                       <Link
                         href={link.href}
                         onClick={closeMenu}
                         className={`
                           flex items-center w-full py-3
-                          text-xl font-medium font-sans transition-all duration-300
-                          ${isActive ? 'text-green' : 'text-white/70 hover:text-white'}
+                            font-semibold font-sans transition-all duration-300
+                          ${isActive ? 'text-green' : 'text-white/90 hover:text-white'}
                         `}
                       >
-                        <span className="tracking-wide  text-base">{link.label}</span>
+                        <span className="   text-xl">{link.label}</span>
                       </Link>
                     </motion.li>
                   )

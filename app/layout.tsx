@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import HashScroll from '@/components/HashScroll'
 import LoadingScreen from '@/components/LoadingScreen'
+import ProgressBarProvider from '@/components/ProgressBarProvider'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -20,6 +21,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
   title: {
     default: 'Real Hope Pakistan',
     template: '%s | Real Hope Pakistan'
@@ -68,13 +70,15 @@ export default function RootLayout({
   return (
     <html lang='en' className={`${openSans.variable} ${poppins.variable}`}>
       <body className='font-sans antialiased'>
-        <LoadingScreen />
-        <Suspense fallback={null}>
-          <HashScroll />
-        </Suspense>
-        <Navbar />
-        {children}
-        <Footer />
+        <ProgressBarProvider>
+          <LoadingScreen />
+          <Suspense fallback={null}>
+            <HashScroll />
+          </Suspense>
+          <Navbar />
+          {children}
+          <Footer />
+        </ProgressBarProvider>
       </body>
     </html>
   )

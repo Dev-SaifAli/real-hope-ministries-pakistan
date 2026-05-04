@@ -168,7 +168,7 @@ export default function StatsSection () {
           </div>
 
           {/* ── Right: 2x2 stat cards ── */}
-          <div className='lg:col-span-5 col-span-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-4 xl:gap-8 lg:max-w-[400px] 2xl:max-w-[480px] w-full lg:ml-auto self-start'>
+          <div className='lg:col-span-5 col-span-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-4 xl:gap-8 lg:max-w-[400px] 2xl:max-w-[480px] w-full lg:ml-auto self-start px-4  '>
             {stats.map(stat => (
               <StatCard key={stat.id} stat={stat} />
             ))}

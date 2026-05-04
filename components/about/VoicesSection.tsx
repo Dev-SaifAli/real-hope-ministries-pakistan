@@ -112,12 +112,12 @@ export default function VoicesSection () {
             serve.
           </p>
         </div>
-        <div className='max-w-360 mx-auto px-4 sm:px-6 lg:px-10'>
+        <div className=''>
           {/* ── Main Grid ── */}
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6'>
             {/* VIDEO CARD - Desktop pe 2 columns leta hai */}
             <div
-              className='md:col-span-2 relative aspect-[1075/799]   rounded-[30px] overflow-hidden cursor-pointer group bg-gray-100'
+              className='md:col-span-2 relative aspect-[1075/799]  max-sm:rounded-[20px]     rounded-[30px] overflow-hidden cursor-pointer group bg-gray-100'
               onClick={() => setPlaying(true)}
             >
               {!playing ? (
@@ -155,7 +155,7 @@ export default function VoicesSection () {
                 <div
                   key={idx}
                   onClick={() => openLightbox(idx)}
-                  className='relative flex-1 aspect-[524/374] rounded-[30px] overflow-hidden cursor-pointer group'
+                  className='relative flex-1 aspect-[524/374]   max-sm:rounded-[20px]  rounded-[30px] overflow-hidden cursor-pointer group'
                 >
                   <Image
                     src={buildImage(ALL_PHOTOS[idx].src, 800)}
@@ -174,7 +174,7 @@ export default function VoicesSection () {
               <div
                 key={idx}
                 onClick={() => openLightbox(idx)}
-                className='relative aspect-[524/374] rounded-[30px] overflow-hidden cursor-pointer group'
+                className='relative aspect-[524/374]   max-sm:rounded-[20px]   rounded-[30px] overflow-hidden cursor-pointer group'
               >
                 <Image
                   src={buildImage(ALL_PHOTOS[idx].src, 800)}
