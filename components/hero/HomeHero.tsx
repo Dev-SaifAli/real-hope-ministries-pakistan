@@ -30,7 +30,7 @@ const itemVariants: Variants = {
 export default function HomeHero({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
-  videoSrc = 'VID-20260425-WA0014_leuotp',
+  videoSrc = 'hero-video_qvxm98',
   photoId = 'Gemini_Generated_Image_zckniczckniczckn_pacsn6'
 }: HeroProps) {
   const [videoReady, setVideoReady] = useState(false)
