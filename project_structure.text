@@ -25,7 +25,13 @@
     - MissionVisionSection.tsx
     - VoicesSection.tsx
   - Curvedcarousel.tsx
+  - donation
+    - DonationForm.tsx
+    - DonationProjects.tsx
   - Footer.tsx
+  - hero
+    - HomeHero.tsx
+    - PageHero.tsx
   - Hero.tsx
   - home
     - AboutSection.tsx
@@ -35,6 +41,8 @@
     - MinistriesSection.tsx
     - StatsSection.tsx
     - StorySection.tsx
+  - layout
+    - MainLayout.tsx
   - Navbar.tsx
   - ProjectCard.tsx
   - ui
@@ -42,6 +50,7 @@
     - Button.tsx
     - FormInput.tsx
     - FormSelect.tsx
+    - MapComponent.tsx
 - eslint.config.mjs
 - eval
 - next-env.d.ts
@@ -50,12 +59,14 @@
 - package.json
 - postcss.config.mjs
 - public
+  - about-hero.png
   - community
     - photo-1.png
     - photo-2.png
     - photo-3.png
     - photo-4.png
     - photo-5.png
+  - contact-hero.png
   - home-hero.png
   - icons
     - contact
@@ -72,22 +83,15 @@
     - twitter.svg
     - youtube.svg
   - nav-logo.png
+  - nav-logo1.png
   - projects
-    - clean-water.png
     - clean-water.webp
-    - food.png
     - food.webp
-    - free-people.png
     - free-people.webp
-    - orphanage.png
     - orphanage.webp
-    - persecution.png
     - persecution.webp
-    - slavery.png
     - slavery.webp
-    - widows.png
     - widows.webp
-    - youth.png
     - youth.webp
   - story
     - primary.png

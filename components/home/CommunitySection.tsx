@@ -1,22 +1,28 @@
 import CurvedCarousel from '../Curvedcarousel'
 
 const communityImages = [
-  '/community/photo-1.png',
-  '/community/photo-2.png',
-  '/community/photo-3.png',
-  '/community/photo-4.png',
-  '/community/photo-5.png'
+  'food_vzy14n',
+  'orphanage_b3ciwu',
+  'photo-4_racfz6',
+  'photo-3_qxsn4b',
+  'photo-5_lwvur4',
+  '2c935d9d8598fb9b5264ff3413972374581caf98_i23etx',
+  'primary_d1yylj',
+  'widows_rvnx1s',
+  'DSC_7820_1_qda3pj',
+  'DSC_7679_1_hjzlhk',
+  'DSC_3082_1_lfvubr'
 ]
 export default function CommunitySection () {
   return (
-    <section id='community' className='w-full bg-white py-14 sm:py-16 md:py-18 lg:py-20 overflow-hidden '>
+    <section id='community' className='w-full bg-white   overflow-hidden scroll-mt-28 pt-4'>
       {/* ── Header — centered ── */}
-      <div className='text-center px-4 sm:px-6 mb-10 md:mb-10 lg:mb-12 max-w-[900px] mx-auto'>
-        <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl  leading-tight mb-2 md:mb-6'>
+      <div className='impact-section'>
+        <h2 className='font-display font-semibold text-navy impact-heading leading-tight mb-2 md:mb-3 lg:mb-5'>
           Community In <span className='text-green'>Action</span>
         </h2>
 
-        <p className='font-sans text-black text-[15px] sm:text-lg md:text-xl'>
+        <p className='font-sans text-black impact-para px-2 sm:px-4 '>
           Real stories and meaningful moments captured during our fieldwork
           across Pakistan, highlighting the communities we serve and the impact
           of compassion, support, and hope in everyday lives.

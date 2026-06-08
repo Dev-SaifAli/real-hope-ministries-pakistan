@@ -41,14 +41,14 @@ export default function Hero ({
       <div className='absolute inset-0 bg-black/50 -z-10' />
 
       {/* Content */}
-      <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
+      <div className='relative    z-10 text-center max-w-5xl mx-auto  '>
         {/* Title — Responsive Font and Leading */}
         <h1
           className='
             font-display font-[515] text-white 
-            text-2xl leading-[44px]             /* Mobile */
-            md:text-4xl md:leading-[60px]       /* Tablet */
-            lg:text-6xl lg:leading-[84px]       /* Desktop */
+            text-2xl leading-[44px]             
+            md:text-4xl md:leading-[60px]       
+            lg:text-6xl lg:leading-[84px]       
             mb-6 drop-shadow-md mx-auto
           '
         >

@@ -1,32 +1,29 @@
+import React from 'react'
 
-interface FormSelectProps {
-  id: string
+interface FormSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label: string
-  value: string
-  options: string []
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  options: string[]
 }
 
-export default function FormSelect({ id, label, options, value, onChange }: FormSelectProps) {
+export default function FormSelect({ label, options, id, name, ...props }: FormSelectProps) {
   return (
     <div className='flex flex-col gap-2'>
       <label
-        htmlFor={id}
-        className='block text-[16px] font-semibold font-sans text-black mb-2'
+        htmlFor={id || name}
+        className='block text-[16px] font-semibold font-sans text-black mb-1'
       >
-        {label}
+        {label} {props.required && <span className="text-red-500">*</span>}
       </label>
       <select
-        id={id}
-        name={id}
-        value={value}
-        onChange={onChange}
+        id={id || name}
+        name={name || id}
         className={`
-          w-full border border-gray-200 rounded-md px-4 py-3
-          text-sm font-sans focus:outline-none focus:ring-2
+          w-full border border-[#D9E1EA] rounded-md px-4 py-3
+          text-[16px] font-sans focus:outline-none focus:ring-1
           focus:ring-navy bg-white
-          ${value === '' ? 'text-black' : 'text-gray-700'}
+          ${!props.value ? 'text-black' : 'text-gray-700'}
         `}
+        {...props}
       >
         <option value='' disabled>
           Select an option

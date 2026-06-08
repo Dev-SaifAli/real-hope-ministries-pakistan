@@ -1,87 +1,145 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import VideoSection, { videos } from '@/components/VideoSection'
 
-interface Video {
-  id: number
-  thumbnail: string
-  alt: string
-  youtubeId?: string
-}
-
-const videos: Video[] = [
-  { id: 1, thumbnail: '/videos/video-1.png', alt: 'Real Hope Ministry community gathering' },
-  { id: 2, thumbnail: '/videos/video-2.png', alt: 'Widows ministry - Christmas clothes' },
-  { id: 3, thumbnail: '/videos/video-3.png', alt: 'Freedom from slavery project' },
-  { id: 4, thumbnail: '/videos/video-4.png', alt: 'Clean water project' },
-  { id: 5, thumbnail: '/videos/video-5.png', alt: 'Food distribution' },
-  { id: 6, thumbnail: '/videos/video-6.png', alt: 'Youth mission' },
-  { id: 7, thumbnail: '/videos/video-7.png', alt: 'Orphanage project' }
-]
-
-function PlayButton () {
-  return (
-    <div className='w-12 h-12 sm:w-14 sm:h-14 bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200 rounded-full'>
-      <div className='w-0 h-0 ml-1 border-t-[9px] border-t-transparent border-b-[9px] border-b-transparent border-l-[16px] border-l-navy' />
-    </div>
-  )
-}
-
-function VideoCard ({ video }: { video: Video }) {
-  const [playing, setPlaying] = useState(false)
-
-  return (
-    <div
-      className='flex-shrink-0 relative snap-center w-[92vw] sm:w-[360px] md:w-[380px] lg:w-[420px] h-[220px] sm:h-[260px] lg:h-[280px] overflow-hidden cursor-pointer group'
-      onClick={() => setPlaying(true)}
-    >
-      <img src={video.thumbnail} alt={video.alt} className='w-full h-full object-cover' />
-      <div className='absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-200' />
-      {!playing && (
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <PlayButton />
-        </div>
-      )}
-      {playing && video.youtubeId && (
-        <iframe
-          className='absolute inset-0 w-full h-full'
-          src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-          allow='autoplay; encrypted-media'
-          allowFullScreen
-        />
-      )}
-    </div>
-  )
-}
+const SLIDE_COUNT = videos.length
 
 export default function AboutSection () {
-  const [activeSlide, setActiveSlide] = useState(0)
+  const totalVideos = videos.length
+  const extendedVideos = [...videos, ...videos, ...videos]
 
-  const handleDotClick = (index: number) => {
-    setActiveSlide(index)
-    const slider = document.getElementById('video-slider')
-    if (!slider) return
-    const firstCard = slider.firstElementChild as HTMLElement
-    if (!firstCard) return
-    // FIX: use scrollWidth to calculate exact per-slide distance
-    const totalWidth = slider.scrollWidth - slider.clientWidth
-    const perSlide = totalWidth / (videos.length - 1)
-    slider.scrollTo({ left: index * perSlide, behavior: 'smooth' })
+  // Start in the middle set
+  const [activeSlide, setActiveSlide] = useState(totalVideos)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef<HTMLDivElement>(null)
+  const isAutoScrolling = useRef(false)
+  const pathname = usePathname()
+  const isHomePage = pathname === '/' || pathname === '/home'
+
+  // ── Initial Scroll ──────────────────────────────────────────
+  useEffect(() => {
+    const slider = sliderRef.current
+    const track = trackRef.current
+    if (!slider || !track) return
+
+    // Scroll to the first video of the middle set (Set B)
+    const middleSetStartChild = track.children[totalVideos] as HTMLElement
+    if (middleSetStartChild) {
+      const scrollTo =
+        middleSetStartChild.offsetLeft -
+        slider.offsetWidth / 2 +
+        middleSetStartChild.offsetWidth / 2
+      slider.scrollLeft = scrollTo
+    }
+  }, [totalVideos])
+
+  // ── Dot click ────────────────────────────────────────────────
+  const handleDotClick = useCallback(
+    (index: number) => {
+      const track = trackRef.current
+      const slider = sliderRef.current
+
+      if (!track || !slider) return
+
+      // Always scroll to the middle set (Set B)
+      const targetIndex = index + totalVideos
+      const child = track.children[targetIndex] as HTMLElement
+      if (!child) return
+
+      setActiveSlide(targetIndex)
+      isAutoScrolling.current = true
+
+      const scrollTo =
+        child.offsetLeft - slider.offsetWidth / 2 + child.offsetWidth / 2
+
+      slider.scrollTo({ left: scrollTo, behavior: 'smooth' })
+
+      setTimeout(() => {
+        isAutoScrolling.current = false
+      }, 900)
+    },
+    [totalVideos]
+  )
+
+  // ── Manual scroll ─────────────────────────────────────────────
+  const isJumping = useRef(false)
+
+ // Replace your handleScroll + jump logic with this approach:
+
+const handleScroll = useCallback(() => {
+  if (isAutoScrolling.current || isJumping.current) return
+  const track = trackRef.current
+  const slider = sliderRef.current
+  if (!track || !slider) return
+
+  const sliderCenter = slider.scrollLeft + slider.offsetWidth / 2
+  let closestIndex = totalVideos
+  let closestDistance = Infinity
+
+  for (let i = 0; i < track.children.length; i++) {
+    const child = track.children[i] as HTMLElement
+    const childCenter = child.offsetLeft + child.offsetWidth / 2
+    const distance = Math.abs(sliderCenter - childCenter)
+    if (distance < closestDistance) {
+      closestDistance = distance
+      closestIndex = i
+    }
   }
 
+  const needsJump =
+    closestIndex < totalVideos || closestIndex >= 2 * totalVideos
+
+  if (needsJump) {
+    const jumpTo =
+      closestIndex < totalVideos
+        ? closestIndex + totalVideos
+        : closestIndex - totalVideos
+
+    const targetChild = track.children[jumpTo] as HTMLElement
+    const scrollTo =
+      targetChild.offsetLeft -
+      slider.offsetWidth / 2 +
+      targetChild.offsetWidth / 2
+
+    isJumping.current = true
+
+    // KEY FIX: disable snap and smooth scroll synchronously
+    slider.style.scrollSnapType = 'none'
+    slider.style.scrollBehavior = 'auto' 
+    slider.scrollLeft = scrollTo
+    setActiveSlide(jumpTo)
+
+    // Re-enable snap in the next frame to avoid conflict with the manual scroll
+    requestAnimationFrame(() => {
+      slider.style.scrollSnapType = 'x mandatory'
+      slider.style.scrollBehavior = ''
+      isJumping.current = false
+    })
+  } else {
+    setActiveSlide(prev => prev !== closestIndex ? closestIndex : prev)
+  }
+}, [totalVideos])
+
+
   return (
-    <section className='w-full bg-white mt-11 md:mt-20 overflow-hidden'>
-      {/* ── Section Header ── */}
-      <div className='text-center px-4 sm:px-6 mb-10 md:mb-12 max-w-[900px] mx-auto'>
-        <p className='font-display font-semibold text-green text-[14px] sm:text-[16px] md:text-[18px] mb-3 sm:mb-5 md:mb-8'>
+    <section
+      id='real-hope-pakistan'
+      className={`w-full bg-white overflow-hidden scroll-mt-28 ${
+        isHomePage ? 'mt-11 md:mt-16 -mb-20' : 'pt-12 md:pt-20'
+      }`}
+    >
+      {/* Section Header */}
+      <div className='impact-section mb-10 md:mb-12  '>
+        <p className='font-display font-semibold text-green text-[16px] sm:text-[16px] md:text-2xl mb-3 sm:mb-5 md:mb-6'>
           About Real Hope Pakistan
         </p>
-        <h2 className='font-display font-semibold text-navy text-[25px] sm:text-3xl md:text-5xl leading-tight mb-2 sm:mb-4 md:mb-6'>
-          A Mission of <span className='text-green'>Compassion</span>,{' '}
-          <br className='hidden md:block' />
-          Faith and Action
+        <h2 className='font-display font-semibold text-navy impact-heading   mb-2 sm:mb-4 md:mb-6'>
+          A Mission of <span className='text-green'>Compassion</span>,
+          <br className='hidden md:block' /> Faith and Action
         </h2>
-        <p className='font-sans text-black text-[15px] sm:text-lg md:text-xl'>
+        <p className='font-sans text-black impact-para px-2 sm:px-4 xl:px-0 '>
           Real Hope Pakistan is committed to serving the most vulnerable
           communities across the nation. Guided by a spirit of humanitarianism,
           we work tirelessly to address immediate needs while fostering
@@ -89,47 +147,51 @@ export default function AboutSection () {
           advocating for freedom and supporting widows and orphans, our mission
           is rooted in the belief that every life is valuable. Together, we are
           building a foundation of real hope, transforming lives one community
-          at a time.
+          at atime.
         </p>
       </div>
 
-      <div className='max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10'>
+      {/* Video Slider */}
+      <div className='main-container'>
         <div
-          id='video-slider'
-          className='flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4'
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          onScroll={e => {
-            const slider = e.currentTarget
-            const firstCard = slider.firstElementChild as HTMLElement
-            if (!firstCard) return
-            // FIX: same scrollWidth calculation for onScroll sync
-            const totalWidth = slider.scrollWidth - slider.clientWidth
-            const perSlide = totalWidth / (videos.length - 1)
-            const newSlide = Math.round(slider.scrollLeft / perSlide)
-            setActiveSlide(newSlide)
-          }}
+          ref={sliderRef}
+          className='flex overflow-x-auto snap-x snap-mandatory no-scrollbar will-change-transform'
+          style={{ WebkitOverflowScrolling: 'touch' }}
+          onScroll={handleScroll}
         >
-          {videos.map((video: Video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-          <div className='flex-shrink-0 w-4 sm:w-6' />
+          <VideoSection
+            trackRef={trackRef}
+            activeSlide={activeSlide}
+            setActiveSlide={setActiveSlide}
+            videosList={extendedVideos}
+          />
         </div>
       </div>
 
-      {/* ── Dot Indicators ── */}
-      <div className='flex items-center justify-center gap-2 mt-6 md:mt-8'>
-        {videos.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            aria-label={`Go to slide ${index + 1}`}
-            className={`rounded-full transition-all duration-200 ${
-              activeSlide === index
-                ? 'w-3 h-3 bg-navy'
-                : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-            }`}
-          />
-        ))}
+      {/* Dots */}
+      <div className='flex items-center justify-center gap-4 mt-8 md:mt-12 pb-20'>
+        {Array.from({ length: SLIDE_COUNT }).map((_, index) => {
+          const isActive = activeSlide % totalVideos === index;
+          return (
+            <button
+              type='button'
+              key={index}
+              onClick={() => handleDotClick(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`rounded-full transition-all duration-300 w-4 h-4 ${
+                isActive ? 'bg-navy' : 'bg-[#C1C9D2] hover:bg-[#A8B2BD]'
+              }`}
+              style={{
+                boxShadow: `${
+                  isActive
+                    ? 'inset 0px 4px 6px rgba(255,255,255,0.1), inset 0px -4px 6px rgba(0,0,0,0.4)'
+                    : 'inset 0px 6px 8px rgba(255,255,255,1), inset 0px -4px 6px rgba(0,0,0,0.1)'
+                }, 0px 2px 4px 0px rgba(0,0,0,0.08), 0px 6px 8px 0px rgba(0,0,0,0.05), 0px 12px 12px 0px rgba(0,0,0,0.03), 0px 18px 16px 0px rgba(0,0,0,0.01)`,
+                backdropFilter: 'blur(15px)'
+              }}
+            />
+          );
+        })}
       </div>
     </section>
   )

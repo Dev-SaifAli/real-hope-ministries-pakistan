@@ -8,8 +8,35 @@
   /* Custom Brand Colors */
   --color-navy: #0b2545;
   --color-green: #2e9e6f;
-  --color-orange: #ffa500;
+  --color-orange: #f59e0b;
   --color-pearl: #fff5e6;
+  --radius-5xl: 3rem;
+  --color-orange-100: #fef3c7;
+  --color-orange-200: #fde68a;
+  --color-orange-300: #fcd34d;
+  --color-orange-400: #fbbf24;
+  --color-orange-500: #f59e0b; /* original */
+  --color-orange-600: #d97706;
+  --color-orange-700: #b45309;
+  --color-orange-800: #92400e;
+}
+
+@layer components {
+  .impact-section {
+    @apply text-center px-4 lg:px-10 w-full sm:max-w-[800px] md:max-w-[900px] mx-auto;
+  }
+
+  .impact-para {
+    @apply text-sm sm:text-[14px] md:text-[16px] lg:text-[16px]   xl:text-[17px] leading-relaxed;
+  }
+
+  .impact-heading {
+    @apply text-2xl sm:text-3xl md:text-4xl xl:text-[40px] 2xl:text-[44px] leading-tight;
+  }
+
+  .main-container {
+    @apply w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-16 max-w-[1920px];
+  }
 }
 
 /* --- Base Resets & Global Styles --- */
@@ -21,15 +48,16 @@
     margin: 0;
     padding: 0;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     /* Uses the Open Sans variable mapped above */
     font-family: var(--font-open-sans), sans-serif;
     color: #000000;
-    background: #ffffff;
-    line-height: 1.6;
+    /* background-color: #f5f9ff; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -44,6 +72,21 @@
     font-family: var(--font-poppins), sans-serif;
   }
 
+  /* Chrome, Safari */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* IE/Edge (old) */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
@@ -55,3 +98,28 @@
     height: auto;
   }
 }
+
+/* Custom Animation for Swipe Hint */
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.animate-bounce-x {
+  animation: bounce-x 1s infinite ease-in-out;
+}
+
+/* --- Navigation Progress Bar Styles --- */
+#nprogress .bar {
+  background: linear-gradient(to right, #0b2545, #2e9e6f) !important;
+  height: 3px !important;
+  z-index: 100000 !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #2e9e6f, 0 0 5px #2e9e6f !important;
+}
+
+
+
+

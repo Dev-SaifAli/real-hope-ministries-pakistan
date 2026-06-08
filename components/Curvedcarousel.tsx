@@ -1,113 +1,118 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useMotionValue, useAnimationFrame } from 'framer-motion'
 import Image from 'next/image'
+import { buildImage } from '@/utils/cloudinary'
 
 interface CurvedCarouselProps {
   images: string[]
 }
 
-export default function CurvedCarousel({ images }: CurvedCarouselProps) {
-  const CARD_WIDTH = 360
-  const CARD_GAP   = 16
-  const STEP       = CARD_WIDTH + CARD_GAP
+export default function CurvedCarousel ({ images }: CurvedCarouselProps) {
+  const CARD_WIDTH = 308
+  const CARD_GAP = 20
+  const STEP = CARD_WIDTH + CARD_GAP
 
-  const looped   = [...images, ...images, ...images]
-  const totalW   = looped.length * STEP
-  const startX   = -(images.length * STEP)
+  // Double the images for seamless loop
+  const looped = [...images, ...images, ...images, ...images]
+  const totalW = looped.length * STEP
+  const startX = -(images.length * STEP)
 
-  const x        = useMotionValue(startX)
-  const controls = useAnimation()
+  const x = useMotionValue(startX)
   const isDragging = useRef(false)
 
-  const startAutoScroll = () => {
-    if (isDragging.current) return
-    controls.start({
-      x: [x.get(), x.get() - images.length * STEP],
-      transition: {
-        duration: images.length * 3,
-        ease: 'linear',
-        repeat: Infinity,
-      },
-    })
-  }
+  // Speed: images.length * STEP / duration (old duration was images.length * 3)
+  // So speed = STEP / 3 pixels per second
+  const SPEED = STEP / 3
 
-  useEffect(() => {
-    startAutoScroll()
-  }, [])
+  useAnimationFrame((_t, delta) => {
+    if (isDragging.current) return
+
+    const moveBy = (SPEED * delta) / 1000
+    let newX = x.get() - moveBy
+
+    // Infinite wrap-around
+    // If we scroll past the second set, jump back by one set
+    const resetPoint = -(images.length * 2 * STEP)
+    if (newX < resetPoint) {
+      newX += images.length * STEP
+    } else if (newX > 0) {
+      newX -= images.length * STEP
+    }
+
+    x.set(newX)
+  })
 
   return (
     <div
-      className="relative w-full overflow-hidden"
-      style={{ height: '320px' }}
+      className='relative w-full overflow-hidden'
+      style={{ height: '500px' }}
     >
       {/* ── Image strip ── */}
       <motion.div
-        className="absolute top-1/2 -translate-y-1/2 flex items-center cursor-grab active:cursor-grabbing"
+        className='absolute top-1/2 -translate-y-1/2 flex items-center cursor-grab active:cursor-grabbing'
         style={{ x, gap: `${CARD_GAP}px`, width: `${totalW}px` }}
-        animate={controls}
-        drag="x"
+        drag='x'
         dragConstraints={{ left: -(images.length * 2 * STEP), right: 0 }}
         dragElastic={0.05}
         onDragStart={() => {
           isDragging.current = true
-          controls.stop()
         }}
         onDragEnd={() => {
           isDragging.current = false
+          // Ensure we stay within the loop bounds after drag
           const current = x.get()
           if (current < -(images.length * 2 * STEP) || current > 0) {
             x.set(startX)
           }
-          setTimeout(() => startAutoScroll(), 800)
         }}
       >
+
+
         {looped.map((src, index) => (
           <div
             key={index}
-            className="relative flex-shrink-0 overflow-hidden"
+            className='relative  shrink-0 overflow-hidden'
             style={{
-              width:        `${CARD_WIDTH}px`,
-              height:       '260px',
+              width: `${CARD_WIDTH}px`,
+              height: '260px',
               // ─── NO rotateY, NO scale, NO borderRadius ───
               // Cards stay full size and rectangular always
-              borderRadius: '12px',
-              flexShrink:   0,
+              // borderRadius: '12px',
+              flexShrink: 0
             }}
           >
             <Image
-              src={src}
+              src={buildImage(src,800)}
               alt={`Slide ${index + 1}`}
               fill
               draggable={false}
-              className="object-cover object-center select-none"
+              className='object-cover object-center select-none'
             />
           </div>
         ))}
       </motion.div>
 
-      {/* ── Top white ellipse ── */}
+      {/* TOP ELLIPSE MASK */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 bg-white pointer-events-none"
+        className='absolute top-[-150px] left-1/2 -translate-x-1/2 bg-white'
         style={{
-          zIndex:       10,
-          width:        '170%',
-          height:       '220px',
-          top:          '-165px',
+          width: '160%',
+          height: '300px',
           borderRadius: '50%',
+          zIndex: 20
         }}
       />
 
       {/* ── Bottom white ellipse ── */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 bg-white pointer-events-none"
+        className='absolute bottom-[-150px] left-1/2 -translate-x-1/2 bg-white'
         style={{
-          zIndex:       10,
-          width:        '170%',
-          height:       '220px',
-          bottom:       '-165px',
+          width: '160%',
+          height: '300px',
           borderRadius: '50%',
+          zIndex: 20
         }}
       />
     </div>

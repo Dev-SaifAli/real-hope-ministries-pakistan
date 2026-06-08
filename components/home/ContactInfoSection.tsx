@@ -1,46 +1,72 @@
-import Image from 'next/image'
+'use client'
 
-interface ContactCard {
+import { MapPin, Mail, Phone, LucideIcon } from 'lucide-react'
+
+interface ContactCardData {
   id: number
   title: string
   value: string
-  icon: string
-  alt: string
+  icon: LucideIcon
+  href?:string
 }
 
-const contactCards: ContactCard[] = [
-  { id: 1, title: 'Headquarters', value: '123 Hope Street, Lahore, Pakistan', icon: '/icons/contact/location.svg', alt: 'Location pin icon' },
-  { id: 2, title: 'Email Us', value: 'absd@gmail.com', icon: '/icons/contact/email.svg', alt: 'Email envelope icon' },
-  { id: 3, title: 'Call Us', value: '0000000000000', icon: '/icons/contact/phone.svg', alt: 'Phone icon' }
+const contactCards: ContactCardData[] = [
+  {
+    id: 1,
+    title: 'Headquarters',
+    value: 'Madina Green Valley, Faisalabad',
+    icon: MapPin,
+    href: 'https://maps.google.com/?q=Madina+Green+Valley,+Faisalabad,+Pakistan'
+  },
+  {
+    id: 2,
+    title: 'Email Us',
+    value: 'zashan789789@gmail.com',
+    icon: Mail,
+    href: 'mailto:zashan789789@gmail.com'
+  },
+  {
+    id: 3,
+    title: 'Call Us',
+    value: '+923009823626',
+    icon: Phone,
+    href:'tel:+923009823626'
+  }
 ]
 
-function ContactCard ({ card }: { card: ContactCard }) {
+function ContactCardComponent ({ card }: { card: ContactCardData }) {
+  const Icon = card.icon
+
   return (
-    // px-6 mobile, px-10 sm+ — prevents card content from touching edges on small screens
-    <div className='flex flex-col items-center  text-center bg-white rounded-2xl shadow-sm px-6 py-8 md:px-2 lg:px-10 md:py-4 lg:py-10 gap-3 md:gap-4 lg:gap-5 flex-1'>
-      <div className='sm:w-[42px] sm:h-[42px] md:w-[52px] md:h-[52px] lg:w-[60px] lg:h-[60px] rounded-full bg-[#EBEBEB] flex items-center justify-center shrink-0'>
-        <Image src={card.icon} alt={card.alt} width={26} height={26} />
+    <div className='flex flex-col items-center justify-items-start flex-1 min-w-0 bg-white rounded-2xl shadow-sm px-6 py-4 md:px-6 lg:px-10 md:py-6 lg:py-10 gap-3 md:gap-4 lg:gap-5 transition-transform hover:scale-[1.02]'>
+      <div className='2xl:w-16 2xl:h-16 md:w-12 md:h-12 w-10 h-10 rounded-full bg-[#0B25450D] flex items-center justify-center'>
+        <Icon   className='text-navy' strokeWidth={2} />
       </div>
-      <h3 className='font-display font-semibold text-navy text-base sm:text-base md:text-lg lg:text-2xl'>
+
+      <h3 className='font-display font-semibold text-navy text-lg sm:text-base md:text-lg lg:text-xl'>
         {card.title}
       </h3>
-      {/* break-all prevents long email/phone values from overflowing on mobile */}
-      <p className='font-sans text-black text-base sm:text-sm md:text-base lg:text-xl break-all sm:break-normal'>
+
+      { card.href ? <a href={card.href} target='_blank' rel='noopener noreferrer'>
+        <p className='font-sans text-black impact-para text-base sm:text-xs md:text-base text-center  wrap-normal lg:whitespace-nowrap'>
         {card.value}
       </p>
+      </a> 
+        : 
+        <p className='font-sans text-black impact-para text-base sm:text-xs md:text-base text-center  wrap-normal lg:whitespace-nowrap'>
+        {card.value}
+      </p>}
     </div>
   )
 }
 
 export default function ContactInfoSection () {
   return (
-    // Removed double padding — outer px-4/px-6 handles gutters, inner px-10 removed
-    <section className='w-full bg-[#EFEFEF] py-12 md:py-16 px-4 sm:px-6 md:px-10'>
-      <div className='max-w-[1400px] mx-auto'>
-        {/* Stack on mobile, row on md+ */}
-        <div className='flex flex-col sm:flex-row gap-4 md:gap-6 items-stretch'>
-          {contactCards.map((card: ContactCard) => (
-            <ContactCard key={card.id} card={card} />
+    <section id='contact' className='w-full bg-[#EFEFEF] scroll-mt-28'>
+      <div className='main-container py-12 md:py-16   '>
+        <div className='flex flex-col sm:flex-row gap-4 md:gap-6 lg:gap-10 justify-center items-stretch  *: mx-auto w-full'>
+          {contactCards.map(card => (
+            <ContactCardComponent key={card.id} card={card} />
           ))}
         </div>
       </div>

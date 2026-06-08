@@ -4,28 +4,66 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { buildImage, buildVideo } from '@/utils/cloudinary'
 
+const newIds = [
+  'attachment_6_ae47de',
+  'photo-3_qxsn4b',
+  'IMG_0663_otmahe',
+  'DSC_3082_1_lfvubr',
+  'df169b1eb39ad8633a7854fa8187ce67bd8bbaa0_vdzfwc',
+  '3a4e13c06ca105ec79e46d16ff35adbb764906c4_qk5dhc',
+  'food_vzy14n',
+  'ac412c10607128cf2363aaf9672f0387b670847d_gfru0h',
+  'IMG_0803_g9zy0s',
+  'photo-4_racfz6',
+  'photo-5_lwvur4',
+  'widows_rvnx1s',
+  'orphanage_b3ciwu',
+  'food_vzy14n',
+  'ChatGPT_Image_Apr_29_2026_11_23_01_AM_foyoec',
+  '9f9b70fed6ee900561182ee105c7024993851773_x6idlb',
+  'DSC_7679_1_hjzlhk',
+  'DSC_7690_1_xbcdqr',
+  'DSC_7820_1_qda3pj',
+]
 // ── DATA ──
 const ALL_PHOTOS = [
   {
     id: 1,
-    src: '/voices/side-1.webp',
+    src: 'attachment_2_oqex6k',
     alt: 'Blanket distribution to community'
   },
-  { id: 2, src: '/voices/side-2.webp', alt: 'Community gathering' },
-  { id: 3, src: '/voices/bottom-1.webp', alt: 'Child eating food' },
-  { id: 4, src: '/voices/bottom-2.webp', alt: 'Children eating together' },
-  { id: 5, src: '/voices/bottom-3.webp', alt: 'Large community event' },
+  {
+    id: 2,
+    src: 'attachment_3_tmiulm',
+    alt: 'Community gathering'
+  },
+  {
+    id: 3,
+    src: 'attachment_1_gj34mr',
+    alt: 'Child holding book'
+  },
+  {
+    id: 4,
+    src: 'attachment_b2gu54',
+    alt: 'Child holding book'
+  },
+  {
+    id: 5,
+    src: '2c935d9d8598fb9b5264ff3413972374581caf98_i23etx',
+    alt: 'Large community event'
+  },
   // Add additional hidden photos here to increase the "+N" count
-  ...Array(15).fill({
-    src: '/voices/bottom-3.webp',
-    alt: 'More community moments'
-  })
+  ...newIds.map((id) => ({
+    src: id,
+    alt: 'Community moments'
+  }))
 ]
 
 const VIDEO_DATA = {
-  src: '/voices/video-thumb.webp',
-  youtubeId: 'YOUR_YOUTUBE_ID_HERE', // Replace with real ID
+  src: 'Screenshot_1083_jqkuqr',
+  videoUrl: 'WhatsApp_Video_2026-04-27_at_11.31.42_PM_jipxh2', // Replace with real ID
   alt: 'Real Hope Ministry video'
 }
 
@@ -41,6 +79,7 @@ function PlayButton () {
 export default function VoicesSection () {
   const [playing, setPlaying] = useState(false)
   const [photoIndex, setPhotoIndex] = useState<number | null>(null)
+  const [showGridModal, setShowGridModal] = useState(false)
 
   // Keyboard controls for Lightbox
   useEffect(() => {
@@ -58,100 +97,143 @@ export default function VoicesSection () {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [photoIndex])
 
-  const openLightbox = (index: number) => setPhotoIndex(index)
+  const handlePhotoClick = (index: number) => {
+    if (index === 4 && ALL_PHOTOS.length > 5) {
+      setShowGridModal(true)
+    } else {
+      setPhotoIndex(index)
+    }
+  }
 
   return (
-    <section className='w-full bg-white mt-12 mb-20 md:mt-16 md:mb-24 px-4 sm:px-6 md:px-10'>
+    <section className='w-full bg-white mt-20 mb-20 md:mt-16 md:mb-20 px-4 sm:px-6 md:px-10'>
       <div className='max-w-480 mx-auto'>
         {/* ── Header ── */}
         <div className='text-center mb-8 md:mb-12 max-w-225 mx-auto'>
-          <h2 className='font-display font-semibold text-navy text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-4'>
+          <h2 className='font-display font-semibold text-navy impact-heading mb-2 sm:mb-4'>
             Voices from the <span className='text-green'>Field</span>
           </h2>
-          <p className='text-black text-[15px] sm:text-[18px] leading-relaxed'>
+          <p className='text-black impact-para px-2 sm:px-4 xl:px-0'>
             See the real impact of your support. Through these stories and
             moments, we witness the incredible strength of the communities we
             serve.
           </p>
         </div>
-
-        {/* ── Main Grid ── */}
-        <div className='grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 mb-4'>
-          {/* VIDEO FEATURE */}
-          <div
-            className='relative h-65 sm:h-90 md:h-120  overflow-hidden cursor-pointer group bg-gray-100'
-            onClick={() => setPlaying(true)}
-          >
-            {!playing ? (
-              <>
-                <Image
-                  src={VIDEO_DATA.src}
-                  alt={VIDEO_DATA.alt}
-                  fill
-                  className='object-cover'
-                  priority
+        <div className=''>
+          {/* ── Main Grid ── */}
+          {/* Mobile: 2-col mosaic. Desktop: 3-col layout */}
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-3 sm:mb-4 md:mb-6'>
+            {/* VIDEO CARD — spans both cols on mobile, 2-of-3 on desktop */}
+            <div
+              className='col-span-2 md:col-span-2 relative aspect-[16/10] rounded-[16px] sm:rounded-[20px] md:rounded-[30px] overflow-hidden cursor-pointer group bg-gray-100'
+              onClick={() => setPlaying(true)}
+            >
+              {!playing ? (
+                <>
+                  <Image
+                    src={buildImage(VIDEO_DATA.src, 1600)}
+                    alt={VIDEO_DATA.alt}
+                    fill
+                    className='object-cover'
+                    priority
+                  />
+                  <div className='absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all' />
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <PlayButton />
+                  </div>
+                  <div className='absolute bottom-0 left-0 right-0 bg-red-600 py-2 md:py-3 px-4 md:px-6'>
+                    <p className='text-white font-bold text-sm md:text-xl italic uppercase tracking-wider'>
+                      Please watch this video
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <video
+                  className='absolute inset-0 w-full h-full object-cover'
+                  src={buildVideo(VIDEO_DATA.videoUrl)}
+                  autoPlay
+                  controls
+                  playsInline
                 />
-                <div className='absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all' />
-                <div className='absolute inset-0 flex items-center justify-center'>
-                  <PlayButton />
+              )}
+            </div>
+
+            {/* Photos 0 & 1 — side-by-side on mobile (each col-span-1),
+                              stacked in one column on desktop (col-span-1, flex-col) */}
+            <div className='col-span-2 md:col-span-1 grid grid-cols-2 md:flex md:flex-col gap-3 sm:gap-4 md:gap-6'>
+              {[0, 1].map(idx => (
+                <div
+                  key={idx}
+                  onClick={() => handlePhotoClick(idx)}
+                  className='relative aspect-[4/3] rounded-[16px] sm:rounded-[20px] md:rounded-[30px] md:flex-1 overflow-hidden cursor-pointer group'
+                >
+                  <Image
+                    src={buildImage(ALL_PHOTOS[idx].src, 800)}
+                    alt={ALL_PHOTOS[idx].alt}
+                    fill
+                    className='object-cover group-hover:scale-105 transition-transform duration-500'
+                  />
                 </div>
-              </>
-            ) : (
-              <iframe
-                title='youtube-video'
-                className='absolute inset-0 w-full h-full'
-                src={`https://www.youtube.com/embed/${VIDEO_DATA.youtubeId}?autoplay=1`}
-                allow='autoplay; encrypted-media'
-                allowFullScreen
-              />
-            )}
+              ))}
+            </div>
           </div>
 
-          {/* SIDE IMAGES STACK */}
-          <div className='grid grid-cols-2 md:grid-cols-1 gap-4'>
-            {[0, 1].map(idx => (
+          {/* ── BOTTOM ROW ── */}
+          {/* Mobile: photos 2 & 3 side-by-side, photo 4 (+20) full-width */}
+          {/* sm+: all 3 in a row */}
+          <div className='grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6'>
+            {[2, 3, 4].map(idx => (
               <div
                 key={idx}
-                onClick={() => openLightbox(idx)}
-                className='relative h-40 md:h-full  overflow-hidden cursor-pointer group'
+                onClick={() => handlePhotoClick(idx)}
+                className={`relative aspect-[4/3] rounded-[16px] sm:rounded-[20px] md:rounded-[30px] overflow-hidden cursor-pointer group ${
+                  idx === 4 ? 'col-span-2 sm:col-span-1' : ''
+                }`}
               >
                 <Image
-                  src={ALL_PHOTOS[idx].src}
+                  src={buildImage(ALL_PHOTOS[idx].src, 800)}
                   alt={ALL_PHOTOS[idx].alt}
                   fill
                   className='object-cover group-hover:scale-105 transition-transform duration-500'
                 />
+                {idx === 4 && ALL_PHOTOS.length > 5 && (
+                  <div className='absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity group-hover:opacity-60'>
+                    <span className='text-white text-4xl md:text-5xl font-bold'>
+                      +{ALL_PHOTOS.length - 4}
+                    </span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
-
-        {/* BOTTOM ROW (3 Photos) */}
-        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-          {[2, 3, 4].map(idx => (
-            <div
-              key={idx}
-              onClick={() => openLightbox(idx)}
-              className='relative h-55 sm:h-50 md:h-65  overflow-hidden cursor-pointer group'
-            >
-              <Image
-                src={ALL_PHOTOS[idx].src}
-                alt={ALL_PHOTOS[idx].alt}
-                fill
-                className='object-cover group-hover:scale-105 transition-transform duration-500'
-              />
-              {/* +N Overlay Logic on the last visible card */}
-              {idx === 4 && ALL_PHOTOS.length > 5 && (
-                <div className='absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity group-hover:opacity-90'>
-                  <span className='text-white text-4xl md:text-5xl font-black'>
-                    +{ALL_PHOTOS.length - 4}
-                  </span>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
       </div>
+
+      {/* ── ALL PHOTOS GRID MODAL ── */}
+      <AnimatePresence>
+        {showGridModal && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className='fixed inset-0 z-[80] bg-white overflow-y-auto p-4 md:p-8 flex flex-col'
+          >
+            <div className='flex justify-between items-center mb-6 max-w-7xl mx-auto w-full sticky top-0 bg-white/90 backdrop-blur-sm z-10 py-4'>
+              <h2 className='text-2xl md:text-3xl font-display font-semibold text-navy'>All Photos</h2>
+              <button onClick={() => setShowGridModal(false)} className='p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors text-black'>
+                <X size={24} />
+              </button>
+            </div>
+            <div className='max-w-7xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 pb-20'>
+              {ALL_PHOTOS.map((photo, i) => (
+                <div key={i} className='relative aspect-square md:aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group' onClick={() => setPhotoIndex(i)}>
+                  <Image src={buildImage(photo.src, 800)} alt={photo.alt} fill className='object-cover group-hover:scale-105 transition-transform duration-300' />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── LIGHTBOX MODAL ── */}
       <AnimatePresence>
@@ -206,7 +288,7 @@ export default function VoicesSection () {
               className='relative w-full max-w-5xl aspect-square md:aspect-video'
             >
               <Image
-                src={ALL_PHOTOS[photoIndex].src}
+                src={buildImage(ALL_PHOTOS[photoIndex].src, 1920)}
                 alt='Gallery view'
                 fill
                 className='object-contain'
