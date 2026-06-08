@@ -1,9 +1,15 @@
 'use client'
 import VideoCard, { type Video } from '@/components/VideoCard'
-// import { RefObject } from 'react'
 export const videos: Video[] = [
   {
     id: 1,
+    thumbnail: 'Screenshot_1498_oaxo9s',
+    alt: 'About Real Hope Ministry ',
+
+    mediaSrc: 'hero-video_qvxm98'
+  },
+  {
+    id: 2,
     thumbnail: 'Screenshot_1083_jqkuqr',
     alt: 'Real Hope Ministry community gathering - Food Project',
 
@@ -15,33 +21,33 @@ export const videos: Video[] = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     thumbnail: 'Gemini_Generated_Image_ae8wsfae8wsfae8w_kwjkio',
     alt: 'Widows ministry - Christmas clothes',
     mediaSrc: 'Untitled_design_4_zeklp0'
   },
   {
-    id: 3,
+    id: 4,
     thumbnail: 'video-3_bzfng3',
     alt: 'Freedom from slavery project',
     mediaSrc: 'freedom-slavery_gi52se'
   },
 
   {
-    id: 4,
+    id: 5,
     thumbnail: 'video-4_rtbnvm',
     alt: 'Orphanage project',
     mediaSrc: ['1._gathering_ay8fgz', 'orphange_zbprw0']
   },
 
   {
-    id: 5,
+    id: 6,
     thumbnail: 'Gemini_Generated_Image_zckniczckniczckn_pacsn6',
     alt: 'Clean water project',
     mediaSrc: ['clean-water_ixmfdk', 'Untitled_design_3_ow5puk']
   },
   {
-    id: 6,
+    id: 7,
     thumbnail: 'primary_d1yylj',
     alt: 'Free people',
     mediaSrc: 'Untitled_design_5_c2jt9c'

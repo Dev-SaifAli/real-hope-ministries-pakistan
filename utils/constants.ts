@@ -9,7 +9,7 @@ export interface Project {
   suggestedAmounts?: number[]
   isUrgent?: boolean
   goal?: number
-  raised?: number 
+  raised?: number
   isOngoing?: boolean
 }
 
@@ -20,7 +20,11 @@ export const PROJECTS: Project[] = [
     description:
       'We aim to install 100 water pumps, each costing $700, to ensure long-term access to water.',
     image: '9f9b70fed6ee900561182ee105c7024993851773_x6idlb',
-    images: ['9f9b70fed6ee900561182ee105c7024993851773_x6idlb', 'Gemini_Generated_Image_zckniczckniczckn_pacsn6', 'Gemini_Generated_Image_zfpz43zfpz43zfpz_rbkpcx'],
+    images: [
+      '9f9b70fed6ee900561182ee105c7024993851773_x6idlb',
+      'Gemini_Generated_Image_zckniczckniczckn_pacsn6',
+      'Gemini_Generated_Image_zfpz43zfpz43zfpz_rbkpcx'
+    ],
     alt: 'Children playing with clean water',
     suggestedAmounts: [100, 350, 700, 1400],
     goal: 70000,
@@ -46,7 +50,11 @@ export const PROJECTS: Project[] = [
     description:
       'Helping families rebuild their lives, with an estimated $5,000 per family for complete support.',
     image: 'free-people_qtiqyy',
-    images: ['free-people_qtiqyy' , 'primary_d1yylj', 'Gemini_Generated_Image_xbfu3lxbfu3lxbfu_bfd8jd'],
+    images: [
+      'free-people_qtiqyy',
+      'primary_d1yylj',
+      'Gemini_Generated_Image_xbfu3lxbfu3lxbfu_bfd8jd'
+    ],
     alt: 'Family standing together',
     suggestedAmounts: [500, 1000, 2500, 5000],
     goal: 250000,
@@ -58,7 +66,7 @@ export const PROJECTS: Project[] = [
     title: 'Orphanage Ministry',
     description: `70 orphan children in brick areas need support. Orphanage fund: $500,000.$100 per child for food and essentials.`,
     image: 'orphanage_b3ciwu',
-    images: ['orphanage_b3ciwu' , 'DSC_7679_1_hjzlhk', 'DSC_7820_1_qda3pj'],
+    images: ['orphanage_b3ciwu', 'DSC_7679_1_hjzlhk', 'DSC_7820_1_qda3pj'],
     alt: 'Young man holding toys for children',
     suggestedAmounts: [100, 300, 500, 1000],
     isUrgent: false,
@@ -72,7 +80,7 @@ export const PROJECTS: Project[] = [
     description:
       'Building a prayer center for the community. We aim to raise $800,000 for its construction.',
     image: 'db44c20156648c910870664dfe10a96b2fddbfe9_sxrgj0',
-    images: ['db44c20156648c910870664dfe10a96b2fddbfe9_sxrgj0' ],
+    images: ['db44c20156648c910870664dfe10a96b2fddbfe9_sxrgj0'],
     alt: 'Women sitting together',
     suggestedAmounts: [500, 1000, 2000, 5000],
     goal: 800000,
@@ -85,7 +93,11 @@ export const PROJECTS: Project[] = [
     description:
       'Over 500 families are trapped in brick kiln slavery. $4,000 is needed to free each family.',
     image: 'slavery_qyj1zw',
-    images: ['slavery_qyj1zw', 'Gemini_Generated_Image_rjhjvurjhjvurjhj_fzjcqw', 'Gemini_Generated_Image_pfgahepfgahepfga_khptms'],
+    images: [
+      'slavery_qyj1zw',
+      'Gemini_Generated_Image_rjhjvurjhjvurjhj_fzjcqw',
+      'Gemini_Generated_Image_pfgahepfgahepfga_khptms'
+    ],
     alt: 'Person working at brick kiln',
     suggestedAmounts: [500, 1000, 2000, 4000],
     isUrgent: false,
@@ -99,7 +111,10 @@ export const PROJECTS: Project[] = [
     description:
       'Supporting 60+ widows in need.\n$1,000 per widow for essential care and support.',
     image: 'Gemini_Generated_Image_ae8wsfae8wsfae8w_kwjkio',
-    images: ['Gemini_Generated_Image_ae8wsfae8wsfae8w_kwjkio', 'Gemini_Generated_Image_b4dvcib4dvcib4dv_iskim4'],
+    images: [
+      'Gemini_Generated_Image_ae8wsfae8wsfae8w_kwjkio',
+      'Gemini_Generated_Image_b4dvcib4dvcib4dv_iskim4'
+    ],
     alt: 'Women and children gathering',
     suggestedAmounts: [100, 250, 500, 1000],
     goal: 70000,
@@ -122,7 +137,8 @@ export const PROJECTS: Project[] = [
   {
     id: 9,
     title: 'Old Age Home',
-    description: 'Providing a safe, comfortable, and loving environment for our elderly community members who need care and support.',
+    description:
+      'Dedicated to providing a safe, comfortable, and loving environment for our elderly community members through the establishment of a $1,000,000 Old Age Home Fund.',
     image: 'DSC_3082_1_lfvubr',
     images: ['DSC_3082_1_lfvubr'],
     alt: 'Elderly care support',
@@ -134,7 +150,8 @@ export const PROJECTS: Project[] = [
   {
     id: 10,
     title: 'Medical Center',
-    description: 'Establishing a community medical center to provide essential healthcare services and medicines to those in need.',
+    description:
+      'We want to build a medical centre for an needed people we need a fund of medical camp dollar $10,000',
     image: 'primary_d1yylj',
     images: ['primary_d1yylj'],
     alt: 'Medical healthcare services',

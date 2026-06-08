@@ -26,11 +26,10 @@ const itemVariants: Variants = {
     transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }
   }
 }
-// videosrc 'VID-20260425-WA0014_leuotp'
 export default function HomeHero({
   title = 'Hope, Help and Humanity',
   subtitle = 'Working together to uplift lives through meaningful initiatives.',
-  videoSrc = 'hero-video_qvxm98',
+  videoSrc = 'Untitled_design_kiyccc',
   photoId = 'Gemini_Generated_Image_zckniczckniczckn_pacsn6'
 }: HeroProps) {
   const [videoReady, setVideoReady] = useState(false)
